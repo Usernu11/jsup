@@ -1,4 +1,5 @@
 import { countriesTwo } from "./day5_arrays.js"
+import { webTechs } from "./web_techs.js"
 // 4.06.2022
 const numbers = []
 for (let i = 0; i <= 9; i++) {
@@ -384,12 +385,64 @@ for (let i = 0; i <= countriesDetail.length - 1; i++) {
         otherCountries.push(countriesDetail[i][0])
     }
 }
-console.log(`💩 The countries which ends 'ia': ${iaCountries.join(', ')}.`)
+console.log(`🤖 The countries which ends 'ia': ${iaCountries.join(', ')}.`)
 console.log(`👾 The rest one countries: ${otherCountries.join(', ')}.`)
 
 // ex9
+// merge the branches that you have
+console.table(countriesDetail)
+const cnl = [] // countries name length
 
-console.log()
+for (let i = 0; i <= countriesDetail.length - 1; i++) {
+    cnl.unshift(countriesDetail[i][2]) // add an empty array length of each counrty name
+}
+
+let cnlMax = Math.max(...cnl) // find max value from the array
+for (let i = 0; i <= countriesDetail.length - 1; i++) {
+    if (cnlMax === countriesDetail[i][2]) {
+        console.log(`🐍 The biggest length of a name counrty is: ${countriesDetail[i][0]}\n which = ${countriesDetail[i][2]}.`)
+    }
+}
+// console.log(cnl.push(countriesDetail[0][2])) // test for ↑
+// console.log(cnl.push(countriesDetail[1][2])) // test for ↑
+// console.log(cnl) // test for ↑
+// console.log(cnlMax) // test for ↑
+
+//ex10
+const fCNLC = [] // 5 characters name length countries 
+for (let i = 0; i <= countriesDetail.length - 1; i++) {
+    if (countriesDetail[i][2] === 5) {
+        console.log(`👽 ${countriesDetail[i][0]}`)
+        fCNLC.push(countriesDetail[i][0])
+    }
+}
+console.log(fCNLC)
+
+//ex11
+console.log(webTechs) // check is it works right ✅
+const wtNameLength = [] // create a new empty array for length's tech names
+for (let i = 0; i <= webTechs.length - 1; i++) {
+    wtNameLength.push(webTechs[i].length) // add to the empty array lengh of each tech
+}
+console.log(wtNameLength) // check the new array for exepted values ✅
+
+let wtNameLengthMax = Math.max(...wtNameLength) // find a max value from the tech name length array
+for (let i = 0; i <= webTechs.length - 1; i++) {
+    if (webTechs[i].length === wtNameLengthMax) { // using the contidion find the longest word from the webtech array
+        console.log(`🐱‍👤 The longest word from webtech array is: ${webTechs[i]}.`) // print the winner 😄
+    }
+}
+
+//ex12
+const wtNLjs = [] // an empty web tech array with values (name of tech & length of name) 
+const wtNL = []
+for (let i = 0; i <= webTechs.length - 1; i++) {
+    let jsRemover = webTechs[i].replace(/.js/gi, '') // remove "".js" from each el
+    wtNL.push([jsRemover, jsRemover.length]) 
+}
+console.table(wtNL)
+
+
 console.log()
 console.log()
 console.log()
