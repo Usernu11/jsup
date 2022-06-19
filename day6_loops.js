@@ -442,9 +442,44 @@ for (let i = 0; i <= webTechs.length - 1; i++) {
 }
 console.table(wtNL)
 
+//ex13 (June 19/20)
+const stack = ['MongoDB', 'Express', 'React', 'Node'] // create an array of MERN stack
+const mernStack = [] // create an empty array of MERN stack abbreviation
+console.log(stack[0].split('')) // check how works split
+for (let i = 0; i <= stack.length - 1; i++) {
+    let stackLetters = stack[i].split('') // create a varribale for each stack and then separate each stack to separate letters
+    mernStack.push(stackLetters[0].toUpperCase()) // add to the empty MERN stack array first letter of each stack with upperCase method
+}
+console.log(`⚡ ${mernStack.toString().replace(/,/g, '')} ⚡`) // print the result convertered to string and removed useless comas
 
-console.log()
-console.log()
+//ex14
+const fullStack = ["HTML", "CSS", "JS", "React", "Redux", "Node", "Express", "MongoDB"] // created an array of full stack
+for (let i = 0; i <= fullStack.length - 1; i++) {
+    console.log(`✅ ${fullStack[i]}`) // print each el of the array above
+}
+console.log('') // just separate line
+
+for (const stack of fullStack) {
+    console.log(`🟣 ${stack}`) // print each el of the array above using "for of" loop
+}
+
+//ex15
+// unshift + push | shift / pop (just hint for me - tools, except reverse)
+const fruits = ['🍌', '🍊', '🥭', '🍋'] // create an array of fruits
+console.log(`BEFORE: ${fruits}`) // print fruits array before editing
+let fl = fruits.length // length of the fruits array (static value! it the loop it will change every time and pop method will revome only half of the fruits array)
+for (let i = 0; i <= fl - 1; i++) {
+    fruits.push(fruits[fl - 1 - i])
+}
+
+for (let i = 0; i <= fl - 1; i++) {
+    fruits.shift()
+}
+console.log(`AFTER: ${fruits}`) // pring fruits array after editing
+// console.log(fruits)
+
+
+// YOU SHOULD DO IT USING ONE LOOP
 console.log()
 console.log()
 console.log()
