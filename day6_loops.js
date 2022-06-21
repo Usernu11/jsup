@@ -469,17 +469,35 @@ const fruits = ['🍌', '🍊', '🥭', '🍋'] // create an array of fruits
 console.log(`BEFORE: ${fruits}`) // print fruits array before editing
 let fl = fruits.length // length of the fruits array (static value! it the loop it will change every time and pop method will revome only half of the fruits array)
 for (let i = 0; i <= fl - 1; i++) {
-    fruits.push(fruits[fl - 1 - i])
+    fruits.push(fruits[fl - 1 - i]) // add to the exist array the same items, but mirror reflection - from last index (total 8 items in the array)
 }
 
 for (let i = 0; i <= fl - 1; i++) {
-    fruits.shift()
+    fruits.shift() // remove half items from the array - first indexes
 }
 console.log(`AFTER: ${fruits}`) // pring fruits array after editing
 // console.log(fruits)
 
+// ex16
+const fullStacker = [
+    ['HTML', 'CSS', 'JS', 'React'],
+    ['Node', 'Express', 'MongoDB']
+  ]
 
-// YOU SHOULD DO IT USING ONE LOOP
+let fsLength = fullStacker[0].length + fullStacker[1].length // create a length number of all elements in the array and subarrays
+let allStacks = [] // create an empty array for collecting the all of those subarray's items into one
+for (let i = 0; i <= fullStacker.length - 2; i++) { // do loop for 1 time
+    console.log(allStacks.concat(fullStacker[i]).concat(fullStacker[i + 1]).join('\n').toUpperCase()) // print the result
+}
+
+// level - 3
+console.log('▌▌▌▌▌▌▌▌▌ level 3 ▌▌▌▌▌▌▌▌▌')
+
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
 console.log()
 console.log()
 console.log()
