@@ -493,12 +493,59 @@ for (let i = 0; i <= fullStacker.length - 2; i++) { // do loop for 1 time
 // level - 3
 console.log('▌▌▌▌▌▌▌▌▌ level 3 ▌▌▌▌▌▌▌▌▌')
 
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
+// ex1
+console.table(countriesTwo.copyWithin(0)) // tried to do a copy of the array without mutation (wrong, but works)❌
+const countriesCopy = countriesTwo.concat() // tried to do a copy of the country array without mutation (right - works) ✅
+console.log(countriesCopy) // checking the result
+const secCountriesCopy = [...countriesCopy] // tried to do the copy of the country array using ES6 spread operator (right - works)✅
+console.log(secCountriesCopy) // checking the result
+
+// ex2
+const sortedCountries = [...secCountriesCopy].sort()
+console.table(sortedCountries)
+
+// ex3
+console.log(webTechs.sort())
+console.log(mernStack.sort())
+
+// ex4
+const allLandCountries = [] // create an empty array for countries which end 'land'
+for (let i = 0; i <= countriesTwo.length - 1; i++) {
+    if (countriesTwo[i].includes('land')) { // if a country by index has 'land' - run the code below
+        allLandCountries.push(countriesTwo[i]) // add to the empty array a country which has 'land' word by index of the all countries
+    }
+}
+console.log(allLandCountries) // print the result
+
+// ex5
+const lengthOfEachCountry = [] // create an empty array for adding length of each country name
+for (let i = 0; i <= countriesTwo.length - 1; i++) {
+    lengthOfEachCountry.push(countriesTwo[i].length) // add to the length array a length of each country name
+}
+
+console.log(lengthOfEachCountry) // print the result of length array
+
+let maxLengthOfCountry = Math.max(...lengthOfEachCountry) // find a max value of the length array
+
+console.log(maxLengthOfCountry) // print the result of max value of the length array
+
+for (let i = 0; i <= lengthOfEachCountry.length - 1; i++) {
+    if (lengthOfEachCountry[i] === maxLengthOfCountry) { // if a number of a length country equals to max value - run the code below
+        console.log(`🐍 The highest name country is: ${countriesTwo[i]}`) // print the name of the highest name length country
+    }
+}
+
+// const pureMaxLengthCountry = []
+// for (let i = 0; i <= lengthOfEachCountry.length - 1; i++) {
+//     if (countriesTwo[i].search(' ') !== -1) { // if a country by index has a space in the name - run code below
+//         countriesTwo[i].replace(' ', '') // replace spaces in the country 
+//     } 
+// }
+
+// console.log(countriesTwo)
+console.log(countriesTwo[47].replace(' ', '').replace(' ', '').replace(' ', '').length) // 21
+console.log(countriesTwo[30].replace(' ', '').replace(' ', '').length) // 22
+
 console.log()
 console.log()
 console.log()
