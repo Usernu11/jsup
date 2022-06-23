@@ -518,37 +518,59 @@ for (let i = 0; i <= countriesTwo.length - 1; i++) {
 console.log(allLandCountries) // print the result
 
 // ex5
-const lengthOfEachCountry = [] // create an empty array for adding length of each country name
+const pureCountries = [] // create an empty array for the future countries names without spacing
+const pureCountriesLength = [] // create an empty array for the length of the countries wothout spacing
+
 for (let i = 0; i <= countriesTwo.length - 1; i++) {
-    lengthOfEachCountry.push(countriesTwo[i].length) // add to the length array a length of each country name
+    pureCountries.push(countriesTwo[i].replace(' ', '').replace(' ', '').replace(' ', '').replace(' ', '').replace(' ', '')) // add to the empty array new country name without spacing by index
+    pureCountriesLength.push(pureCountries[i].length) // add to the empty length array a length of each country name without which doesn't have spaces 
 }
 
-console.log(lengthOfEachCountry) // print the result of length array
+let maxPureCountryLength = Math.max(...pureCountriesLength) // create a varribale which contains the maximum value of the country length array
 
-let maxLengthOfCountry = Math.max(...lengthOfEachCountry) // find a max value of the length array
+console.log(countriesTwo[47].replace(' ', '').replace(' ', '').replace(' ', '').length) // 21 (just test)
+console.log(countriesTwo[30].replace(' ', '').replace(' ', '').length) // 22 (just test)
+console.log(countriesTwo[1].includes(' ')) // false (just test)
+console.log(pureCountries) // test
+console.log(pureCountriesLength) // test
+console.log(maxPureCountryLength) // test
 
-console.log(maxLengthOfCountry) // print the result of max value of the length array
-
-for (let i = 0; i <= lengthOfEachCountry.length - 1; i++) {
-    if (lengthOfEachCountry[i] === maxLengthOfCountry) { // if a number of a length country equals to max value - run the code below
-        console.log(`🐍 The highest name country is: ${countriesTwo[i]}`) // print the name of the highest name length country
+for (let i = 0; i <= pureCountriesLength.length - 1; i++) {
+    if (maxPureCountryLength === pureCountriesLength[i]) { // if a value of the max length equals to length's number of the country length array - run the code bellow
+        console.log(`🐍 The highest name country without space is:\n${countriesTwo[i].toUpperCase()}\n\n👽 Which looks like that: "${pureCountries[i]}"\n🤖 And the number of the length is: ${pureCountriesLength[i]}`) // print the results
     }
 }
 
-// const pureMaxLengthCountry = []
-// for (let i = 0; i <= lengthOfEachCountry.length - 1; i++) {
-//     if (countriesTwo[i].search(' ') !== -1) { // if a country by index has a space in the name - run code below
-//         countriesTwo[i].replace(' ', '') // replace spaces in the country 
-//     } 
-// }
+// ex6 - the same like ex4 (dublicate)
 
-// console.log(countriesTwo)
-console.log(countriesTwo[47].replace(' ', '').replace(' ', '').replace(' ', '').length) // 21
-console.log(countriesTwo[30].replace(' ', '').replace(' ', '').length) // 22
+// ex7
+const fourCharCountry = [] // created an empty array for countries which have 4 characters in a name
+for (let i = 0; i <= countriesTwo.length - 1; i++) {
+    if (countriesTwo[i].length === 4) { // if a country has 4 characters (strict length) in the name - run the code below
+        fourCharCountry.push(countriesTwo[i]) // add to the new array the 4char countries 
+    }
+}
 
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
+console.log(`4️⃣char countries:\n${fourCharCountry.join('\n')}`) // print the result
+
+// ex8
+const multipleNameCountry = [] // created an empty array for countries which have 2 or more words in the name
+for (let i = 0; i <= countriesTwo.length - 1; i++) {
+    if (countriesTwo[i].split(' ').length >= 2) { // if a country has 2 or more words - run the code below
+        multipleNameCountry.push(countriesTwo[i]) // add to the new array the country which have 2 or more words
+    }
+}
+// console.log(countriesTwo[171].split(' ').length) // test
+
+console.log(`👾 The multiple name country are:\n${multipleNameCountry.join('\n')}`) // print the result
+
+// ex9 - option 1 (one line option)
+// console.table(countriesTwo.reverse().toString().toUpperCase().split(',')) // print the reversed country array with Upper Case and as an array  
+
+// ex9 - option 2 (with loop)
+const CRU = [] // created a new empty array for countries with UpperCase plus reverse the array
+for (let i = 0; i <= countriesTwo.length - 1; i++) {
+    CRU.push(countriesTwo[i].toUpperCase()) // add to the new empty array each country with UpperCase
+}
+
+console.table(`🙌 the CRU are (Countries - Reversed and UpperCased):\n`, CRU.reverse()) // print the result plus reverse the array and separate it from the string for keeping array
