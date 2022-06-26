@@ -97,19 +97,68 @@ function covertCtoF (oC) {
 
 console.log(`🌡 The your oC on oF is: ${covertCtoF(16)}`)
 
-// ex13
+// ex13 - !
 // bmi = weight in Kg / (height x height) in m2
 function calcBMI (weight, height) {
-    let bmi = weight / height**2
+    let bmi = Math.trunc(weight / ((height**2) / 10000))
     if (bmi < 18.5) {
-        return `🤸‍♂️ Your BMI is: underweight = ${bmi}`
+        return `🦎 Your BMI is: Underweight = ${bmi}`
     } else if (bmi < 24.9 && bmi >= 18.5) {
-        return `👍 Your BMI is: normal = ${bmi}`
+        return `🦝 Your BMI is: Normal = ${bmi}`
     } else if (bmi < 29.9 && bmi >= 25) {
-        return `🐗 Your BMI is: overweight = ${bmi}`
+        return `🐗 Your BMI is: Overweight = ${bmi}`
     } else {
-        return `🐮 Your BMI is: obese = ${bmi}`
+        return `🐮 Your BMI is: Obese = ${bmi}`
     }
 }
 
-console.log(calcBMI(80, 1.85))
+console.log(calcBMI(80, 185))
+
+// ex14
+// let month = prompt('enter a month') ⭕
+function checkSeason (month) {
+    let monthLower = month.toLowerCase()
+    if (monthLower === 'december' || monthLower === 'january' || monthLower === 'february') {
+        return `❄ Today is Winter! Don't forget a warm hat and a scarf.`
+    } else if (monthLower === 'march' || monthLower === 'april' || monthLower === 'may') {
+        return `🌱 Today is Spring! It could be rainy, don't forget your umbrella and sunglasses.`
+    } else if (monthLower === 'june' || monthLower === 'july' || monthLower === 'august') {
+        return `🌞 Today is Summer! It could be hot outdoor. Don't forget your sunglasses.`
+    } else if (monthLower === 'september' || monthLower === 'october' || monthLower === 'november') {
+        return `🍁 Today is Fall! Don't forget your umbrealla, because it could be rainy outdoor.`
+    } else {
+        return `❌ Write a correct month's name.`
+    }
+}
+
+// console.log(checkSeason(month)) ⭕
+
+// ex15
+function findMax (num1, num2, num3) {
+    if (num1 > num2 && num1 > num3) {
+        return `✴ The max value is: ${num1}`
+    } else if (num2 > num1 && num2 > num3) {
+        return `✴ The max value is: ${num2}`
+    } else {
+        return `✴ The max value is: ${num3}`
+    }
+}
+
+console.log(findMax(16, -12, 95))
+
+// level 2
+// ex1 - skipped (I don't recall the knowledge of the Math)
+// ex2 - skipped (Math) 
+// ex3
+const printArray = (array) => {
+    for (let i = 0; i <= array.length - 1; i++) {
+        console.log(`${array[i]}`)
+    }
+}
+
+const nums = [8,7,4,1,9,8]
+const strs = ['🥝 Fruit', '🛒 Cart', '🏐 Volleyball', '♟ Pawn', '🧩 Puzzle']
+
+printArray(nums)
+printArray(strs)
+
