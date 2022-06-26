@@ -97,7 +97,7 @@ function covertCtoF (oC) {
 
 console.log(`🌡 The your oC on oF is: ${covertCtoF(16)}`)
 
-// ex13 - !
+// ex13
 // bmi = weight in Kg / (height x height) in m2
 function calcBMI (weight, height) {
     let bmi = Math.trunc(weight / ((height**2) / 10000))
