@@ -162,3 +162,121 @@ const strs = ['🥝 Fruit', '🛒 Cart', '🏐 Volleyball', '♟ Pawn', '🧩 Pu
 printArray(nums)
 printArray(strs)
 
+// ex4
+// 08/01/2020 04:08 (just hint)
+let now = new Date()
+const showTime = () => {
+    let month = now.getMonth() + 1
+    let day = now.getDate()
+    let year = now.getFullYear()
+    let hours = now.getHours()
+    let minutes = now.getMinutes()
+    if (month.length < 2) {
+        month = `0${now.getMonth()}`
+    }
+    if (day.length < 2) {
+        day = `0${now.getDate()}`
+    }
+    if (hours.length < 2) {
+        hours = `0${now.getHours()}`
+    }
+    if (minutes.length < 2) {
+        minutes = `0${now.getMinutes()}`
+    }
+    return `${month}/${day}/${year} ${hours}:${minutes}`
+}
+
+console.log(`⌚ Time: ${showTime()}`)
+
+// ex5
+const swapValues = (x, y) => {
+    const values = [x, y]
+    const swap = values.reverse()
+    return `X => ${swap[0]}\nY => ${swap[1]}`
+}
+
+console.log(swapValues(16, 2))
+
+// ex6
+const reverseArray = (array) => {
+    const reversed = []
+    for (let i = 0; i <= array.length - 1; i++) {
+        reversed.push(array[array.length - 1 - i])
+    }
+    return reversed
+}
+
+const numbers = [1, 2, 3, 4, 5]
+const letters = ['A', 'B', 'C', 'E', 'F']
+const fruits = ['🥝', '🍇', '🍉', '🍒', '🍍']
+console.log(reverseArray(numbers))
+console.log(reverseArray(letters))
+console.log(reverseArray(fruits))
+
+// ex7
+const capitalize = (array) => {
+    const capitalizeArray = []
+    for (let i = 0; i <= array.length - 1; i++) {
+        let wordByLetters = array[i].split('')  // separate each word to letters
+        let capitalizer = wordByLetters[0].toUpperCase() // capitalize first letter
+        wordByLetters.shift() // revome first lowerCase letter from letters array
+        wordByLetters.unshift(capitalizer) // add to the start of the letters array capitalized letter
+        capitalizeArray.push(wordByLetters.toString().replace(/,/g, '')) // covert separated word's array to string and removes useless commas
+    }
+    return capitalizeArray
+}
+
+const words = ['apple', 'javaScript', 'bohdan', 'function']
+console.log(capitalize(words))
+
+// ex8
+const array = []
+const addItem = (item) => {
+    array.push(item)
+    return array
+}
+console.log(addItem('🧶'))
+console.log(addItem('💎'))
+console.log(addItem(718))
+console.log(addItem('⛑'))
+console.log(addItem('🎱'))
+
+// ex9
+const removeItem = (index) => {
+    array.splice(index, 1)
+    return array
+}
+console.log(removeItem(3))
+console.log(removeItem(2))
+
+// ex10
+const sumNumbers = (number) => {
+    let sum = 0
+    for (let i = 0; i <= number; i++) {
+        sum += i
+    }
+    return `🎇 The sum of your number (${number}) is: ${sum}`
+}
+console.log(sumNumbers(16))
+
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
