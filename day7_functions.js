@@ -259,17 +259,140 @@ const sumNumbers = (number) => {
 }
 console.log(sumNumbers(16))
 
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
+// ex11
+const sumOdds = (number) => {
+    let sum = 0
+    for (let i = 0; i <= number; i++) {
+        if (i % 2 !== 0) {
+            sum += i
+        }
+    }
+    return `✨ The sum of odds of the number (${number}) is: ${sum}`
+}
+console.log(sumOdds(16))
+
+// ex12
+const sumEven = (number) => {
+    let sum = 0
+    for (let i = 0; i <= number; i++) {
+        if (i % 2 === 0) {
+            sum += i
+        }
+    }
+    return `🎆 The sum of the even's number (${number}) is: ${sum}`
+}
+console.log(sumEven(16))
+
+// ex13
+const sumEvenAndOdds = (number) => {
+    let sumOdd = 0
+    let sumEven = 0
+    if (number > 0) {
+        for (let i = 0; i <= number; i++) {
+            if (i % 2 === 0) {
+                sumEven += i
+            } else {
+                sumOdd += i
+            }
+        }
+    } else {
+        return `❌ Your number isn't positive`
+    }
+    return `Your number is (${number}):\n🎟 The sum of odds is: ${sumOdd}\n🎗 The sum of even is: ${sumEven}`
+}
+console.log(sumEvenAndOdds(-16))
+console.log(sumEvenAndOdds(16))
+
+// ex14
+const calcSum = (...nums) => { // the function takes any arguments
+    let sum = 0
+    let argLength = nums.length // number of our arguments
+    let valuesArr = nums.toString().split(',') // our args
+    let range = 0
+    if (argLength > 1) {
+        for (let i = 0; i <= argLength - 1; i++) {
+            range += parseInt(valuesArr[i]) // the range will allow us to know how many times we will do sum
+        }
+        for (let i = 0; i <= range; i++) {
+            sum += i
+        }
+    } else {
+        range += parseInt(nums)
+        for (let i = 0; i <= nums; i++) {
+            sum += i
+        }
+    }
+    return `🎠 The args' number: ${argLength}\n🏆 The args' values: ${valuesArr.join(' | ')}\n🪀 The values' range: ${range}\n⛓ The args' sum: ${sum}`
+}
+console.log(calcSum(16, 18, 718))
+
+// ex15
+const genRandomUserIp = () => {
+    const newUserIPv4 = []
+    const newUserIPv6 = []
+    const randomIPv6Item = [] // 4 values of numbers of letters
+    for (let i = 0; i <= 3; i++) { // the loop for IPv4
+        let randomNum = Math.round(Math.random() * 255)
+        newUserIPv4.push(randomNum)
+    }
+    for (let i = 0; i <= 7; i++) { // the loop for IPv6
+        for (let i = 0; i <= 3; i++) { // create 4 values for first set of IPv6 from 8th
+            let randomNum = Math.floor(Math.random() * 9) // gen a random num 0-9  
+            let randomLetter = String.fromCharCode(Math.ceil(Math.random() + 96) + Math.ceil(Math.random() * 25)) // gen a random enlgish letter
+            let shortRandomNum = Math.floor(Math.random() * 2) // gen a random num 0-1 for condition below
+            if (shortRandomNum === 1) {
+                randomIPv6Item[i] = (randomNum)
+            } else {
+                randomIPv6Item[i] = (randomLetter)
+            }
+        }
+        newUserIPv6.push(randomIPv6Item.join('')) // add to IPv6 array - four values (without commas)
+    }
+    return `🎲 Your new IP (IPv4): ${newUserIPv4.join('.')}\n📍 Your new IP (IPv6): ${newUserIPv6.join(':')}`
+}
+console.log(genRandomUserIp())
+
+// ex16
+const genRandomMACaddress = () => {
+    const newMACaddress = []
+    const MACset = []
+    for (let i = 0; i <= 5; i++) {
+        for (let i = 0; i <= 1; i++) { // loop for MAC set
+            let randomNum = Math.floor(Math.random() * 9) // gen a random num 0-9  
+            let randomLetter = String.fromCharCode(Math.ceil(Math.random() + 96) + Math.ceil(Math.random() * 25)) // gen a random enlgish letter
+            let shortRandomNum = Math.floor(Math.random() * 2) // gen a random num 0-1 for condition below
+            if (shortRandomNum === 1) {
+                MACset[i] = (randomNum)
+            } else {
+                MACset[i] = (randomLetter)
+            }
+        }
+        newMACaddress.push(MACset.join(''))
+    }
+    return `📻 A random MAC address: ${newMACaddress.join(':')}`
+}
+console.log(genRandomMACaddress())
+
+// ex17
+const genRandomHexNumber = () => {
+    const newHexNumber = []
+    for (let i = 0; i <= 5; i++) {
+        let randomNum = Math.floor(Math.random() * 9) // gen a random num 0-9  
+        let randomLetter = String.fromCharCode(Math.ceil(Math.random() + 96) + Math.ceil(Math.random() * 5)) // gen a random enlgish letter from A to F
+        let shortRandomNum = Math.floor(Math.random() * 2) // gen a random num 0-1 for condition below
+        if (shortRandomNum === 1) {
+            newHexNumber[i] = (randomNum)
+        } else {
+            newHexNumber[i] = (randomLetter)
+        }
+    }
+    return `#${newHexNumber.join('')}`
+}
+
+document.getElementById('randomHexNumber').style.backgroundColor = `${genRandomHexNumber()}` // paint an el in HTML in a random hexa color
+document.getElementById('randomHexNumber').innerHTML += `${genRandomHexNumber()}` // add text to an el - what is current hex color
+console.log(`🎨 The new random hexademical number is:\n${genRandomHexNumber()}`)
+
 console.log()
 console.log()
 console.log()
