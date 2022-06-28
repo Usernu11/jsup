@@ -412,9 +412,67 @@ console.log(genUserId())
 
 // Level 3
 // ex1
-console.log()
-console.log()
-console.log()
+// let userLength = prompt('Your ID length') ⭕
+// let userNums = prompt(`How many IDs?`) ⭕
+const userIdGeneratedByUser = (userLength, userNums) => {
+    const userIds = []
+    const userIdset = []
+    for (let i = 0; i <= userNums - 1; i++) {
+        for (let p = 0; p <= userLength - 1; p++) {
+            let randomNum = Math.floor(Math.random() * 9) // gen random num
+            let randomLetter = String.fromCharCode(Math.ceil(Math.random() + 96) + Math.ceil(Math.random() * 25)) // gen random letter
+            let shortRandomNum = Math.floor(Math.random() * 3) // gen a random num 0-2 for condition below
+            if (shortRandomNum === 0) {
+                userIdset[p] = randomNum
+            } else if (shortRandomNum === 1) {
+                userIdset[p] = randomLetter
+            } else {
+                userIdset[p] = randomLetter.toUpperCase()
+            }
+        }
+        userIds.push(userIdset.join(''))
+    }
+    return `${userIds.join(`\n`)}`
+}
+// console.log(`🧢 Your new ID(s):\n${userIdGeneratedByUser(userLength, userNums)}`) ⭕
+
+// ex2
+const rgbColorGenerator = () => {
+    const rgbColor = []
+    for (let i = 0; i <= 2; i++) {
+        let randomNum = Math.round(Math.random() * 255)
+        rgbColor[i] = randomNum
+    }
+    return `rgb(${rgbColor})`
+}
+
+console.log(`🥏 A new RGB color:\n${rgbColorGenerator()}`)
+document.getElementById('randomRGBcolor').style.backgroundColor = `${rgbColorGenerator()}`
+document.getElementById('randomRGBcolor').innerHTML += `${rgbColorGenerator()}`
+
+// ex3
+const arrayOfHexaColors = (num = 1) => {
+    const hexColors = []
+    const hexSet = []
+    for (let i = 0; i <= num - 1; i++) {
+        for (let p = 0; p <= 5; p++) {
+            let randomNum = Math.floor(Math.random() * 9) // gen a random num 0-9  
+            let randomLetter = String.fromCharCode(Math.ceil(Math.random() + 96) + Math.ceil(Math.random() * 5)) // gen a random enlgish letter from A to F
+            let shortRandomNum = Math.floor(Math.random() * 2) // gen a random num 0-1 for condition below
+            if (shortRandomNum === 1) {
+                hexSet[p] = (randomNum)
+            } else {
+                hexSet[p] = (randomLetter)
+            }
+        }
+        hexColors.push(`#${hexSet.join('')}`)
+    }
+    document.getElementById('HEXcolors').style.background = `linear-gradient(90deg, ${hexColors[0]}, ${hexColors[1]}, ${hexColors[2]}, ${hexColors[3]}, ${hexColors[4]}, ${hexColors[5]})` // just a fun additional to my HTML
+    return `${hexColors.join('\n')}`
+}
+
+console.log(`🧮 Your HEX colors:\n${arrayOfHexaColors(6)}`)
+
 console.log()
 console.log()
 console.log()
