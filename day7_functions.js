@@ -393,6 +393,33 @@ document.getElementById('randomHexNumber').style.backgroundColor = `${genRandomH
 document.getElementById('randomHexNumber').innerHTML += `${genRandomHexNumber()}` // add text to an el - what is current hex color
 console.log(`🎨 The new random hexademical number is:\n${genRandomHexNumber()}`)
 
+// ex18
+const genUserId = () => {
+    const userId = []
+    for (let i = 0; i <= 6; i++) {
+        let randomNum = Math.floor(Math.random() * 9) // gen random num
+        let randomLetter = String.fromCharCode(Math.ceil(Math.random() + 96) + Math.ceil(Math.random() * 25)) // gen random letter
+        let shortRandomNum = Math.floor(Math.random() * 2) // gen a random num 0-1 for condition below
+        if (shortRandomNum === 1) {
+            userId.push(randomNum)
+        } else {
+            userId.push(randomLetter)
+        }
+    }
+    return `👔 Your new userId: ${userId.join('').toString().toUpperCase()}`
+}
+console.log(genUserId())
+
+// Level 3
+// ex1
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
 console.log()
 console.log()
 console.log()
