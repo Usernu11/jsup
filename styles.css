@@ -35,3 +35,14 @@
     transform: rotate(90deg);
     border-radius: 15px;
 }
+
+.round-grad {
+    width: 150px;
+    height: 150px;
+    /* border: px solid black; */
+    border-radius: 50%;
+    position: absolute;
+    top: 5%;
+    right: 15%;
+    box-shadow: 3px 3px 10px 1px;
+}

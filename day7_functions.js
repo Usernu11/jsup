@@ -473,8 +473,40 @@ const arrayOfHexaColors = (num = 1) => {
 
 console.log(`🧮 Your HEX colors:\n${arrayOfHexaColors(6)}`)
 
-console.log()
-console.log()
+// ex4 ---
+const rgbColors = (num = 1) => {
+    const rgbColorsArray = []
+    const rgbColor = []
+    for (let i = 0; i <= num - 1; i++) { // loop for several gen rgb colors
+        for (let p = 0; p <= 2; p++) { // loop for gen 1 rgb color
+            let randomNum = Math.round(Math.random() * 255)
+            rgbColor[p] = randomNum
+        }
+        rgbColorsArray.push(`rgb(${rgbColor})`)
+    }
+    document.getElementById('RGBcolors').style.background = `radial-gradient(at top left, ${rgbColorsArray})` // just for fun additional to my html
+    return rgbColorsArray.join('\n')
+}
+console.log(`📚 Your rgb colors:\n${rgbColors(2)}`)
+
+// ex5 --- 
+const convertHexaToRgb = (hexaColor) => {
+    const hexaNumber = []
+    const hexBase16 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
+    const hexBaseEqual = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    hexaNumber.push(hexaColor.replace('#', '').split(''))
+    let Rcolor = []
+    let Gcolor = []
+    let Bcolor = []
+    for (let i = 0; i <= 1; i++) {
+        // Rcolor.push(hexaNumber[i] * )
+    }
+    // return hexaNumber.toString().replace(/,/g, '')
+    return Rcolor
+}
+console.log(convertHexaToRgb(genRandomHexNumber()))
+// const hexBase16 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
+
 console.log()
 console.log()
 console.log()
