@@ -473,7 +473,7 @@ const arrayOfHexaColors = (num = 1) => {
 
 console.log(`🧮 Your HEX colors:\n${arrayOfHexaColors(6)}`)
 
-// ex4 ---
+// ex4
 const rgbColors = (num = 1) => {
     const rgbColorsArray = []
     const rgbColor = []
@@ -491,29 +491,43 @@ console.log(`📚 Your rgb colors:\n${rgbColors(2)}`)
 
 // ex5 --- 
 const convertHexaToRgb = (hexaColor) => {
-    const hexaNumber = []
-    const hexBase16 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
-    const hexBaseEqual = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-    hexaNumber.push(hexaColor.replace('#', '').split(''))
-    let Rcolor = []
-    let Gcolor = []
-    let Bcolor = []
-    for (let i = 0; i <= 1; i++) {
-        // Rcolor.push(hexaNumber[i] * )
-    }
-    // return hexaNumber.toString().replace(/,/g, '')
-    return Rcolor
-}
-console.log(convertHexaToRgb(genRandomHexNumber()))
-// const hexBase16 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
+    const hexColor = hexaColor.replace('#', '').toUpperCase().split('') // ['A', '2', 'F', '6', 'C', '2']
+    const hexBase = ['ABCDEF'] 
+    const hexBaseEqual = [10,11,12,13,14,15] // equals to hexBase letters
+    const RGB = [] // an array for converted hexa values to "decimal base 10"
+    const RGBtimed = [] // an array for calculated odds values (0,2,4) in "decimal base 10"
+    const RGBcolor = [] // an array for calculated R-G-B colors
 
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
+    for (let i = 0; i <= 5; i++) { // a loop for RGB array
+        let hexIndex = hexBase.toString().indexOf(hexColor[i]) // return index or -1
+        if (hexIndex !== -1) {
+            RGB.push(hexBaseEqual[hexIndex])
+        } else {
+            RGB.push(parseInt(hexColor[i]))
+        }
+    }
+
+    for (let i = 0; i <= 5; i++) { // a loop for RGBtimed array
+        if ((RGB.length - 1 - i) % 2 !== 0) { // odd - 0,2,4
+            RGBtimed.push(RGB[i] * 16)
+        } else {
+            RGBtimed.push(RGB[i])
+        }
+    }
+
+    for (let i = 0; i <= 5; i++) { // a loop for RGBcolor array (result)
+        if (i % 2 === 0) {
+            RGBcolor.push(RGBtimed[i] + RGBtimed[i + 1])
+        }
+    }
+
+    // console.log(hexColor.join('')) // shows hex color
+    // console.log(RGB) // shows an RGB array (without calculating)
+    return `rgb(${RGBcolor})`
+}
+
+console.log(`💫 Convert a random HEX → RGB:\n${convertHexaToRgb(genRandomHexNumber())}`)
+
 console.log()
 console.log()
 console.log()
