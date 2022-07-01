@@ -412,8 +412,8 @@ console.log(genUserId())
 
 // Level 3
 // ex1
-// let userLength = prompt('Your ID length') ⭕
-// let userNums = prompt(`How many IDs?`) ⭕
+// let userLength = prompt(`Your ID's length`) //⭕
+// let userNums = prompt(`How many IDs?`) //⭕
 const userIdGeneratedByUser = (userLength, userNums) => {
     const userIds = []
     const userIdset = []
@@ -434,7 +434,7 @@ const userIdGeneratedByUser = (userLength, userNums) => {
     }
     return `${userIds.join(`\n`)}`
 }
-// console.log(`🧢 Your new ID(s):\n${userIdGeneratedByUser(userLength, userNums)}`) ⭕
+// console.log(`🧢 Your new ID(s):\n${userIdGeneratedByUser(userLength, userNums)}`) //⭕
 
 // ex2
 const rgbColorGenerator = () => {
@@ -528,6 +528,74 @@ const convertHexaToRgb = (hexaColor) => {
 
 console.log(`💫 Convert a random HEX → RGB:\n${convertHexaToRgb(genRandomHexNumber())}`)
 
+// ex6
+const convertRgbToHexa = (rgb) => {
+    let rgbClean = rgb.replace('rgb(', '').replace(')', '')
+    const rgbCleanArr = rgbClean.split(',')
+    const hexBase = ['ABCDEF'].toString()
+    const hexBaseEqual = [10,11,12,13,14,15] // equals to hexBase letters
+    const Rdec = []
+    const Gdec = []
+    const Bdec = []
+    
+    const Rhex = []
+    const Ghex = []
+    const Bhex = []
+    
+    const convertedHexColor = [] // an array for result
+
+    Rdec.push(Math.floor(rgbCleanArr[0] / 16), rgbCleanArr[0] % 16) // converting to decimal base
+    Gdec.push(Math.floor(rgbCleanArr[1] / 16), rgbCleanArr[1] % 16)
+    Bdec.push(Math.floor(rgbCleanArr[2] / 16), rgbCleanArr[2] % 16)
+    
+    
+    for (let i = 0; i <= 1; i++) { // a loop for R color
+        let hexBaseEqualIndex = hexBaseEqual.indexOf(Rdec[i])
+        if (hexBaseEqualIndex !== -1) {
+            Rhex.push(hexBase[hexBaseEqualIndex]) // push a HEX letter
+        } else {
+            Rhex.push(Rdec[i]) // push a HEX number
+        }
+    }
+
+    for (let i = 0; i <= 1; i++) { // a loop for G color
+        let hexBaseEqualIndex = hexBaseEqual.indexOf(Gdec[i])
+        if (hexBaseEqualIndex !== -1) {
+            Ghex.push(hexBase[hexBaseEqualIndex]) // push a HEX letter
+        } else {
+            Ghex.push(Gdec[i]) // push a HEX number
+        }
+    }
+
+    for (let i = 0; i <= 1; i++) { // a loop for B color
+        let hexBaseEqualIndex = hexBaseEqual.indexOf(Bdec[i])
+        if (hexBaseEqualIndex !== -1) {
+            Bhex.push(hexBase[hexBaseEqualIndex]) // push a HEX letter
+        } else {
+            Bhex.push(Bdec[i]) // push a HEX number
+        }
+    }
+
+    convertedHexColor.push(Rhex + Ghex + Bhex)
+    // console.log(rgb) // the rgb color in the function
+    return `#${convertedHexColor.toString().replace(/,/g, '')}`
+
+    // tests ↓
+    console.log(hexBase)
+    console.log(hexBaseEqual.indexOf(Rdec[0])) // return index of hexBaseEqual array or -1
+    console.log(`R G B hex: ${Rhex} ${Ghex} ${Bhex}`)
+    
+    console.log(Rdec, Gdec, Bdec)
+    console.log(rgbClean)
+    console.log(rgbCleanArr[0] / 16, rgbCleanArr[0] % 16)
+    console.log(`Rhex: ${Rhex}`)
+}
+console.log(`✨ An RGB color was converted to a HEX color:\n${convertRgbToHexa(convertHexaToRgb(genRandomHexNumber()))}`)
+
+console.log()
+console.log()
+console.log()
+console.log()
 console.log()
 console.log()
 console.log()
