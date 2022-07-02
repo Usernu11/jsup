@@ -637,22 +637,26 @@ const shuffleArray = (arr) => {
     // const arrSort = arr.sort() // a simple way to shuffle array
     const shuffledArrIndexes = []
     const shuffledArray = []
+    const shuffledNums = new Set() // "A JavaScript Set is a collection of unique values"
     while(shuffledArrIndexes.length < arrLength) { // a loop which shuffle an array indexes
-        let newRandomNum = Math.floor(Math.random() * arrLength)
+        let newRandomNum = Math.floor(Math.random() * arrLength) // gen a random num in range of arg length
         if (shuffledArrIndexes.indexOf(newRandomNum) === -1) {
             shuffledArrIndexes.push(newRandomNum)
         } 
     }
-    for (let i = 0; i <= arrLength - 1; i++) {
-        shuffledArray[i] = arr[shuffledArrIndexes[i]]
+    for (let i = 0; i <= arrLength - 1; i++) { // a loop for shuffling array
+        shuffledArray[i] = arr[shuffledArrIndexes[i]] // add to a new array exist values by new indexes 
     }
+    // while (shuffledNums.size !== arrLength) { // a modern solution in 1 loop
+    //     shuffledNums.add(Math.floor(Math.random() * arrLength) + 1)
+    // }    
+    // console.log([...shuffledNums])
     return `The old array: ${arr}\nThe shuffled array: ${shuffledArray}`
 }
 const myNewArray = ['👾','🤖','💩','👽','🐱‍👤','👻']
 console.log(shuffleArray(myNewArray))
 
 // ex9
-console.log()
 console.log()
 console.log()
 console.log()
