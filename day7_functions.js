@@ -630,9 +630,28 @@ const generateColors = (type, amount) => {
     }
 }
 console.log(generateColors('hex', 5))
-console.log()
-console.log()
-console.log()
+
+// ex8
+const shuffleArray = (arr) => {
+    let arrLength = arr.length
+    // const arrSort = arr.sort() // a simple way to shuffle array
+    const shuffledArrIndexes = []
+    const shuffledArray = []
+    while(shuffledArrIndexes.length < arrLength) { // a loop which shuffle an array indexes
+        let newRandomNum = Math.floor(Math.random() * arrLength)
+        if (shuffledArrIndexes.indexOf(newRandomNum) === -1) {
+            shuffledArrIndexes.push(newRandomNum)
+        } 
+    }
+    for (let i = 0; i <= arrLength - 1; i++) {
+        shuffledArray[i] = arr[shuffledArrIndexes[i]]
+    }
+    return `The old array: ${arr}\nThe shuffled array: ${shuffledArray}`
+}
+const myNewArray = ['👾','🤖','💩','👽','🐱‍👤','👻']
+console.log(shuffleArray(myNewArray))
+
+// ex9
 console.log()
 console.log()
 console.log()
