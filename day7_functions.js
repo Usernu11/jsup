@@ -592,8 +592,44 @@ const convertRgbToHexa = (rgb) => {
 }
 console.log(`✨ An RGB color was converted to a HEX color:\n${convertRgbToHexa(convertHexaToRgb(genRandomHexNumber()))}`)
 
-console.log()
-console.log()
+// ex7
+const generateColors = (type, amount) => {
+    const rgbColor = []
+    const RGBcolors = []
+    const hexColor = []
+    const HEXcolors = []
+
+    if (type === 'rgb') { // RGB
+        for (let i = 0; i <= amount - 1; i++) { // how many times gen
+            for (let p = 0; p <= 2; p++) { // gen an rgb color
+                let rgbRandomNum = Math.round(Math.random() * 255)
+                rgbColor[p] = rgbRandomNum
+            }
+            RGBcolors[i] = `${i + 1} 🔹 rgb(${rgbColor})` // add to RGB's array a RGB color with 'rgb()' construction
+        }
+        return `🔵 Your new '${amount}' RGB colors:\n${RGBcolors.join(`\n`)}`
+    } else if (type === 'hex') { // HEX
+        for (let i = 0; i <= amount - 1; i++) { // how many times gen
+            for (let p = 0; p <= 5; p++) { // gen a hex color
+                let hexRandomNum = Math.floor(Math.random() * 9) // 0-9
+                let hexRandomLetter = String.fromCharCode(Math.ceil(Math.random() + 96) + Math.ceil(Math.random() * 5)) // A-F
+                let shortNum = Math.floor(Math.random() * 3) // 0-2
+                if (shortNum === 0) {
+                    hexColor[p] = (hexRandomNum) // num
+                } else if (shortNum === 1) {
+                    hexColor[p] = (hexRandomLetter) // letter
+                } else {
+                    hexColor[p] = (hexRandomLetter.toUpperCase()) // big letter
+                }
+            }
+            HEXcolors.push(`${i + 1} 🔸 #${hexColor.toString().replace(/,/g, '')}`) // add a number of an each color + removed commas
+        }
+        return `🟢 Your new '${amount}' HEX colors:\n${HEXcolors.join('\n')}`
+    } else {
+        return `❌ Enter a type of color 'rgb' or 'hex'`
+    }
+}
+console.log(generateColors('hex', 5))
 console.log()
 console.log()
 console.log()
