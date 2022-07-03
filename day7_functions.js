@@ -656,7 +656,75 @@ const shuffleArray = (arr) => {
 const myNewArray = ['👾','🤖','💩','👽','🐱‍👤','👻']
 console.log(shuffleArray(myNewArray))
 
-// ex9
+// ex9 (skipped - Math)
+// ex10
+// number, string, boolean, object, null, undefined
+const isEmpty = (param) => {
+    let type = typeof(param)
+    // console.log(type)
+    if (type === 'number') {
+        if (param === 0) {
+            return `⭕ Your parametr (${param}) is empty.`
+        } else {
+            return `🔵 Your prarmetr (${param}) isn't empty`
+        }
+    } else if (type === 'string') {
+        if (param.length === 0) {
+            return `⭕ Your parametr (${param}) is empty.`
+        } else {
+            return `🔵 Your prarmetr (${param}) isn't empty.`
+        }
+    } else if (param === undefined) {
+        return `⭕ Your parametr (${param}) is empty.`
+    } else if (type === 'boolean') {
+        return  `🔵 Your prarmetr (${param}) isn't empty.`
+    } else if (type === 'object') {
+        if (param === null) {
+            return `⭕ Your parametr (${param}) is empty.`
+        } else if (param.length === 0) {
+            return `⭕ Your parametr (${param}) is empty.`
+        } else {
+            return `🔵 Your prarmetr (${param}) isn't empty.`
+        }
+    } else if (param === null) {
+        return `⭕ Your parametr (${param}) is empty.`
+    }
+}
+console.log(isEmpty(16))
+
+// ex11
+const sumNums = (...nums) => {
+    const allNums = [...nums]
+    let sum = 0
+    for (let i = 0; i <= allNums.length - 1; i++) {
+        sum += allNums[i]
+    }
+    return `🟦 The sum of your numbers [${allNums}] is: ${sum}`
+}
+console.log(sumNums(16, 4, 1212, 99484, 1212))
+
+// ex12
+const sumOfArrayItems = (arr) => {
+    const arrLength = arr.length
+    let sum = 0
+    const nAn = [] // array for "not a number" values
+    for (let i = 0; i <= arrLength - 1; i++) {
+        if (typeof(arr[i]) === 'number') {
+            sum += arr[i]
+        } else {
+            nAn.push(arr[i])
+        }
+    }
+    return `🎹 The amount of array's items are: ${arrLength}\n🧶 The array's numbers sum is: ${sum}\n🎈 The other values (not numbers) in the array are:\n ${nAn}`
+}
+const simpleArray = [16, 718, 1121, 12, '🎗', true, '🏐', '1', undefined, null]
+console.log(sumOfArrayItems(simpleArray))
+
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
 console.log()
 console.log()
 console.log()
