@@ -720,11 +720,46 @@ const sumOfArrayItems = (arr) => {
 const simpleArray = [16, 718, 1121, 12, '🎗', true, '🏐', '1', undefined, null]
 console.log(sumOfArrayItems(simpleArray))
 
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
+// ex13
+const average = (arr) => {
+    const numsArr = []
+    for (let i = 0; i <= arr.length - 1; i++) { // a loop which checks is a value a number
+        if (typeof(arr[i]) === 'number') {
+            numsArr.push(arr[i])
+        } else {
+            console.log(`🟡 That '${arr[i]}' is not a number`)
+        }
+    }
+
+    let sum = 0
+    for (let i = 0; i <= numsArr.length - 1; i++) { // a loop which do sum of all numbers
+        sum += numsArr[i]
+    }
+    let averageNumber = (sum / numsArr.length).toFixed(2)
+    return `📿 The average number from the numbers [${numsArr}] is:\n${averageNumber}`
+}
+const numsArr = [1,2,3,4,5,6,7,8,9,0,16]
+const otherArr = [1,2,4,56,'🧨',true,' ']
+console.log(`${average(otherArr)}\n\n${average(numsArr)}`)
+
+// ex14
+const modifyArray = (arr) => {
+    let arrLength = arr.length
+    let modifiedArr = []
+    if (arrLength < 5) {
+        return `❌ Sorry, your array should have 5+ items.`
+    } else {
+        modifiedArr = modifiedArr.concat(arr)
+        // console.log(modifiedArr.concat(arr)) ✔
+    }
+    // console.log(modifiedArr) ✔
+    modifiedArr.splice(4, 1, modifiedArr[4].toUpperCase() + ' ✨')
+
+    return `${modifiedArr.join('\n\n')}`
+}
+const strArr = ['First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth']
+console.log(modifyArray(strArr))
+
 console.log()
 console.log()
 console.log()
