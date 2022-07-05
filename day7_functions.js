@@ -738,7 +738,7 @@ const average = (arr) => {
     let averageNumber = (sum / numsArr.length).toFixed(2)
     return `📿 The average number from the numbers [${numsArr}] is:\n${averageNumber}`
 }
-const numsArr = [1,2,3,4,5,6,7,8,9,0,16]
+const numsArr = [1,2,16,718,16]
 const otherArr = [1,2,4,56,'🧨',true,' ']
 console.log(`${average(otherArr)}\n\n${average(numsArr)}`)
 
@@ -760,6 +760,43 @@ const modifyArray = (arr) => {
 const strArr = ['First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth']
 console.log(modifyArray(strArr))
 
+// ex15 - skipped (Math)
+// ex16
+const isUnique = (arr) => {
+    // console.log(arr) ✔
+    for (let i = 0; i <= arr.length - 1; i++) { // a loop which works 5 times
+        if (arr.indexOf(arr[i]) === arr.lastIndexOf(arr[i])) { // the methods use only strict equal '==='
+            continue
+        } else {    
+            return `❌ The array isn't unique.\n💥 The value '${arr[i]}' appears several times.`
+        }
+    }
+    return `✅ The array is unique.`
+}
+console.log(isUnique(numsArr))
+
+// ex17
+const checkDataType = (arr) => {
+    let firstItem = typeof(arr[0])
+    for (let i = 0; i <= arr.length - 1; i++) {
+        if (typeof(arr[i]) === firstItem) {
+            continue
+        } else {
+            return `❌ This array hasn't similar data types.`
+        }
+    }
+    return `✅ This array has similar data types → (${firstItem}).`
+}
+console.log(checkDataType(strArr))
+
+// ex18
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
 console.log()
 console.log()
 console.log()
