@@ -1,3 +1,4 @@
+import { countriesTwo } from "./day5_arrays.js";
 // Level 1
 // ex1
 function fullName (firstName, lastName) { // created a function with 2 params
@@ -789,15 +790,42 @@ const checkDataType = (arr) => {
 }
 console.log(checkDataType(strArr))
 
-// ex18
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
+// ex18 - the function could check valid variables in the function, but if a variable isn't valid it will cause a syntax error and the function will not execute
+const isValidVariable = () => {
+    let myNewVar = ''
+    let checkVarName = /^[a-z$_]/i
+    console.log(Object.keys({myNewVar})[0])
+    if (Object.keys({myNewVar})[0].match(checkVarName)) {
+        return `✅ valid` // it can check only valid name variables
+    } else {
+        return `❌ isn't valid` // this part will not execute because the syntax error will be first 
+    }
+}
+console.log(isValidVariable())
+
+// use RegEx
+// how to run code trought errors?
+// how to request to name var using RegEx?
+// ✅ a-z, $, _
+// ❌ 0-9, other symbols
+
+// ex19
+const sevenRanNums = () => {
+    const nums = []
+    while (nums.length <= 6) {
+        let ranNum = Math.floor(Math.random() * 10)
+        if (nums.includes(ranNum) === false) {
+            nums.push(ranNum)
+        }
+    }
+    return `🐱‍🚀 The seven random numbers: ${nums}`
+}
+console.log(sevenRanNums())
+
+// ex20
+const reverseCountries = (array) => {
+    const copyArray = array
+    const reversedArray = copyArray.reverse()
+    return reversedArray
+}
+console.log(reverseCountries(countriesTwo))
