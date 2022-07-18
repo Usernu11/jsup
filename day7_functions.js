@@ -791,17 +791,22 @@ const checkDataType = (arr) => {
 console.log(checkDataType(strArr))
 
 // ex18 - the function could check valid variables in the function, but if a variable isn't valid it will cause a syntax error and the function will not execute
-const isValidVariable = () => {
-    let myNewVar = ''
-    let checkVarName = /^[a-z$_]/i
-    console.log(Object.keys({myNewVar})[0])
-    if (Object.keys({myNewVar})[0].match(checkVarName)) {
-        return `✅ valid` // it can check only valid name variables
+let validVarName = 'Firefly718'
+let wrongVarName = '16ff'
+let wrongVarName2 = '#hastagus'
+let validVarName2 = '$16 000'
+let testVarName = '🤖'
+
+const isValidName = (string) => {
+    let validStartName = /^[a-z$_]/i
+    let findSpace = /\s/
+    if (string.search(validStartName) === -1 || string.search(findSpace) !== -1) {
+        return `❌ The variable name '${string}' isn't valid.`
     } else {
-        return `❌ isn't valid` // this part will not execute because the syntax error will be first 
+        return `✅ The variable name '${string}' is valid`
     }
 }
-console.log(isValidVariable())
+console.log(isValidName(validVarName))
 
 // use RegEx
 // how to run code trought errors?
@@ -829,3 +834,6 @@ const reverseCountries = (array) => {
     return reversedArray
 }
 console.log(reverseCountries(countriesTwo))
+
+console.log(Math.round(Math.random() * (100 - 50 + 1) + 50))
+console.log(Math.floor((Math.random() + 50) + Math.random() * 51))
