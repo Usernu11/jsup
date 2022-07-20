@@ -32,5 +32,5 @@ document.getElementById('body').style.margin = "inherit"
 document.getElementById('body').style.overflow = 'hidden'
 document.getElementById('body').style.background = `linear-gradient(90deg, 
 #${hexidemicalNumber.toString().replace(/,/g, '')},
-rgb(${rgbColor.toString()}),
-rgb(${rgbAdditional.toString()}))` // using the results of (hexidemical color + rbg color) above for randomly changing background-color of main element 'body' 😍
+rgb(${rgbColor.toString()})` // using the results of (hexidemical color + rbg color) above for randomly changing background-color of main element 'body' 😍
+// rgb(${rgbAdditional.toString()}))
