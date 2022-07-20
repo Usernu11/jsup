@@ -790,7 +790,7 @@ const checkDataType = (arr) => {
 }
 console.log(checkDataType(strArr))
 
-// ex18 - the function could check valid variables in the function, but if a variable isn't valid it will cause a syntax error and the function will not execute
+// ex18
 let validVarName = 'Firefly718'
 let wrongVarName = '16ff'
 let wrongVarName2 = '#hastagus'
@@ -806,13 +806,7 @@ const isValidName = (string) => {
         return `✅ The variable name '${string}' is valid`
     }
 }
-console.log(isValidName(validVarName))
-
-// use RegEx
-// how to run code trought errors?
-// how to request to name var using RegEx?
-// ✅ a-z, $, _
-// ❌ 0-9, other symbols
+console.log(isValidName(validVarName2))
 
 // ex19
 const sevenRanNums = () => {
@@ -834,6 +828,3 @@ const reverseCountries = (array) => {
     return reversedArray
 }
 console.log(reverseCountries(countriesTwo))
-
-console.log(Math.round(Math.random() * (100 - 50 + 1) + 50))
-console.log(Math.floor((Math.random() + 50) + Math.random() * 51))
