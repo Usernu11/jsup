@@ -148,3 +148,18 @@ const findMERN = (obj) => {
 console.log(findMERN(users))
 
 // ex4
+const copyUsers = Object.assign({}, users) // copy an object without modifying original
+const addStuff = (obj, name, age) => {
+  let userAge = age
+  let userNameEmail = name.toLowerCase()
+  copyUsers[`${name}`] = {} // setting a new key for the object
+  copyUsers[`${name}`].email = `${userNameEmail}@${userNameEmail}.com`
+  copyUsers[`${name}`].skills = ['HTML','CSS','JavaScript','SaaS'] // setting new skills
+  copyUsers[`${name}`].isLoggedIn = true // setting a new login
+  copyUsers[`${name}`].age = userAge // setting a new age
+  copyUsers[`${name}`].points = 50 // setting new points
+  return copyUsers // shows the results 
+}
+console.log(addStuff(copyUsers, 'Bohdan', 25))
+
+// ex5
