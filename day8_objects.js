@@ -1,3 +1,4 @@
+import { countriesObjects } from "./countries.js"
 // level 1
 // ex1
 const dog = {}
@@ -163,3 +164,19 @@ const addStuff = (obj, name, age) => {
 console.log(addStuff(copyUsers, 'Bohdan', 25))
 
 // ex5
+const getObjectKeys = (obj) => {
+  console.log('🔑 All keys and properties ↓')
+  return Object.entries(obj)
+} 
+console.log(getObjectKeys(copyUsers))
+
+// ex6
+const getObjectValues = (obj) => {
+  console.log(`🎹 All values:`)
+  return Object.values(obj)
+}
+console.log(getObjectValues(copyUsers))
+
+// ex7
+console.log(countriesObjects) // import from countries.js (just test)
+
