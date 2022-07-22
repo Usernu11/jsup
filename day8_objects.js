@@ -131,3 +131,20 @@ const compareUserPoints = (obj) => {
 console.log(compareUserPoints(users))
 
 // ex3
+let arrLen = values.length - 1
+const findMERN = (obj) => {
+  const merns = []
+  for (let i = 0; i <= arrLen; i++) {
+    if (values[i].skills.includes('MongoDB') &&
+         values[i].skills.includes('Express') &&
+          values[i].skills.includes('React') &&
+           values[i].skills.includes('Node') ||
+            values[i].skills.includes('Node.js')) {
+      merns.push(keys[i])
+    }
+  }
+  return `This people has MERN stack:\n🤖 ${merns.join(`\n🤖 `)}`
+}
+console.log(findMERN(users))
+
+// ex4
