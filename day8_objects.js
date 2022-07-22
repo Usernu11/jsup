@@ -97,3 +97,37 @@ const keys = Object.keys(users) // find names of all men
 console.log(keys[indexMax]) // show the person which has many skills then other
 
 // ex2
+const checkUserLog = (obj) => {
+  const loggedUsers = []
+  const unLoggedUsers = []
+  for (let i = 0; i <= values.length - 1; i++) {
+    if (values[i].isLoggedIn === true) {
+      loggedUsers.push(keys[i])
+    } else {
+      unLoggedUsers.push(keys[i])
+    }
+  }
+  console.log(`❌ ${unLoggedUsers.join('\n❌ ')}`)
+  return `✅ ${loggedUsers.join('\n✅ ')}`
+}
+console.log(checkUserLog(users))
+
+const compareUserPoints = (obj) => {
+  const allPoints = []
+  for (let i = 0; i <= values.length - 1; i++) {
+    allPoints[i] = values[i].points
+  }
+  console.log(allPoints)
+  
+  for (let i = 0; i <= values.length - 1; i++) {
+    if (allPoints[i] >= 50) {
+      console.log(`✔ ${keys[i]} has: ${allPoints[i]} points.`)
+    } else {
+      console.log(`💧 ${keys[i]} has: ${allPoints[i]} points.`)
+    }
+  }
+  return ``
+}
+console.log(compareUserPoints(users))
+
+// ex3
