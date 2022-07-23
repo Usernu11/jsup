@@ -180,3 +180,15 @@ console.log(getObjectValues(copyUsers))
 // ex7
 console.log(countriesObjects) // import from countries.js (just test)
 
+const getCountriesInfo = (obj) => {
+  let objLength = obj.length - 1
+  for (let i = 0; i <= objLength; i++) {
+    console.log('')
+    console.log(`🗾 Country: ${obj[i].name}`)
+    console.log(`🚩 Capital: ${obj[i].capital}`)
+    console.log(`🌝 Population: ${obj[i].population}`)
+    console.log(`🛬 Languages: ${obj[i].languages.join(' * ')}`)
+  }
+  return ``
+}
+console.log(getCountriesInfo(countriesObjects))
