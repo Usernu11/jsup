@@ -192,3 +192,56 @@ const getCountriesInfo = (obj) => {
   return ``
 }
 console.log(getCountriesInfo(countriesObjects))
+
+// level 3
+// ex1
+const personAccount = {
+  firstName: 'Oscar',
+  lastName: 'Grand',
+  incomes: {
+    itCompany: 16000,
+    volleyball: 3000,
+    freelance: 1500,
+    other: 718
+  },
+  expenses: {
+    houseRent: 1200,
+    food: 3000,
+    internet: 30,
+    phone: 20,
+    volleyball: 500,
+    bike: 700,
+    support: 500
+  },
+  totalIncome: function () {
+    const incomesArray = Object.values(this.incomes)
+    let incomesLength = incomesArray.length - 1
+    let total = 0;
+    for (let i = 0; i <= incomesLength; i++) {
+      total += incomesArray[i] 
+    }
+    return total
+  },
+  totalExpense: function () {
+    const expenseArray = Object.values(this.expenses)
+    let expenseLenght = expenseArray.length - 1
+    let total = 0
+    for (let i = 0; i <= expenseLenght; i++) {
+      total += expenseArray[i]
+    }
+    return total
+  },
+  accoutInfo: function () {
+    return `🟣 First name: ${this.firstName}\n🔵 Last name: ${this.lastName}\n🟢 Total income: $${this.totalIncome()}\n🔴 Total expense: $${this.totalExpense()}\n🟡 Account balance: $${this.accoutBalance()}`
+  },
+  addIncome: function (num) {
+    this.incomes.push(num)
+  },
+  addExpense: function (num) {
+    this.expenses.push(num)
+  },
+  accoutBalance: function () {
+    return this.totalIncome() - this.totalExpense()
+  }
+}
+console.log(personAccount.accoutInfo())
