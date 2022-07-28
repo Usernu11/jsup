@@ -385,4 +385,49 @@ const signUp = (name,pass) => {
   }
   return users2
 }
-console.log(signUp('Oscar','718718'))
+signUp('Oscar','718718')
+
+
+
+
+
+const signIn = (user,pass) => {
+  let userCount = users2.length - 1 // using for loop
+  
+  const userNames = [] // an emoty array for user names
+  const userPasswords = [] // an empty array for user passwrods
+  
+  for (let i = 0; i <= userCount; i++) { // a loop for filling an array of usernames
+    let userValues = Object.values(users2[i]) // info about each user
+    let userName = userValues[1] // username
+    userNames[i] = userName // push a name to the name array
+  }
+  console.log(userNames) // test
+
+  for (let i = 0; i <= userCount; i++) { // a loop for fillin an array of user passwords
+    let userValues = Object.values(users2[i]) // info about each user
+    let userPass = userValues[3] // user pass
+    userPasswords[i] = userPass // push a pass to the pass array
+  }
+  console.log(userPasswords) // test
+
+  let userIndex = userNames.indexOf(user) // gives a positive number or -1
+  console.log(userIndex)
+
+  if (userNames.includes(user)) { // check username
+    if (userPasswords[userIndex] === pass) { // check pass
+      Object.values(users2[userIndex])[5] = true // ❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗(how to change an object from a function)
+      console.log(`✅ You have been logged.`)
+    } else {
+      console.log('❌ Wrong password.')
+    }
+  } else {
+    signUp(user,pass) // create a new account (object) in the array "users2"
+    console.log(`✨ You have been registered.`)
+  }
+  return ``
+}
+signIn('Alex','123123')
+
+console.log(users2[0]) // test
+console.log(users2)
