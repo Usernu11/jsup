@@ -26,8 +26,6 @@ for (let i = 0; i <= 2; i++) {
     rgbAdditional.push(randomNumber) // adding a random number to the array
 }
 
-document.getElementById('img').style.width = "100%"
-document.getElementById('img').style.height = "100vh"
 document.getElementById('body').style.margin = "inherit"
 document.getElementById('body').style.overflow = 'hidden'
 document.getElementById('body').style.background = `linear-gradient(90deg, 

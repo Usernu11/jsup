@@ -178,7 +178,7 @@ const getObjectValues = (obj) => {
 console.log(getObjectValues(copyUsers))
 
 // ex7
-console.log(countriesObjects) // import from countries.js (just test)
+console.log(countriesObjects) // import from countries.js (just test) ✔
 
 const getCountriesInfo = (obj) => {
   let objLength = obj.length - 1
@@ -324,27 +324,65 @@ const products = [
 // my code goes here
 console.log('')
 const signUp = (name,pass) => {
-  const usersCount = users2.length - 1
-  for (let i = 0; i <= usersCount; i++) {
-    let tempUserInfo = Object.values(users2[i]) // all info about each user
-    if (name === tempUserInfo[1]) { // checks name
-      if (pass === tempUserInfo[3]) { // checks pass
-        return `❌ You're already have an account.`
-      } else {
-        return `❌ Wrong password.`
-      }
+  const usersCount = users2.length - 1 // use for loop 
+  const randomId = [] // a new randomID for new user
+  const userNames = []
+  const userPasswords = []
+
+  for (let i = 0; i <= 5; i++) { // a loop for filling "randomId" 🎲
+    let randomNum = Math.floor(Math.random() * 10) // generate 0-9 numbers
+    let randomNumsAlphabet = Math.ceil(Math.random() + 96) + Math.ceil(Math.random() * 25) // a range 97-122
+    let ranAblhabet = String.fromCharCode(randomNumsAlphabet) // random word from an alphabet
+    let shortRandomNum = Math.floor(Math.random() * 2) // gen nums 0-1
+    if (shortRandomNum === 0) {
+      randomId.push(randomNum)
     } else {
-      users2.push({
-        _id: '🎲 6 nums or words',
-        username: name,
-        email: `${name.toLowerCase()}@${name.toLowerCase()}.com`,
-        password: pass,
-        createdAt: `time`,
-        isLoggedIn: true
-      })
-      return `✅ You have been added.`
+      randomId.push(ranAblhabet)
     }
   }
+  
+  for (let i = 0; i <= usersCount; i++) { // collect all names and passwords to arrays
+    let tempUserInfo = Object.values(users2[i]) // all info about each user
+    userNames[i] = tempUserInfo[1]
+    userPasswords[i] = tempUserInfo[3]
+  }
+
+  let passIndex = userNames.indexOf(name) // shows an index of a name
+  if (userNames.includes(name)) { // check name
+    if (pass === userPasswords[passIndex]) {
+      return `💢 You already have an account.`
+    } else {
+      return `❌ Wrong password.`
+    }
+  } else {
+    users2.push({
+      _id: randomId.join('').toString(), // at the moment it will be without checking for unique id,
+      username: name,
+      email: `${name.toLowerCase()}@${name.toLowerCase()}.com`,
+      password: pass,
+      createdAt: function () {
+        let time = new Date()
+      
+        let month = time.getMonth() + 1
+        let day = time.getDate()
+        let year = time.getFullYear()
+      
+        let hours = time.getHours()
+        let minutes = time.getMinutes()
+      
+        let amPM = null
+        if (hours > 12) {
+          amPM = 'PM'
+        } else {
+          amPM = 'AM'
+        }
+      
+        let CDT = `${month}/${day}/${year} ${hours}:${minutes} ${amPM}`
+        return CDT
+      }(),
+      isLoggedIn: true
+  })
+  }
+  return users2
 }
-console.log(signUp('Thomas','123333'))
-console.log(users2)
+console.log(signUp('Oscar','718718'))
