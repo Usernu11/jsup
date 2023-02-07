@@ -67,7 +67,22 @@ console.log(width, height, area, perimeter)
 
 // Level 2
 // ex1
+for (const {name, scores, skills, age} of users) {
+    console.log(`Name: ${name}\nScores: ${scores}\nSkills: ${skills}\nAge: ${age}`)
+}
 
+// ex2
+for (const {name, scores, skills, age} of users) {
+    if (skills.length < 2) {
+        console.log(`👤 The one-skilled person: ${name}`)
+        console.log(`👾 His skill: ${skills}`)
+        console.log(`🍀 He has: ${scores} scores;`)
+        console.log(`🐲 His age is: ${age} y.o.`)
+    }
+}
+
+// level3
+// ex1
 
 
 
