@@ -1,3 +1,9 @@
+@import url('https:fonts.googleapis.com/css2?family=Iceland&display=swap');
+body {
+    font-family: 'Iceland', cursive;
+    font-size: 1.1rem;
+}
+
 .round {
     width: 100px;
     height: 100px;
@@ -47,15 +53,15 @@
     box-shadow: 3px 3px 10px 1px;
 }
 
-#github {
-    width: 15%;
-    /* height: 10%; */
-    /* display: block; */
-    position: absolute;
-    bottom: 5%;
-    left: 5%;
-    border-radius: 50%;
-}
+ #github {
+     width: 10%;
+     /* height: 10%; */
+     /* display: block; */
+     position: absolute;
+     bottom: 5%;
+     left: 5%;
+     border-radius: 50%;
+ }
 
 .js {
     margin: 0 auto;
@@ -66,4 +72,96 @@
     background-position: center;
     background-repeat: no-repeat;
     /* outline: 2px solid red; */
+}
+
+#pattern {
+    outline: 2px solid blueviolet;
+    width: 90%;
+    height: auto;
+    background-color: black;
+    color: green;
+    padding: 20px;
+    font-family: monospace;
+    font-size: 14px;
+    margin: 30px auto;
+    border-radius: 10px;
+}
+
+/* stopwatch ⏱ */
+.stopwatch {
+    width: 250px;
+    height: 100px;
+    outline: 2px solid yellow;
+    position: absolute;
+    right: 100px;
+    top: 50px;
+    color: yellow;
+    background: black;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+}
+
+#start {
+    /* outline: 2px dashed black; */
+    width: max-content;
+    position: absolute;
+    right: 276px;
+    top: 127px;
+    color: yellow;
+    border: 2px solid yellow;
+    /* width: 60px; */
+    padding: 0 10px;
+    /* border-top: 2px solid yellow; */
+    border-radius: 0 0 0 15px;
+}
+#start:hover {
+    background: limegreen;
+    transition: ease-in 0.5s;
+    cursor: pointer;
+    color: black;
+    /* border-color: black; */
+}
+
+#pause {
+    /* outline: 2px dashed black; */
+    width: max-content;
+    position: absolute;
+    right: 169px;
+    padding: 0 18px;
+    top: 127px;
+    line-height: 21px;
+    color: yellow;
+    border: 2px solid yellow;
+}
+#pause:hover {
+    background: yellow;
+    transition: ease-in 0.5s;
+    cursor: pointer;
+    color: black;
+}
+
+#stop {
+    /* outline: 2px dashed black; */
+    width: max-content;
+    position: absolute;
+    right: 99px;
+    top: 127px;
+    padding: 0 5px;
+    line-height: 21px;
+    color: yellow;
+    border: 2px solid yellow;
+    border-radius: 0 0 15px 0;
+}
+#stop:hover {
+    background: salmon;
+    transition: ease-in 0.5s;
+    cursor: pointer;
+    color: black;
+}
+
+#body {
+    background: linear-gradient(90deg, transparent, transparent);
 }

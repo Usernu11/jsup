@@ -390,8 +390,8 @@ const genRandomHexNumber = () => {
     return `#${newHexNumber.join('')}`
 }
 
-document.getElementById('randomHexNumber').style.backgroundColor = `${genRandomHexNumber()}` // paint an el in HTML in a random hexa color
-document.getElementById('randomHexNumber').innerHTML += `${genRandomHexNumber()}` // add text to an el - what is current hex color
+// document.getElementById('randomHexNumber').style.backgroundColor = `${genRandomHexNumber()}` // paint an el in HTML in a random hexa color
+// document.getElementById('randomHexNumber').innerHTML += `${genRandomHexNumber()}` // add text to an el - what is current hex color
 console.log(`🎨 The new random hexademical number is:\n${genRandomHexNumber()}`)
 
 // ex18
@@ -448,8 +448,8 @@ const rgbColorGenerator = () => {
 }
 
 console.log(`🥏 A new RGB color:\n${rgbColorGenerator()}`)
-document.getElementById('randomRGBcolor').style.backgroundColor = `${rgbColorGenerator()}`
-document.getElementById('randomRGBcolor').innerHTML += `${rgbColorGenerator()}`
+// document.getElementById('randomRGBcolor').style.backgroundColor = `${rgbColorGenerator()}`
+// document.getElementById('randomRGBcolor').innerHTML += `${rgbColorGenerator()}`
 
 // ex3
 const arrayOfHexaColors = (num = 1) => {
@@ -468,7 +468,7 @@ const arrayOfHexaColors = (num = 1) => {
         }
         hexColors.push(`#${hexSet.join('')}`)
     }
-    document.getElementById('HEXcolors').style.background = `linear-gradient(90deg, ${hexColors[0]}, ${hexColors[1]}, ${hexColors[2]}, ${hexColors[3]}, ${hexColors[4]}, ${hexColors[5]})` // just a fun additional to my HTML
+    // document.getElementById('HEXcolors').style.background = `linear-gradient(90deg, ${hexColors[0]}, ${hexColors[1]}, ${hexColors[2]}, ${hexColors[3]}, ${hexColors[4]}, ${hexColors[5]})` // just a fun additional to my HTML
     return `${hexColors.join('\n')}`
 }
 
@@ -485,7 +485,7 @@ const rgbColors = (num = 1) => {
         }
         rgbColorsArray.push(`rgb(${rgbColor})`)
     }
-    document.getElementById('RGBcolors').style.background = `radial-gradient(at top left, ${rgbColorsArray})` // just for fun additional to my html
+    // document.getElementById('RGBcolors').style.background = `radial-gradient(at top left, ${rgbColorsArray})` // just for fun additional to my html
     return rgbColorsArray.join('\n')
 }
 console.log(`📚 Your rgb colors:\n${rgbColors(2)}`)

@@ -3,7 +3,7 @@ import { countriesObjects } from "./countries.js"
 // ex1
 const dog = {}
 
-// ex 2
+// ex2
 console.log(dog)
 
 // ex3
@@ -248,7 +248,7 @@ console.log(personAccount.accoutInfo())
 
 // ex2
 // the 2 following arrays are from course data 📜
-const users2 = [
+let users2 = [
   {
     _id: 'ab12ex',
     username: 'Alex',
@@ -391,33 +391,40 @@ signUp('Oscar','718718')
 
 
 
-const signIn = (user,pass) => {
-  let userCount = users2.length - 1 // using for loop
+const signIn = (array,user,pass) => {
+  let userCount = array.length - 1 // using for loop
   
   const userNames = [] // an emoty array for user names
   const userPasswords = [] // an empty array for user passwrods
   
   for (let i = 0; i <= userCount; i++) { // a loop for filling an array of usernames
-    let userValues = Object.values(users2[i]) // info about each user
+    let userValues = Object.values(array[i]) // info about each user
     let userName = userValues[1] // username
     userNames[i] = userName // push a name to the name array
   }
-  console.log(userNames) // test
+  // console.log(userNames) // test
 
   for (let i = 0; i <= userCount; i++) { // a loop for fillin an array of user passwords
-    let userValues = Object.values(users2[i]) // info about each user
+    let userValues = Object.values(array[i]) // info about each user
     let userPass = userValues[3] // user pass
     userPasswords[i] = userPass // push a pass to the pass array
   }
-  console.log(userPasswords) // test
-
+  // console.log(userPasswords) // test
+  
+  // console.log(userIndex)
   let userIndex = userNames.indexOf(user) // gives a positive number or -1
-  console.log(userIndex)
-
+  
+  let logValue = Object.values(array[userIndex])[5]
+  console.log(logValue)
+  // let isLogged = false
   if (userNames.includes(user)) { // check username
     if (userPasswords[userIndex] === pass) { // check pass
-      Object.values(users2[userIndex])[5] = true // ❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗(how to change an object from a function)
+      logValue = '🔥🔥🔥🔥🔥' // ❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗(how to change an object from a function)
+      console.log(logValue)
+      // isLogged = true
       console.log(`✅ You have been logged.`)
+      console.log(array)
+      return array
     } else {
       console.log('❌ Wrong password.')
     }
@@ -425,9 +432,93 @@ const signIn = (user,pass) => {
     signUp(user,pass) // create a new account (object) in the array "users2"
     console.log(`✨ You have been registered.`)
   }
-  return ``
-}
-signIn('Alex','123123')
+  console.log(isLogged)
 
-console.log(users2[0]) // test
-console.log(users2)
+  // if (isLogged) {
+  //   Object.values(array[userIndex])[5] = true
+  //   return users2
+  // }
+}
+console.log(signIn(users2,'Alex','123123'))
+// console.log(users2)
+
+// a test snippet code
+// let logValue = Object.values(users2[0])[5] // -> false
+// if (logValue === false) {
+//   logValue = true // -> true
+// }
+// console.log(users2) // -> false
+
+// a test snipet code with function 
+// const changeObj = (array) => {
+//   let logValue = Object.values(array[0])[5] // -> false
+//   let entries = Object.entries(array[0])[5] // array of key and value (isLoggedIn:, false)
+//   console.log(entries[1]) // false
+//   if (entries[1] === false) {
+//     entries.pop() // remove false
+//     entries.push(true) // add true
+//     // console.log(entries[1]) // true
+//     logValue = true // -> true
+//     // return array // false
+//   }
+//   return array // false
+//   // console.log(users2) // -> false
+// }
+// console.log(changeObj(users2))
+
+// ex3
+console.log('🟦🟦🟦')
+const rateProduct = (array = products,user,rate) => { // a function which adds a rate to products
+  let ratingValue = Object.values(array[1])[4] // raiting array (user + rate)
+  // console.log(ratingValue)
+  ratingValue.push({
+    userId: `${user}`,
+    rate: rate
+  })
+  return array
+}
+console.log(rateProduct(products,'aks5js',5))
+
+
+
+
+
+const calcAverageRating = (array = products) => {
+  let ratingValues = Object.values(array[0])[4] // raiting array (user + rate)
+  const rateList = [] // an emppty array for rate numbers 
+
+  for (let i = 0; i <= ratingValues.length - 1; i++) { // a loop for collecting rates
+    let rating = Object.values(ratingValues[i])[1] // one rate
+    rateList.push(rating) // adding a rate
+  }
+
+  let rateSum = 0
+  for (let i = 0; i <= rateList.length - 1; i++) {
+    rateSum += rateList[i]
+  }
+
+  let averageRate = rateSum / rateList.length
+  return `💫 The average rate is: ${averageRate}`
+}
+console.log(calcAverageRating())
+
+
+
+// ex4
+const likeProduct = (product, name, array = products) => {
+  let productsLength = array.length
+  for (let i = 0; i <= productsLength - 1; i++) {
+    let values = Object.values(array[i])
+    if (values[1] === product) {
+      if (values[5].length > 0) {
+        values[5].pop()
+      } else {
+        values[5].push(name)
+      }
+    }
+  }
+  return array
+}
+console.log(likeProduct('MacPro: System Darwin','fg12cy'))
+
+
