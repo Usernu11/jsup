@@ -83,6 +83,64 @@ for (const {name, scores, skills, age} of users) {
 
 // level3
 // ex1
+import { countriesObjects } from "./countries.js" 
+
+for (const {name, capital, population, languages} of countriesObjects) {
+    console.log(`🆎 Country name: ${name}\n💠 Country capital: ${capital}\n👥 Country population: ${population}\n🌐 Country languages: ${languages}`)
+}
+
+// ex2
+console.log('')
+const student = ['David', ['HTM', 'CSS', 'JS', 'React'], [98, 85, 90, 95]]
+
+const [name, skills, Scores] = student
+console.log(`🆎 Name: ${name}\n🔧 Skills: ${skills}\n✨ JS score: ${Scores[2]}\n🔮 React Score: ${Scores[3]}`)
+
+// ex3
+const students = [
+    ['David', ['HTM', 'CSS', 'JS', 'React'], [98, 85, 90, 95]],
+    ['John', ['HTM', 'CSS', 'JS', 'React'], [85, 80, 85, 80]]
+]
+
+const convertArrayToObject = (arr) => {
+    const objects = []
+    for (const [name, skills, scores] of arr) {
+        objects.push({
+            name: name,
+            skills: skills,
+            scores: scores
+        })
+    }
+
+    return objects
+}
+console.log(convertArrayToObject(students))
+
+// ex4
+const newStudentObj = convertArrayToObject(students)
+const copyStudentObj = {...newStudentObj}
+console.log(copyStudentObj)
+
+let {studentName, studentSkills, studetScores} = copyStudentObj
+// Bootstrap -> level 8  (front)
+// Express -> level 9  (back)
+// SQL -> level 8   (data base)
+// SQL -> ...  (data science)
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+console.log()
+
+
+
+
+
 
 
 
