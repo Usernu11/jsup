@@ -117,49 +117,95 @@ const convertArrayToObject = (arr) => {
 console.log(convertArrayToObject(students))
 
 // ex4
-const newStudentObj = convertArrayToObject(students)
-const copyStudentObj = {...newStudentObj}
-console.log(copyStudentObj)
+const newStudent = {...convertArrayToObject(students)}  // {{},{}}
 
-let {studentName, studentSkills, studetScores} = copyStudentObj
-// Bootstrap -> level 8  (front)
-// Express -> level 9  (back)
-// SQL -> level 8   (data base)
-// SQL -> ...  (data science)
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
-console.log()
+const transformedStudents = students.map(([name, skills, scores]) => ({
+  name,
+  age: 25,
+  skills: {
+    frontEnd: [
+      {
+        skill: skills[0].toString().concat('L'), // because first result was 'HTM'. I added 'L' to get the 'HTML' result
+        level: (function () {
+          if (scores[0] > 95) {
+            return 10
+          }
 
+          if (scores[0] <= 90) {
+            return 8
+          }
 
+          if (scores[0] >= 90 || scores[0] <= 94) {
+            return 9
+          }
+        })(scores)
+      },
 
+      {
+        skill: skills[1],
+        level: (function () {
+          if (scores[1] > 95) {
+            return 10
+          }
 
+          if (scores[1] <= 90) {
+            return 8
+          }
 
+          if (scores[1] >= 90 || scores[1] <= 94) {
+            return 9
+          }
+        })(scores)
+      },
 
+      {
+        skill: skills[2],
+        level: (function () {
+          if (scores[2] > 95) {
+            return 10
+          }
 
+          if (scores[2] <= 90) {
+            return 8
+          }
 
+          if (scores[2] >= 90 || scores[2] <= 94) {
+            return 9
+          }
+        })(scores)
+      },
 
+      {
+        skill: skills[3],
+        level: (function () {
+          if (scores[3] > 95) {
+            return 10
+          }
 
+          if (scores[3] <= 90) {
+            return 8
+          }
 
+          if (scores[3] >= 90 || scores[3] <= 94) {
+            return 9
+          }
+        })(scores)
+      }
+    ],
 
+    backEnd: [
+      {skill: 'Node', level: 7},
+      {skill: 'GraphQL', level: 8},
+      {skill: 'Express', level: 9}
+    ],
 
+    dataBase: [
+      {skill: 'MongoDB', level: 7.5},
+      {skill: 'SQL', level: 8}
+    ],
 
+  dataScience: ['Python', 'R', 'D3.js', 'SQL']
+  }
+}));
 
-
-
-
-
-
-
-
-
-
-
-
-
+console.log(transformedStudents)
