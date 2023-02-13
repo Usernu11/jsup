@@ -1,2 +1,8 @@
 {
+    "liveServer.settings.multiRootWorkspaceName": "30DaysOfJavaScript",
+    "liveServer.settings.port": 3000,
+    "liveServer.settings.host": "localhost",
+    // "liveServer.settings.root": "/",
+    // "liveServer.settings.open": false,
+    "liveServer.settings.CustomBrowser": "chrome",
 }
