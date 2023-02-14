@@ -38,11 +38,17 @@ const moneyPerYear = []
 // console.log(calc2)
 
 // try2 
+console.log('')
 for (let i = 0; i <= AllNumbers.length - 1; i++) {
-    if (true) {
-        //push
+    if (str.match(new RegExp(AllNumbers[i] + '.+month'))) {
+        console.log(`${AllNumbers[i]} before 'month'`)
+    } else if (str.match(new RegExp(AllNumbers[i] + '.+annual'))) {
+        console.log(`${AllNumbers[i]} before 'annual'`)
     }
 }
 
-console.log(str.match(new RegExp(AllNumbers[0] + ".+month", 'g')))
-console.log(str.match(/4000.*month^10000/g)) // how to write a RegExp which 1th number before month which will be before second [i+1] number?
+// 1. use commas for solving (before ,)
+// 2. give allWords indexes [month, annual, month] using regex for solving
+
+// console.log(str.match(new RegExp(AllNumbers[0] + ".+month", 'g')))
+// console.log(str.match(/4000.*/g)) // how to write a RegExp which 1th number before month which will be before second [i+1] number?
