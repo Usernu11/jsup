@@ -2,8 +2,8 @@
 // ex1
 let str = 'He earns 4000 euro from salary per month, 10000 euro annual bonus, 5500 euro online courses per month.'
 
-let findAllNumbers = /\d+/g
-let AllNumbers = str.match(findAllNumbers) // ['4000', '10000', '5500']
+let AllNumbersPattern = /\d+/g
+let AllNumbers = str.match(AllNumbersPattern) // ['4000', '10000', '5500']
 let calc = (+AllNumbers[0] * 12) + (+AllNumbers[2] * 12) + +AllNumbers[1]
 console.log(AllNumbers)
 // let totalMoney = 0
@@ -38,17 +38,31 @@ const moneyPerYear = []
 // console.log(calc2)
 
 // try2 
-console.log('')
+const allWordPointsPattern = /month|annual/g
+const allWordPoints = str.match(allWordPointsPattern)
+console.log(allWordPoints)
+console.log(str.match(new RegExp(AllNumbers[0] + '.*' + allWordPoints[0]), 'g').length)
+// console.log(str.match(new RegExp('(' + AllNumbers[0] + ')' + '.*(' + allWordPoints[0] + ')', 'g')).length);
+console.log(str.match(new RegExp(AllNumbers[0] + '.*' + allWordPoints[0]))[0])  // it's works!
+
+
+
 for (let i = 0; i <= AllNumbers.length - 1; i++) {
-    if (str.match(new RegExp(AllNumbers[i] + '.+month'))) {
-        console.log(`${AllNumbers[i]} before 'month'`)
+    if (str.match(new RegExp(AllNumbers[i] + '.' + allWordPoints[i]).length) <
+        str.match(new RegExp(AllNumbers[i] + '.' + allWordPoints[+i]).length)) {
+
+        console.log(`${str.match(new RegExp(AllNumbers[i] + '.' + allWordPoints[i]).length)} < ${str.match(new RegExp(AllNumbers[i] + '.' + allWordPoints[+i]).length)}`)
+        // console.log(`${AllNumbers[i]} before 'month'`)
+
     } else if (str.match(new RegExp(AllNumbers[i] + '.+annual'))) {
+        console.log(false)
         console.log(`${AllNumbers[i]} before 'annual'`)
     }
 }
 
 // 1. use commas for solving (before ,)
 // 2. give allWords indexes [month, annual, month] using regex for solving
+// 3. use lenght between num and word (in process) ❌
 
 // console.log(str.match(new RegExp(AllNumbers[0] + ".+month", 'g')))
 // console.log(str.match(/4000.*/g)) // how to write a RegExp which 1th number before month which will be before second [i+1] number?
