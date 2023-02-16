@@ -38,3 +38,7 @@ let calcDistance = Math.abs(findMin) + findMax  // 6
 console.log(calcDistance) // 6
 
 // ex3
+const validVarPattern = /^\b&#@-\+\^!\b/g
+// |!\b(%&#@-+^!)\b|^!(-+\d) // other functions
+const normalValue = '#testVa#lueString'
+console.log(normalValue.match(validVarPattern))
