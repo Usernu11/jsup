@@ -19,7 +19,8 @@ const points = ['-1', '2', '-4', '-3', '-1', '0', '4', '8']
 // 5. find max and min nums
 // 6. calculate the disctance
 const negNumsPattern = /-\d+/g
+const posNumsPattern = /(?<!-)\b\d+\b/g
 
-console.log(points.toString().match(negNumsPattern))
+console.log(points.toString().match(posNumsPattern))
 // const sortedPoints =  [-4, -3, -1, -1, 0, 2, 4, 8]
 // distance = 12
