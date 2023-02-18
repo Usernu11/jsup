@@ -38,7 +38,20 @@ let calcDistance = Math.abs(findMin) + findMax  // 6
 console.log(calcDistance) // 6
 
 // ex3
-const validVarPattern = /^\b&#@-\+\^!\b/g
+// const validVarPattern = /^#/g // correct
+
+//  try it (GPT)
+const validVarPattern = /^[_a-zA-Z]+\w*$/;
+// const normalValue = "myVariable123";
+// console.log(validVarPattern.test(normalValue)); // true
+
+
 // |!\b(%&#@-+^!)\b|^!(-+\d) // other functions
-const normalValue = '#testVa#lueString'
-console.log(normalValue.match(validVarPattern))
+const normalValue = 'testValueString'
+console.log(`test: ${validVarPattern.test(normalValue)}`)
+console.log(`match: ${normalValue.match(validVarPattern)}`) 
+
+// plan
+// 1. find at the start ^ of str correct characters: $ _ a-z
+// 2. find inside a var correct characters: $ _ a-z 0-9 
+// 3. find the opossite rules 1 and 2
