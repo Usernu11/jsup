@@ -38,20 +38,42 @@ let calcDistance = Math.abs(findMin) + findMax  // 6
 console.log(calcDistance) // 6
 
 // ex3
-// const validVarPattern = /^#/g // correct
-
-//  try it (GPT)
-const validVarPattern = /^[_a-zA-Z]+\w*$/;
-// const normalValue = "myVariable123";
-// console.log(validVarPattern.test(normalValue)); // true
-
-
-// |!\b(%&#@-+^!)\b|^!(-+\d) // other functions
-const normalValue = 'testValueString'
-console.log(`test: ${validVarPattern.test(normalValue)}`)
-console.log(`match: ${normalValue.match(validVarPattern)}`) 
-
 // plan
 // 1. find at the start ^ of str correct characters: $ _ a-z
 // 2. find inside a var correct characters: $ _ a-z 0-9 
 // 3. find the opossite rules 1 and 2
+const normalValue = '_$abc'
+
+const correctVarNamingPattern = /^[\$_a-z]/i    // 1
+const cvnp = /[\$_a-z]/gi                       // 2
+const ucvnp = /\(|\)|[!@#%^&*\-~]/g             // 3
+const ucvnpN = /^[0-9]/                         // 3
+
+console.log(`test: ${ucvnpN.test(normalValue)}`)
+console.log(`match: ${normalValue.search(ucvnpN)}`) 
+
+const checkVarName = (varName) => {
+    if (correctVarNamingPattern.test(varName) === true) {
+        if (cvnp.test(varName) === true) {
+            if (ucvnp.test(varName) === false) {
+                if (ucvnpN.test(varName) === false) {
+                    console.log(`Your variable name is: ${varName} -> CORRECT ✅`)
+                } else {
+                    console.log(`Your variable name is: ${varName} -> WRONG ❌`)
+                    console.log(`It consist NUMBERS at start.`)
+                }
+            } else {
+                console.log(`Your variable name is: ${varName} -> WRONG ❌`)
+                console.log(`It consist WRONG CHARACTERS or SIGNS.`)
+            }
+        } else {
+            console.log(`Your variable name is: ${varName} -> WRONG ❌`)
+            console.log(`It doesn't consist any chars.`)
+        }
+    } else {
+        console.log(`Your variable name is: ${varName} -> WRONG ❌`)
+        console.log(`It doesn't consist any right chars at start OR it's EMPTY`)
+    }
+} 
+
+checkVarName(normalValue)
