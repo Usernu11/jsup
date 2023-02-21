@@ -91,18 +91,20 @@ const tenMostFrequentWords = (str, num) => {
 
     const result = []
 
-    const signPatter = /[.,]/g
+    const signPatter = /[.,%@$;&#!?]/g
     const pureStr = str.replace(signPatter, '') // remove all dots and commas 
 
     const wordsArray = pureStr.split(' ')   // 1
     const uniqueWords = new Set(wordsArray) // unique words from the str    
-    // console.log(pureStr)
+    // console.log(uniqueWords)
 
     uniqueWords.forEach(el => {
         const regex = new RegExp(el, 'g')   // regex
         const wordCount = str.match(regex)  // find each word
         result.push({word: el, count: wordCount.length})    // filling an array
     })
+
+    // console.log(result)
 
     result.sort((a,b) => {  // sorting the obj array
         if (a.count < b.count) return 1
@@ -113,3 +115,9 @@ const tenMostFrequentWords = (str, num) => {
     console.log(result.slice(0, num))
 }
 tenMostFrequentWords(paragraph, 10)
+console.log('')
+
+// level 3
+// ex1
+const sentence = `%I $am@% a %tea@cher%, &and& I lo%#ve %tea@ching%;. There $is nothing; &as& mo@re rewarding as educa@ting &and& @emp%o@wering peo@ple. ;I found tea@ching m%o@re interesting tha@n any other %jo@bs. %Do@es thi%s mo@tivate yo@u to be a tea@cher!?`
+tenMostFrequentWords(sentence, 10)
