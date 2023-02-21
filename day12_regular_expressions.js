@@ -77,3 +77,39 @@ const checkVarName = (varName) => {
 } 
 
 checkVarName(normalValue)
+
+// level 2
+// ex1
+const paragraph = `I love teaching. If you do not love teaching what else can you love. I love Python if you do not love something which can give you all the capabilities to develop an application what else can you love.`
+
+const tenMostFrequentWords = (str, num) => {
+    // plan
+    // 1. split str
+    // 2. use forEach or reduce callbacks push to an empty array
+    // 3. use regex our array of unique words check str how many times the each unique word met in the paragraph, and push to the array the count key and value to an object
+    // 4. return result (our array)
+
+    const result = []
+
+    const signPatter = /[.,]/g
+    const pureStr = str.replace(signPatter, '') // remove all dots and commas 
+
+    const wordsArray = pureStr.split(' ')   // 1
+    const uniqueWords = new Set(wordsArray) // unique words from the str    
+    // console.log(pureStr)
+
+    uniqueWords.forEach(el => {
+        const regex = new RegExp(el, 'g')   // regex
+        const wordCount = str.match(regex)  // find each word
+        result.push({word: el, count: wordCount.length})    // filling an array
+    })
+
+    result.sort((a,b) => {  // sorting the obj array
+        if (a.count < b.count) return 1
+        if (a.count > b.count) return -1
+    })
+
+
+    console.log(result.slice(0, num))
+}
+tenMostFrequentWords(paragraph, 10)
