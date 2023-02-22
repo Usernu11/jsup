@@ -96,25 +96,29 @@ const tenMostFrequentWords = (str, num) => {
 
     const wordsArray = pureStr.split(' ')   // 1
     const uniqueWords = new Set(wordsArray) // unique words from the str    
-    // console.log(uniqueWords)
+    // console.log(uniqueWords) // ✔
 
     uniqueWords.forEach(el => {
-        const regex = new RegExp(el, 'g')   // regex
+        const regex = new RegExp(el, `g`)   // regex
         const wordCount = str.match(regex)  // find each word
-        result.push({word: el, count: wordCount.length})    // filling an array
+        const count = wordCount ? wordCount.length : 0;
+        result.push({word: el, count: count})    // filling an array
+        // console.log(result)
     })
 
     // console.log(result)
 
-    result.sort((a,b) => {  // sorting the obj array
-        if (a.count < b.count) return 1
-        if (a.count > b.count) return -1
-    })
+    // result.sort((a,b) => {  // sorting the obj array
+    //     if (a.count < b.count) return 1
+    //     if (a.count > b.count) return -1
+    // })
+
+    result.sort((a,b) => b.count - a.count) // new sort way
 
 
     console.log(result.slice(0, num))
 }
-tenMostFrequentWords(paragraph, 10)
+// tenMostFrequentWords(paragraph, 10)
 console.log('')
 
 // level 3
