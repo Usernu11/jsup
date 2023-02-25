@@ -24,23 +24,23 @@ let isMarried = false
 let country = 'Ukraine'
 let age = 25
  
-let fName = 'Oscar'; sName = 'Grand'; isMarr = true; currentCountry = 'England'; yo = 16
- 
+
 // it's my experiment ↓ and it's works
-let fiName = 'Bohdanius'
-     secName = 'Lavren'
-     isMarri = false
-     myCountry = 'USA'
+let fiName = 'Bohdanius',
+     secName = 'Lavren',
+     isMarri = false,
+     myCountry = 'USA',
      myYO = 718
- 
+
+let fName = 'Oscar'; sName = 'Grand'; isMarri = true; currentCountry = 'England'; yo = 16
 // continue task ↓ 
-let myAge = 25
+let myAge = 27
 let yourAge = 16
  
 console.log(`I'm ${myAge} years old.`)
 console.log(`You're ${yourAge} years old.`)
-console.log(fiName, secName, isMarri, currentCountry, yo)
-console.log(fName, secName, isMarri, myCountry, myYO)
+// console.log(fiName, secName, isMarri, currentCountry, yo)
+// console.log(fName, secName, isMarri, myCountry, myYO)
 // end of d1 ------------------------------------------------------------------------------------------------------------------------------------
  
 // d2
