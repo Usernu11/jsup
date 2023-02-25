@@ -56,6 +56,7 @@ animal2.health = 'a little bit fat'
 console.log(animal2.health)
 console.log(defaultAnimal.getFullInfo())
 // ex2
+console.warn('ex -> 2')
 
 console.groupEnd('Level 1')
 // Level 2
