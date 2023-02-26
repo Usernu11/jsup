@@ -1,22 +1,6 @@
 // Level 1
 console.group('Level 1')
 // ex1
-// class Person {
-//     constructor(name,age,gender, color){
-//         this.name = name
-//         this.age = age
-//         this.gender = gender
-//         this.color = color
-//     }
-// }
-
-// class Worker {
-//     constructor(name,age,gender, color){
-//         super(name,age,gender, color)
-//         this.color = 'orange'
-//     }
-// }
-
 class Animal {
     constructor(name = 'Vasilii',
                 age = 5, 
@@ -89,7 +73,7 @@ console.log(dog1.getSound())
 class Cat extends Animal {
     constructor(name,age,color,legs,owner,gender,health,sterilization){
         super(name,age,color,legs,owner,gender,health,sterilization)
-        this.type = 'cat'                                                   // why not works?
+        this.type = 'cat'
     }
     getSound() {
         return '😸 meow-meow 🐱‍👤'
@@ -101,8 +85,11 @@ console.log(cat1.getSound())
 
 console.groupEnd('Level 1')
 // Level 2
+console.group('Level 2')
+console.warn('ex -> 1')
 // ex1
 
+console.groupEnd('Level 2')
 // Level 3
 // ex1
 // ex2
