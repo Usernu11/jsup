@@ -108,6 +108,44 @@ console.groupEnd('Level 2')
 console.group('Level 3')
 console.warn('ex -> 1')
 // ex1
+const ages = [31, 26, 34, 37, 27, 26, 32, 32, 26, 27, 27, 24, 32, 33, 27, 25, 26, 38, 37, 31, 34, 24, 33, 29, 26]
+
+class Statistics {
+    constructor(numbersArray){
+        this.count = numbersArray.length
+    }
+    getSum(numbersArray) {
+        const sum = numbersArray.reduce((acc, cur) => acc + cur)
+        return sum
+    }
+    getMin(numbersArray) {
+        const min = Math.min(...numbersArray)
+        return min
+    }
+    getMax(numbersArray) {
+        const max = Math.max(...numbersArray)
+        return max
+    }
+    getRange(numbersArray) {
+        const range = this.getMax(numbersArray) - this.getMin(numbersArray)
+        return range
+    }
+    getMean(numbersArray) {
+        const mean = Math.round(this.getSum(numbersArray) / this.count)
+        return mean
+    }
+    getMode(numbersArray) {
+        const uniqueNums = new Set(numbersArray)
+
+        // const mode = numbersArray.toString().match(numbersArray.forEach(el => el))
+        return uniqueNums
+        // find the most frequence num
+    }
+}
+const stat1 = new Statistics(ages)
+console.log(stat1.getMode(ages))
+
+
 
 // ex2
 console.groupEnd('Level 3')
