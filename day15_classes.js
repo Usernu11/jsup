@@ -88,8 +88,26 @@ console.groupEnd('Level 1')
 console.group('Level 2')
 console.warn('ex -> 1')
 // ex1
+class Snake extends Animal {
+    constructor(name,age,color,owner,gender,health){
+        super(name,age,color,owner,gender,health)
+        this.name = 'snakie-' + name
+        this.age = 250
+        this.color = ['black', 'yellow', 'green', 'blue', 'red']
+        this.legs = false
+        this.gender = 'unknown'
+        this.health = 'very nice'
+        this.type = 'snake'
+    }
+}
+const snake1 = new Snake('Orochimaru')
+console.table(snake1)
 
 console.groupEnd('Level 2')
 // Level 3
+console.group('Level 3')
+console.warn('ex -> 1')
 // ex1
+
 // ex2
+console.groupEnd('Level 3')
