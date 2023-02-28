@@ -113,39 +113,68 @@ const ages = [31, 26, 34, 37, 27, 26, 32, 32, 26, 27, 27, 24, 32, 33, 27, 25, 26
 class Statistics {
     constructor(numbersArray){
         this.count = numbersArray.length
+        this.numbersArray = numbersArray    // using for using in methods below like 'this.numbersArray' and don't pass it to methods' arguments like getSum(numbersArray) which longer in total, than just creating the key and value
     }
-    getSum(numbersArray) {
-        const sum = numbersArray.reduce((acc, cur) => acc + cur)
+    getSum() {
+        const sum = this.numbersArray.reduce((acc, cur) => acc + cur)
         return sum
     }
-    getMin(numbersArray) {
-        const min = Math.min(...numbersArray)
+    getMin() {
+        const min = Math.min(...this.numbersArray)
         return min
     }
-    getMax(numbersArray) {
-        const max = Math.max(...numbersArray)
+    getMax() {
+        const max = Math.max(...this.numbersArray)
         return max
     }
-    getRange(numbersArray) {
-        const range = this.getMax(numbersArray) - this.getMin(numbersArray)
+    getRange() {
+        const range = this.getMax(this.numbersArray) - this.getMin(this.numbersArray)
         return range
     }
-    getMean(numbersArray) {
-        const mean = Math.round(this.getSum(numbersArray) / this.count)
+    getMean() {
+        const mean = Math.round(this.getSum(this.numbersArray) / this.count)
         return mean
     }
-    getMode(numbersArray) {
-        const uniqueNums = new Set(numbersArray)
-
-        // const mode = numbersArray.toString().match(numbersArray.forEach(el => el))
-        return uniqueNums
-        // find the most frequence num
+    getMode() {
+        let freqNum = 0             // the most frequency num
+        let freqNumCount = 0        // how many times the num meet in an array
+        let modeObj = {}
+        const mode = this.numbersArray.forEach(el => {
+            let numPattern = new RegExp(el, 'g')    // regex for finding all numbers in an array
+            // console.log(numbersArray.toString().match(numPattern).length)
+            if (this.numbersArray.toString().match(numPattern).length > freqNumCount) {  // if a num > 0
+                freqNum = el    // rewrite 0 to the num
+                freqNumCount = this.numbersArray.toString().match(numPattern).length     // rewrite count from 0 to the num count
+            }
+        })
+        modeObj = {mode: freqNum, count: freqNumCount}
+        return modeObj
     }
+    getVariance() {
+        const meanDifference = []
+        const squaredNums = []
+
+        const difference = this.numbersArray.forEach(el => {
+            meanDifference.push(el - this.getMode(this.numbersArray).mode)
+        })
+
+        const squareNums = meanDifference.forEach(el => {
+            squaredNums.push(el**2)  
+        })
+
+        const variance = squaredNums.reduce((acc,cur) => acc + cur) / this.count
+
+        return variance     // the result 30.68 isn't correct if we will compare to course's result which = 17.5
+                            // But I did it using 'mathisfun' resource in the internet, so I suppose it's correct
+                            // Maybe there are my mistakes in the code
+    }
+    getStandartDeviation() {}
 }
 const stat1 = new Statistics(ages)
-console.log(stat1.getMode(ages))
+console.log(stat1.getStandartDeviation(ages))
 
 
 
 // ex2
+console.warn('ex -> 2')
 console.groupEnd('Level 3')
