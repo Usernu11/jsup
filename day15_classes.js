@@ -133,6 +133,7 @@ class Statistics {
     }
     getMean() {
         const mean = Math.round(this.getSum(this.numbersArray) / this.count)
+        // return `Mean: ${mean}`
         return mean
     }
     getMode() {
@@ -171,10 +172,64 @@ class Statistics {
     getStandartDeviation() {
         return +Math.sqrt(this.getVariance()).toFixed(2)
     }
+    getFrequencyDestribution() {
+        const fdb = []      // frequency destribution array
+        let uniqueNums = new Set(this.numbersArray)     // found unique numbers
+        let uniqueNumsArray = [...uniqueNums]           // converted Set to Array
+        
+        for (let i = 0; i <= uniqueNumsArray.length - 1; i++) {
+            let numPattern = new RegExp(uniqueNumsArray[i], 'g')    // special number
+            let findNumCount = this.numbersArray.toString().match(numPattern).length   // count of special num
+            fdb.push({[uniqueNumsArray[i]]: findNumCount})
+        }
+        
+        return fdb
+    }
+    getFDB() {
+        const fdbResult = this.getFrequencyDestribution(this.numbersArray)
+        const newFDB = []
+        for (let i = 0; i <= fdbResult.length - 1; i++) {
+            let keys = Object.keys(fdbResult[i])
+            let values = Object.values(fdbResult[i])
+            newFDB.push(keys)
+            newFDB.push(values)
+            // console.log(values)
+        }
+
+        const oddNums = []
+        const evenFreq = []
+        for (let p = 0; p <= newFDB.length - 1; p++) {
+            if (p % 2 !== 0) {
+                evenFreq.push(newFDB[p])
+            } else {
+                oddNums.push(newFDB[p])
+            }
+        }
+
+        const newFDB2 = []
+        for (let k = 0; k <= oddNums.length - 1; k++) {
+            newFDB2.push(`\n${oddNums[k]} => ${evenFreq[k]}`)
+        }
+        
+        return newFDB2.join('')
+    }
+    getFullStat() {
+        return `Count: ${this.count}
+Sum: ${this.getSum()}
+Min: ${this.getMin()}
+Max: ${this.getMax()}
+Range: ${this.getRange()}
+Mean: ${this.getMean()}
+Mode: ${this.getMode().mode} -> (${this.getMode().count} times) 
+Variance: ${this.getVariance()}
+Standart Deviation: ${this.getStandartDeviation()}
+Frequency Destribution: ${this.getFDB()}`
+    }
 }
 const stat1 = new Statistics(ages)
-console.log(stat1.getStandartDeviation(ages))
-// console.log(stat1.getVariance(ages))
+console.log(stat1.getFullStat())
+// console.log(stat1.getFDB())
+// console.log(stat1.getFrequencyDestribution())
 
 
 
