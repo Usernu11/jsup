@@ -168,10 +168,13 @@ class Statistics {
                             // But I did it using 'mathisfun' resource in the internet, so I suppose it's correct
                             // Maybe there are my mistakes in the code
     }
-    getStandartDeviation() {}
+    getStandartDeviation() {
+        return +Math.sqrt(this.getVariance()).toFixed(2)
+    }
 }
 const stat1 = new Statistics(ages)
 console.log(stat1.getStandartDeviation(ages))
+// console.log(stat1.getVariance(ages))
 
 
 
