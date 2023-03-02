@@ -242,6 +242,8 @@ class PersonalAccount {
         this.lastName = lastName
         this.incomes = incomes
         this.expenses = expenses
+        this.totalIncomes = 0
+        this.totalExpenses = 0
     }
     getTotalIncome() {
         let totalIncome = 0
@@ -263,11 +265,19 @@ class PersonalAccount {
     addIncome(obj) {
         this.incomes.push(obj)
     }
+    addIncomes(objArray) {
+        this.totalIncomes = objArray.reduce((acc, cur) => acc + cur.income, 0)
+        return this.totalIncomes
+    }
     addExpense(obj) {
         this.expenses.push(obj)
     }
+    addExpenses(objArray) {
+        this.totalExpenses = objArray.reduce((acc, cur) => acc + cur.expense, 0)
+        return this.totalExpenses
+    }
     getAccountBalance() {
-        return this.getTotalIncome() - this.getTotalExpense()
+        return this.getTotalIncome() - this.getTotalExpense() + this.totalIncomes - this.totalExpenses
     }
 }
 const acc1 = new PersonalAccount('Oscar',
@@ -276,6 +286,10 @@ const acc1 = new PersonalAccount('Oscar',
                                  [{item: 'e-bike', expense: 5245}, {item: 'lamp', expense: 122}, {item: 'hookah', expense: 2435}, {item: 'sneakers', expense: 840}, {item: 'Honda GoldWing', expense: 75890}, {item: 'restoraunt', expense: 1234}])
 console.log(acc1.addIncome({source: 'selling', income: 100}))
 console.log(acc1.addExpense({item: 'Dodge Caliber', expense: 7000}))
+console.log(acc1.addIncomes([{source: 'trading', income: 1238}, {source: 'trading', income: 12218}, {source: 'trading', income: 21238}]))
+console.log(acc1.addExpenses([{item: 'house rent', expense: 13000}, {item: 'trading', expense: 30000}, {item: 'cafe', expense: 7000}]))
 console.log(acc1.getAccountInfo())
+// console.log(acc1.getTotalIncome())
+// console.log(acc1.totalIncomes)
 
 console.groupEnd('Level 3')
