@@ -231,8 +231,51 @@ console.log(stat1.getFullStat())
 // console.log(stat1.getFDB())
 // console.log(stat1.getFrequencyDestribution())
 
-
-
 // ex2
 console.warn('ex -> 2')
+class PersonalAccount {
+    constructor(firstName, 
+                lastName,
+                incomes,
+                expenses) {
+        this.firstName = firstName
+        this.lastName = lastName
+        this.incomes = incomes
+        this.expenses = expenses
+    }
+    getTotalIncome() {
+        let totalIncome = 0
+        this.incomes.forEach(el => {
+            totalIncome += el.income
+        })
+        return totalIncome
+    }
+    getTotalExpense() {
+        let totalExpense = 0
+        this.expenses.forEach(el => {
+            totalExpense += el.expense
+        })
+        return totalExpense
+    }
+    getAccountInfo() {
+        return `👤 First Name: ${this.firstName}\n👤 Last Name: ${this.lastName}\n💳 Total Income: ${this.getTotalIncome()} CHF\n🧾 Total Expense: ${this.getTotalExpense()} CHF\n⚖ Account Balance: ${this.getAccountBalance()} CHF`
+    }
+    addIncome(obj) {
+        this.incomes.push(obj)
+    }
+    addExpense(obj) {
+        this.expenses.push(obj)
+    }
+    getAccountBalance() {
+        return this.getTotalIncome() - this.getTotalExpense()
+    }
+}
+const acc1 = new PersonalAccount('Oscar',
+                                 'Grand',
+                                 [{source: 'job', income: 16718}, {source: 'frellance', income: 5000}, {source: 'selling', income: 718}, {source: 'selling', income: 599}, {source: 'trading', income: 123123}, {source: 'course', income: 23452}, {source: 'course', income: 12315}],
+                                 [{item: 'e-bike', expense: 5245}, {item: 'lamp', expense: 122}, {item: 'hookah', expense: 2435}, {item: 'sneakers', expense: 840}, {item: 'Honda GoldWing', expense: 75890}, {item: 'restoraunt', expense: 1234}])
+console.log(acc1.addIncome({source: 'selling', income: 100}))
+console.log(acc1.addExpense({item: 'Dodge Caliber', expense: 7000}))
+console.log(acc1.getAccountInfo())
+
 console.groupEnd('Level 3')
