@@ -293,3 +293,4 @@ console.log(acc1.getAccountInfo())
 // console.log(acc1.totalIncomes)
 
 console.groupEnd('Level 3')
+export { PersonalAccount }
