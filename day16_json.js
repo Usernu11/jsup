@@ -108,15 +108,23 @@ console.group('Level 1')
 // Level 1
 // ex1
 console.warn('ex -> 1')
+let skillsStr = JSON.stringify(skills, undefined, 4)
+console.log(skillsStr)
 
 // ex2
 console.warn('ex -> 2')
+let ageStr = JSON.stringify(age, undefined, 4)
+console.log(ageStr)
 
 // ex3
 console.warn('ex -> 3')
+let isMarriedStr = JSON.stringify(isMarried, undefined, 4)
+console.log(isMarriedStr)
 
 // ex4
 console.warn('ex -> 4')
+let studentJSON = JSON.stringify(student, undefined, 4)
+console.log(studentJSON)
 
 
 console.groupEnd('Level 1')
@@ -124,16 +132,36 @@ console.group('Level 2')
 // Level 2
 // ex1
 console.warn('ex -> 1')
+let studentJSON2 = JSON.stringify(student, ['firstName', 'lastName', 'skills'], 4)
+console.log(studentJSON2)
 
 console.groupEnd('Level 2')
 console.group('Level 3')
 // Level 3
 // ex1
 console.warn('ex -> 1')
+let txtParsed = JSON.parse(txt)
+console.table(txtParsed)
 
 // ex2
 console.warn('ex -> 2')
-
+console.log(txtParsed)
+const getSkilledPerson = (obj) => {
+    const parrentEntries = Object.entries(obj)
+    let maxSkills = 0
+    let maxSkillsUser = null
+    let skills = null
+    for (let i = 0; i <= parrentEntries.length - 1; i++) {
+        // console.log(parrentEntries[i][1].skills)
+        if (parrentEntries[i][1].skills.length > maxSkills) {
+            maxSkills = parrentEntries[i][1].skills.length
+            maxSkillsUser = parrentEntries[i][0]
+            skills = parrentEntries[i][1].skills.join(', ')
+        }
+    }
+    return `👤 The most skilled user is: ${maxSkillsUser}\n✨ Count of skills: ${maxSkills}\n👾 Skills: ${skills}`
+}
+console.log(getSkilledPerson(txtParsed))
 console.groupEnd('Level 3')
 
 
