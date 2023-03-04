@@ -14,7 +14,7 @@ const products = [
 // Level 1
 // ex1
 // forEach - a loop only for arrays
-// map - a loop for arrays, which modify elements (it also requires a varriable store)
+// map - a loop for arrays, which return a new array with the results (it also requires a varriable store) 
 // filter - a loop for arrays which can find elements for certain conditionals
 // reduce - a loop which accumulate elements in one result
 
