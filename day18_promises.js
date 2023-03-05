@@ -15,20 +15,11 @@ fetch(countriesAPI)
             const languages = el.languages.map(lang => lang.name).join(', ');
             // console.log(el.languages.map(lang => lang.name))
 
-            console.log(`🎫 Country name: ${el.name}\n⛳ Country capital: ${el.capital}\n🎭 Country languages: ${languages}\n🎎 Country population: ${el.population}\n🧩 Country area: ${el.area}`)
+            // console.log(`🎫 Country name: ${el.name}\n⛳ Country capital: ${el.capital}\n🎭 Country languages: ${languages}\n🎎 Country population: ${el.population}\n🧩 Country area: ${el.area}`)
         })
     })
     .catch(error => console.error(error))
 console.timeEnd('fetch')
-
-
-
-
-
-
-
-
-
 
 console.groupEnd('Level 1')
 
@@ -37,6 +28,17 @@ console.group('Level 2')
 // ex1
 console.warn('ex -> 1')
 
+let catNames = []
+fetch(catsAPI)
+    .then(response => response.json())
+    .then(data => {
+        // console.log(data)
+        data.forEach(el => {
+            catNames.push(el.name)
+        })
+    })
+    .catch(error => console.error(error))
+console.log(catNames)
 
 console.groupEnd('Level 2')
 
