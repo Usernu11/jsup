@@ -21,6 +21,9 @@ const stopwatch = (command) => {
                     time.hours += 1
                 }
                 text = document.getElementById('stopwatch').innerHTML = `${("0" + time.hours).slice(-2)}:${("0" + time.minutes).slice(-2)}:${("0" + time.seconds).slice(-2)}`
+                
+                // Save the stopwatch data to local storage
+                localStorage.setItem('stopwatchData', JSON.stringify(time));
             }
             intervalId = setInterval(timeGo, 1000)
         }
@@ -38,7 +41,24 @@ const stopwatch = (command) => {
         clearInterval(intervalId)
         text = document.getElementById('stopwatch').innerHTML = `${("0" + time.hours).slice(-2)}:${("0" + time.minutes).slice(-2)}:${("0" + time.seconds).slice(-2)}`
         intervalId = undefined;
+
+        // Remove the stopwatch data from local storage when stopped
+        localStorage.removeItem('stopwatchData');
     }
+}
+
+// Load the stopwatch data from local storage if it exists
+if (localStorage.getItem('stopwatchData')) {
+    time = JSON.parse(localStorage.getItem('stopwatchData'));
+    text = document.getElementById('stopwatch').innerHTML = `${("0" + time.hours).slice(-2)}:${("0" + time.minutes).slice(-2)}:${("0" + time.seconds).slice(-2)}`
+}
+
+const storedData = JSON.parse(localStorage.getItem('stopwatchData'))
+if (storedData) {
+  time = storedData
+  setTimeout(() => {
+    stopwatch('start')
+  }, 0)
 }
 
 let start = document.getElementById('start').addEventListener("click", stopwatch.bind(null, 'start'));
