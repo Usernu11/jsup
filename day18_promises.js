@@ -73,6 +73,44 @@ fetchData(catsAPI)
 
 // ex2
 console.warn('ex -> 2')
+const getTenLargestCountries = async (url, full = false) => {
+    try {
+        const response = await fetch(url)
+        const countries = await response.json()
+        console.log(countries)
+
+        // let sortedCountries = countries.sort((a,b) => {
+        //     return Number(b.area) - Number(a.area)
+        // })
+        let sortedCountries = countries.sort((a,b) => { // 1
+            const areaA = +a.area || 0;
+            const areaB = +b.area || 0;
+            return areaB - areaA;
+          });
+        let topTen = sortedCountries.slice(0, 10)       // 2        
+        
+        let isFull = full
+        
+        if (isFull === false) {                         // 3,4
+            topTen.forEach(el => {
+                console.log(`🎫 Country: ${el.name}\n🗾 Area: ${el.area}`)  // 5
+            })
+        } else {
+            console.log(topTen)            
+        }
+    } catch (err) {
+        console.log(err)
+    }
+}
+getTenLargestCountries(countriesAPI)
+
+// plan ↑
+// 1. sort countries obj array by -> AREA 
+// 2. cut the results until 10  
+// 3. make a special way (if the full arg is true -> give full info about countries)
+// 4. do it for all cats
+// 5. beautify the results (country name + area)
+
 
 // ex3
 console.warn('ex -> 3')
