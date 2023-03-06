@@ -42,6 +42,19 @@ let time = {
       intervalId = undefined;
     }
   }
+
+  if (localStorage.getItem('stopwatchData')) {
+    time = JSON.parse(localStorage.getItem('stopwatchData'));
+    text = document.getElementById('stopwatch').innerHTML = `${("0" + time.hours).slice(-2)}:${("0" + time.minutes).slice(-2)}:${("0" + time.seconds).slice(-2)}`
+  }
+
+  const storedData = JSON.parse(localStorage.getItem('stopwatchData'))
+  if (storedData) {
+    time = storedData
+    setTimeout(() => {
+      stopwatch('start')
+    }, 0)
+  }
   
   let start = document.getElementById('start').addEventListener("click", stopwatch.bind(null, 'start'));
   let pause = document.getElementById('pause').addEventListener("click", stopwatch.bind(null, 'pause'));
