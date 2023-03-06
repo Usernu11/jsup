@@ -22,6 +22,7 @@ let time = {
           }
           text = document.getElementById('stopwatch').innerHTML = `${("0" + time.hours).slice(-2)}:${("0" + time.minutes).slice(-2)}:${("0" + time.seconds).slice(-2)}`
           document.title = `${("0" + time.hours).slice(-2)}:${("0" + time.minutes).slice(-2)}:${("0" + time.seconds).slice(-2)} - ⚡`
+          localStorage.setItem('stopwatchData', JSON.stringify(time));
         }
         intervalId = setInterval(timeGo, 1000)
       }
@@ -29,7 +30,8 @@ let time = {
   
     if (command === 'pause') {
       clearInterval(intervalId)
-      intervalId = undefined;
+      intervalId = undefined
+
     }
   
     if (command === 'stop') {
@@ -39,7 +41,8 @@ let time = {
       clearInterval(intervalId)
       text = document.getElementById('stopwatch').innerHTML = `${("0" + time.hours).slice(-2)}:${("0" + time.minutes).slice(-2)}:${("0" + time.seconds).slice(-2)}`
       document.title = "UP ⚡"
-      intervalId = undefined;
+      intervalId = undefined
+      localStorage.removeItem('stopwatchData')
     }
   }
 
@@ -56,9 +59,9 @@ let time = {
     }, 0)
   }
   
-  let start = document.getElementById('start').addEventListener("click", stopwatch.bind(null, 'start'));
-  let pause = document.getElementById('pause').addEventListener("click", stopwatch.bind(null, 'pause'));
-  let stop = document.getElementById('stop').addEventListener("click", stopwatch.bind(null, 'stop'));
+  let start = document.getElementById('start').addEventListener("click", stopwatch.bind(null, 'start'))
+  let pause = document.getElementById('pause').addEventListener("click", stopwatch.bind(null, 'pause'))
+  let stop = document.getElementById('stop').addEventListener("click", stopwatch.bind(null, 'stop'))
   
   document.addEventListener("keydown", function(event) {
     if (event.code === "Space") {
