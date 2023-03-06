@@ -46,7 +46,30 @@ console.group('Level 3')
 // Level 3
 // ex1
 console.warn('ex -> 1')
+const fetchData = async (url) => {
+    try {
+        const response = await fetch(url)
+        const cats = await response.json()
+        console.log(cats)
+        cats.forEach(el => {                                        // 4
+            let catMetricWeight = el.weight.metric                  // 1 
+            let splittedWeightData = catMetricWeight.split(' ')     // 2
+            let calcAverageWeight = (+splittedWeightData[0] + +splittedWeightData[2]) / 2   // 3
+            let catName = el.name   // 5
+            console.log(`🐱 ${catName}\n🔘 Average weight: ${calcAverageWeight} kg`)
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+fetchData(catsAPI)
 
+// plan ↑
+// 1. print the metric weight param in console log
+// 2. split the str
+// 3. calculate the average weight
+// 4. do it for all cats
+// 5. beautify the results, using cat names
 
 // ex2
 console.warn('ex -> 2')
