@@ -119,26 +119,6 @@ const getOffLangs = async (url) => {
         const response = await fetch(url)
         const countries = await response.json()
 
-        // let langObjects = []
-        // countries.forEach(el => {
-        //     langObjects.push(el.languages)
-        // })
-        // // console.log(countries[0].languages[0].name) // Pashto
-        // console.log(langObjects)
-
-        // let languages = []
-        // langObjects.forEach(el => {
-        //     el.reduce((acc, cur) => {
-        //         languages.push(cur.name)
-        //     })
-        // })
-        // console.log(languages)
-
-        // const uniqueLanguages = new Set(languages)
-        // const result = Array.from(uniqueLanguages)
-
-        // return result.forEach(el => console.log(`🙂 ${el}`))
-
         const languages = countries.reduce((acc, cur) => {
             cur.languages.forEach((language) => {
               acc.add(language.name);
@@ -153,6 +133,6 @@ const getOffLangs = async (url) => {
         console.error(err)
     }
 }
-getOffLangs(countriesAPI) // <- put here 'countriesAPI'
+getOffLangs() // <- put here 'countriesAPI'
 
 console.groupEnd('Level 3')
