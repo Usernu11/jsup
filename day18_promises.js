@@ -62,7 +62,7 @@ const fetchData = async (url) => {
         console.log(err)
     }
 }
-fetchData(catsAPI)
+fetchData() // <- put here 'catsAPI'
 
 // plan ↑
 // 1. print the metric weight param in console log
@@ -102,7 +102,7 @@ const getTenLargestCountries = async (url, full = false) => {
         console.log(err)
     }
 }
-getTenLargestCountries(countriesAPI)
+getTenLargestCountries() // <- put here 'countriesAPI'
 
 // plan ↑
 // 1. sort countries obj array by -> AREA 
@@ -114,7 +114,36 @@ getTenLargestCountries(countriesAPI)
 
 // ex3
 console.warn('ex -> 3')
+const getOffLangs = async (url) => {
+    try {
+        const response = await fetch(url)
+        const countries = await response.json()
 
+        let langObjects = []
+        countries.forEach(el => {
+            langObjects.push(el.languages)
+        })
+        // console.log(countries[0].languages[0].name) // Pashto
+        console.log(langObjects)
 
+        let languages = []
+        langObjects.forEach(el => {
+            el.reduce((acc, cur) => {
+                languages.push(cur.name)
+            })
+        })
+        console.log(languages)
+
+        const uniqueLanguages = new Set(languages)
+        const result = Array.from(uniqueLanguages)
+
+        return result.forEach(el => console.log(`🙂 ${el}`))
+    } catch (err) {
+        console.error(err)
+    }
+}
+getOffLangs(countriesAPI) // <- put here 'countriesAPI'
+
+console.clear()
 
 console.groupEnd('Level 3')
