@@ -111,7 +111,6 @@ getTenLargestCountries() // <- put here 'countriesAPI'
 // 4. do it for all cats
 // 5. beautify the results (country name + area)
 
-
 // ex3
 console.warn('ex -> 3')
 const getOffLangs = async (url) => {
