@@ -38,66 +38,80 @@ console.log(calculate.minusOne(), calculate.timesTwo(), calculate.timesTwo(), ca
 // Level 3
 console.warn('Level 3 -> ex1')
 // ex1
-const personAccount = (fn = 'Forest', ln = 'Cloud', inc = [{source: 'invest', income: 1600}, {source: 'freelance', income: 7180}, {source: 'job', income: 70127}], exp = [{item: 'e-bike', expense: 7000}, {item: 'house', expense: 121234}, {item: 'Dodge Caliber', expense: 18488}]) => {
+const personAccount = (
+    fn = 'Forest',
+    ln = 'Cloud',
+    inc = [
+      { source: 'invest', income: 1600 },
+      { source: 'freelance', income: 7180 },
+      { source: 'job', income: 70127 }
+    ],
+    exp = [
+      { item: 'e-bike', expense: 7000 },
+      { item: 'house', expense: 121234 },
+      { item: 'Dodge Caliber', expense: 18488 }
+    ]
+  ) => {
     let firstName = fn
     let lastName = ln
     let incomes = inc
     let expenses = exp
-
+    let totalIncome = calculateTotalIncome()
+    let accountBalance = calculateAccountBalance()
+  
     const addIncome = (objInc) => {
-        incomes.push(objInc)
-        const newTotalIncome = totalIncome()
-        return {
-            incomes,
-            newTotalIncome
-        }
+      incomes.push(objInc)
+      totalIncome = calculateTotalIncome()
+      accountBalance = calculateAccountBalance()
     }
-
+  
     const addExpense = (objExp) => {
-        expenses.push(objExp)
-        return expenses
+      expenses.push(objExp)
+      accountBalance = calculateAccountBalance()
     }
-
-    const totalIncome = () => {
-        return incomes.reduce((acc, cur) => {
-            return acc + cur.income
-        }, 0)
+  
+    function calculateTotalIncome() {
+      return incomes.reduce((acc, cur) => {
+        return acc + cur.income
+      }, 0)
     }
-
-    const totalExpense = () => {
-        return expenses.reduce((acc, cur) => {
-            return acc + cur.expense
-        }, 0)
+  
+    function calculateTotalExpense() {
+      return expenses.reduce((acc, cur) => {
+        return acc + cur.expense
+      }, 0)
     }
-
-    const accountBalance = () => {
-        return totalExpense() - totalIncome()
+  
+    function calculateAccountBalance() {
+      return totalIncome - calculateTotalExpense() 
     }
-
+  
     const accountInfo = () => {
-        return `First Name: ${firstName}\nLast Name: ${lastName}\nTotal Incomes: ${totalIncome()}\nTotal Expenses: ${totalExpense()}\nAccount Balance: ${accountBalance()}`
+      return `First Name: ${firstName}\nLast Name: ${lastName}\nTotal Incomes: ${totalIncome}\nTotal Expenses: ${calculateTotalExpense()}\nAccount Balance: ${accountBalance}`
     }
-    
-    const initialTotalIncome = totalIncome()
-
+  
     return {
-        incomes,
-        expenses,
-        totalIncome: initialTotalIncome,
-        totalExpense: totalExpense(),
-        accountInfo: accountInfo(),
-        addIncome: addIncome,
-        addExpense: addExpense,
-        accountBalance: accountBalance()
+      incomes,
+      expenses,
+      totalIncome,
+      totalExpense: calculateTotalExpense(),
+      accountInfo,
+      addIncome,
+      addExpense,
+      accountBalance,
     }
-}
+  }
+  
+  const getInfoPA = personAccount()
+//   console.log(getInfoPA.totalIncome) // 79307
+  
+  getInfoPA.addIncome({ source: 'marketplace', income: 100000 })
+//   console.log(getInfoPA.totalIncome) // 89307
+  console.log(getInfoPA.accountInfo()) // First Name: Forest
+                                         // Last Name: Cloud
+                                         // Total Incomes: 89307
+                                         // Total Expenses: 150722
+                                         // Account Balance: -61415
+  
 
-const getInfoPA = personAccount()
-console.log(getInfoPA.totalIncome)
-
-const { incomes, newTotalIncome } = getInfoPA.addIncome({source: 'marketplace', income: 10000})
-getInfoPA.incomes = incomes
-getInfoPA.totalIncome = newTotalIncome
-
-console.log(getInfoPA.totalIncome)
-console.log(getInfoPA.accountInfo)
+  
