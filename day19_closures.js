@@ -103,15 +103,6 @@ const personAccount = (
   }
   
   const getInfoPA = personAccount()
-//   console.log(getInfoPA.totalIncome) // 79307
   
   getInfoPA.addIncome({ source: 'marketplace', income: 100000 })
-//   console.log(getInfoPA.totalIncome) // 89307
-  console.log(getInfoPA.accountInfo()) // First Name: Forest
-                                         // Last Name: Cloud
-                                         // Total Incomes: 89307
-                                         // Total Expenses: 150722
-                                         // Account Balance: -61415
-  
-
-  
+  console.log(getInfoPA.accountInfo())
