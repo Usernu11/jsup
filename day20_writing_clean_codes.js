@@ -7,4 +7,3 @@
 
 // 3. Google Style Guide
 // https://google.github.io/styleguide/jsguide.html
-
