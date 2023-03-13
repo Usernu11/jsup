@@ -12,11 +12,11 @@ const pTagList = document.querySelectorAll('p')     // get an array of P tags
 console.log(pTagList)
 
 for (let i = 0; i < pTagList.length; i++) {   // creating for each P-tag unique id
-    pTagList[i].id = `id-${i}`
+    pTagList[i].id = `id-${i+1}`
 }
 
 for (let i = 0; i < pTagList.length; i++) {  // getting access for each P-tag
-    console.log(document.querySelector(`#id-${i}`))
+    console.log(document.querySelector(`#id-${i+1}`))
 }
 
 // ex3
@@ -28,6 +28,8 @@ for (let i = 0; i < pTagList.length; i++) {
 }
 
 // ex5
+pTagList[3].innerHTML = 'Fourth Paragraph'
+
 // ex6
 
 // Level 2
