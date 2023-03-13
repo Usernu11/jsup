@@ -63,17 +63,6 @@ body {
      border-radius: 50%;
  }
 
-.js {
-    margin: 0 auto;
-    width: 100%;
-    height: 90vh;
-    background-image: url(./img/newJsBg.png);
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* outline: 2px solid red; */
-}
-
 #pattern {
     outline: 2px solid blueviolet;
     width: 90%;
@@ -103,47 +92,6 @@ body {
     align-items: center;
     border-radius: 15px;
 }
-
-/* #start { */
-    /* outline: 2px dashed black; */
-    /* width: max-content;
-    position: absolute;
-    right: 276px;
-    top: 127px;
-    color: yellow;
-    border: 2px solid yellow; */
-    /* width: 60px; */
-    /* padding: 0 10px; */
-    /* border-top: 2px solid yellow; */
-    /* border-radius: 0 0 0 15px; */
-/* } */
-
-/* #start:hover {
-    background: limegreen;
-    transition: ease-in 0.5s;
-    cursor: pointer;
-    color: black;
-    /* border-color: black; */
-/* } */
-
-/* #pause {
-    outline: 2px dashed black;
-    width: max-content;
-    position: absolute;
-    right: 169px;
-    padding: 0 18px;
-    top: 127px;
-    line-height: 21px;
-    color: yellow;
-    border: 2px solid yellow;
-}  */
-
-/* #pause:hover {
-    background: yellow;
-    transition: ease-in 0.5s;
-    cursor: pointer;
-    color: black;
-} */
 
 #stop {
     /* outline: 2px dashed black; */
