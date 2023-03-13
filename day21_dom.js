@@ -19,8 +19,9 @@ for (let i = 0; i < pTagList.length; i++) {  // getting access for each P-tag
     console.log(document.querySelector(`#id-${i}`))
 }
 
-
 // ex3
+console.log(pTagList)
+
 // ex4
 // ex5
 // ex6
