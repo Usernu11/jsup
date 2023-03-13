@@ -23,6 +23,10 @@ for (let i = 0; i < pTagList.length; i++) {  // getting access for each P-tag
 console.log(pTagList)
 
 // ex4
+for (let i = 0; i < pTagList.length; i++) {
+    console.log(pTagList[i].textContent)
+}
+
 // ex5
 // ex6
 
