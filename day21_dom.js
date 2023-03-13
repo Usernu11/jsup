@@ -31,6 +31,15 @@ for (let i = 0; i < pTagList.length; i++) {
 pTagList[3].innerHTML = 'Fourth Paragraph'
 
 // ex6
+for (let i = 0; i < pTagList.length; i++) {     // using 'setAttribute'
+    pTagList[i].setAttribute(`class`, `par-${i+1}`)
+    pTagList[i].setAttribute(`id`, `par-id-${i+1}`)
+}
+
+for (let i = 0; i < pTagList.length; i++) {     // using 'normal Obj method'
+    pTagList[i].className = `paragrapgh-${i+1}`
+    pTagList[i].id = `paragrapgh-id-${i+1}`
+}
 
 // Level 2
 // ex1
