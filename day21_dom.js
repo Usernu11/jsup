@@ -8,6 +8,18 @@ for (let i = 0; i < 4; i++) {   // I used other way to solve the task, because I
 }
 
 // ex2
+const pTagList = document.querySelectorAll('p')     // get an array of P tags
+console.log(pTagList)
+
+for (let i = 0; i < pTagList.length; i++) {   // creating for each P-tag unique id
+    pTagList[i].id = `id-${i}`
+}
+
+for (let i = 0; i < pTagList.length; i++) {  // getting access for each P-tag
+    console.log(document.querySelector(`#id-${i}`))
+}
+
+
 // ex3
 // ex4
 // ex5
