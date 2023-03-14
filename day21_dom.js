@@ -53,9 +53,15 @@ pTagList[1].style.background = 'lime'
 pTagList[2].style.border = '2px dashed black'
 pTagList[3].style.fontSize = '40px'
 
-
-
 // ex2
+for (let i = 0; i < pTagList.length; i++) {
+    if (i % 2) {
+        pTagList[i].style.color = 'red'
+    } else {
+        pTagList[i].style.color = 'green'
+    }
+}
+
 // ex3
 
 // Level 3
