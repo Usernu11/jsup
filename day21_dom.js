@@ -75,17 +75,18 @@ for (let i = 0; i < pTagList.length; i++) {
 
 // Level 3
 // ex1 (mini-project)
+// 1th point -> changing every sec color for year in h1
 let yearFullText = document.querySelector('h1')     // <h1> text 2023 </h1>
 const yearTextArr = yearFullText.textContent.trim().split(' ')  // ['text', '2023']
 const year = yearTextArr.pop()    // '2023'
 const mainText = yearFullText.innerText.replace(year, '').trim()    // text
 
 const getRandomColor = () => {      // color generator
-    const r = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
-    const g = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
-    const b = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
-    return `#${r}${g}${b}`;
-  }
+    const r = Math.floor(Math.random() * 256)
+    const g = Math.floor(Math.random() * 256)
+    const b = Math.floor(Math.random() * 256)
+    return `rgb(${r},${g},${b})`
+}
 
 yearFullText.innerHTML = `${mainText}<span> ${year}</span>`     // <h1> text <span> 2023 </span></h1>
 let spanYear = document.querySelector('span')       // <span> 2023 </span>
@@ -93,3 +94,5 @@ let spanYear = document.querySelector('span')       // <span> 2023 </span>
 setInterval(() => {     // change color for  <span> 2023 </span> every sec
     spanYear.style.color = `${getRandomColor()}`
 }, 1000)
+
+// 2nd point -> changing date and bg every sec
