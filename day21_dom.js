@@ -76,7 +76,8 @@ for (let i = 0; i < pTagList.length; i++) {
 // Level 3
 // ex1 (mini-project)
 let yearFullText = document.querySelector('h1')     // <h1> text 2023 </h1>
-const [, , , , year] = yearFullText.innerText.split(' ')    // '2023'
+const yearTextArr = yearFullText.textContent.trim().split(' ')  // ['text', '2023']
+const year = yearTextArr.pop()    // '2023'
 const mainText = yearFullText.innerText.replace(year, '').trim()    // text
 
 const getRandomColor = () => {      // color generator
@@ -89,6 +90,6 @@ const getRandomColor = () => {      // color generator
 yearFullText.innerHTML = `${mainText}<span> ${year}</span>`     // <h1> text <span> 2023 </span></h1>
 let spanYear = document.querySelector('span')       // <span> 2023 </span>
 
-setInterval(() => {     // change color for <span> 2023 </span> every sec
+setInterval(() => {     // change color for  <span> 2023 </span> every sec
     spanYear.style.color = `${getRandomColor()}`
 }, 1000)
