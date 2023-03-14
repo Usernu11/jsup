@@ -43,6 +43,18 @@ for (let i = 0; i < pTagList.length; i++) {     // using 'normal Obj method'
 
 // Level 2
 // ex1
+for (let i = 0; i < pTagList.length; i++) {     // for making more visible of result
+    pTagList[i].innerHTML = `${i+1} PARAGRAPH`
+    pTagList[i].style.fontFamily = 'Cursive'
+}
+
+pTagList[0].style.color = 'yellow'
+pTagList[1].style.background = 'lime'
+pTagList[2].style.border = '2px dashed black'
+pTagList[3].style.fontSize = '40px'
+
+
+
 // ex2
 // ex3
 
