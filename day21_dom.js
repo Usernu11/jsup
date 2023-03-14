@@ -76,47 +76,19 @@ for (let i = 0; i < pTagList.length; i++) {
 // Level 3
 // ex1 (mini-project)
 let yearFullText = document.querySelector('h1')     // <h1> text 2023 </h1>
-// let year = yearFullText.innerText.split(' ').reverse()[0]     // '2023'
-const [, , , , year] = yearFullText.innerText.split(' ')    // '2023' -> another way
-// let mainText = yearFullText.innerText.split(' ').slice(0, 4).toString().replace(/,/g, ' ')    // text
-const mainText = yearFullText.innerText.replace(year, '').trim()    // text -> another way
+const [, , , , year] = yearFullText.innerText.split(' ')    // '2023'
+const mainText = yearFullText.innerText.replace(year, '').trim()    // text
 
-// yearFullText.innerHTML = mainText       // <h1> text </h1>
-// let yearTag = document.createElement('span')    // <span></span>
-// yearFullText.appendChild(yearTag)   // <h1> text <span></span> </h1>
-// let getYearTag = document.querySelector('span')     // <span></span>
-// getYearTag.innerHTML = ` ${year}`   // <span> 2023</span>
-// getYearTag.style.color = 'green'    // change color for <span> 2023</span>
-
-// const getRandomHexaColor = () => {       // my old color generator
-//     const hexaColor = []
-//     for (let i = 0; i < 6; i++) {
-//         let shortRandomNumber = Math.ceil(Math.random() * 3) // generate a random num 1-3
-//         let randomNumberOfWords = Math.ceil(Math.random() + 96) + Math.ceil(Math.random() * 5) // generate a random num 97-103
-//         let randomNumber = Math.ceil(Math.random() + 48) + Math.ceil(Math.random() * 8) // generate a random num 48-57
-//         let randomAFWord = String.fromCharCode(randomNumberOfWords)  // return a word from A-F alphabet by id
-//         let random09Number = String.fromCharCode(randomNumber) // return a number 0-9 by id
-//         if (shortRandomNumber === 1) {
-//             hexaColor.push(randomAFWord) // adding a random word from the A-F alphabet to the array
-//         } else if (shortRandomNumber === 2) {
-//             hexaColor.push(random09Number) // adding a random number 0-9 to the array
-//         } else {
-//             hexaColor.push(randomAFWord.toUpperCase()) // adding a random word with upper case from the A-F alphabet to the array
-//         }
-//     }
-//     return `#${hexaColor.toString().replace(/,/g, '')}`
-// }
-
-const getRandomColor = () => {      // the new color generator
+const getRandomColor = () => {      // color generator
     const r = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
     const g = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
     const b = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
     return `#${r}${g}${b}`;
   }
 
-yearFullText.innerHTML = `${mainText}<span> ${year}</span>`   // another way in 1 line instead 6 above
-let spanYear = document.querySelector('span')
+yearFullText.innerHTML = `${mainText}<span> ${year}</span>`     // <h1> text <span> 2023 </span></h1>
+let spanYear = document.querySelector('span')       // <span> 2023 </span>
 
-setInterval(() => {
+setInterval(() => {     // change color for <span> 2023 </span> every sec
     spanYear.style.color = `${getRandomColor()}`
 }, 1000)
