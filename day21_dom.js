@@ -63,6 +63,14 @@ for (let i = 0; i < pTagList.length; i++) {
 }
 
 // ex3
+for (let i = 0; i < pTagList.length; i++) {
+    let id = `id-p-${i+1}`
+    let className = `class-p-${i+1}`
+    let text = `Hi, I'm ${i+1} paragraph. Here is the text for filling the paragraph and make it more visible. My id is: "${id}" and my class name is: "${className}"`
+    pTagList[i].innerHTML = `${text}`
+    pTagList[i].id = `${id}`
+    pTagList[i].className = `${className}`
+}
 
 // Level 3
 // ex1 (mini-project)
