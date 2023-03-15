@@ -144,9 +144,9 @@ setInterval(() => {
         let minutes = time.getMinutes().toString().padStart(2, 0)
         let second = time.getSeconds().toString().padStart(2, 0)
 
-        const oclock = `${hours}:${minutes}:${second}`
+        // const oclock = 
 
-        return oclock
+        return `${hours}:${minutes}:${second}`
     }
     const currentTime = getCurrentTime()
 
