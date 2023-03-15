@@ -96,80 +96,56 @@ setInterval(() => {     // change color for  <span> 2023 </span> every sec
 }, 1000)
 
 // 2nd point -> changing date, time and bg every sec
-// time block creation
-
-
-// time block
+// creating block for time
 const h2Tag = document.querySelector('h2')
-const timeDateBlock=  document.createElement('div')
+const timeDateBlock = document.createElement('div')
 h2Tag.insertAdjacentElement('afterend', timeDateBlock)
 timeDateBlock.style.background = `red`
 timeDateBlock.style.width = `fit-content`
 timeDateBlock.style.padding = `10px 20px`
 timeDateBlock.style.borderRadius = `5px`
 
-
-
+// start of time ↓
 setInterval(() => {
     const time = new Date()
     const day = time.getDate()
     const yearDate = time.getFullYear()
     const getCurrentMonth = () => {
-        const monthNum = time.getMonth() + 1
-        if (monthNum === 1) {
-            return 'January'
-        }
-        if (monthNum === 2) {
-            return 'February'
-        }
-        if (monthNum === 3) {
-            return 'March'
-        }
-        if (monthNum === 4) {
-            return 'April'
-        }
-        if (monthNum === 5) {
-            return 'May'
-        }
-        if (monthNum === 6) {
-            return 'June'
-        }
-        if (monthNum === 7) {
-            return 'July'
-        }
-        if (monthNum === 8) {
-            return 'August'
-        }
-        if (monthNum === 9) {
-            return 'September'
-        }
-        if (monthNum === 10) {
-            return 'October'
-        }
-        if (monthNum === 11) {
-            return 'November'
-        }
-        if (monthNum === 12) {
-            return 'December'
+        switch (time.getMonth()) {
+            case 0:
+                return 'January';
+            case 1:
+                return 'February';
+            case 2:
+                return 'March';
+            case 3:
+                return 'April';
+            case 4:
+                return 'May';
+            case 5:
+                return 'June';
+            case 6:
+                return 'July';
+            case 7:
+                return 'August';
+            case 8:
+                return 'September';
+            case 9:
+                return 'October';
+            case 10:
+                return 'November';
+            case 11:
+                return 'December';
         }
     }
     const month = getCurrentMonth()
     const getCurrentTime = () => {
-        let hours = time.getHours()
-        let minutes = time.getMinutes()
-        let second = time.getSeconds()
-        if (hours.toString().length < 2) {
-            hours = `0${hours}`
-        }
-        if (minutes.toString().length < 2) {
-            minutes = `0${minutes}`
-        }
-        if (second.toString().length < 2) {
-            second = `0${second}`
-        }
-        
+        let hours = time.getHours().toString().padStart(2, 0)
+        let minutes = time.getMinutes().toString().padStart(2, 0)
+        let second = time.getSeconds().toString().padStart(2, 0)
+
         const oclock = `${hours}:${minutes}:${second}`
-        
+
         return oclock
     }
     const currentTime = getCurrentTime()
