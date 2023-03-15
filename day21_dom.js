@@ -12,11 +12,11 @@ const pTagList = document.querySelectorAll('p')     // get an array of P tags
 console.log(pTagList)
 
 for (let i = 0; i < pTagList.length; i++) {   // creating for each P-tag unique id
-    pTagList[i].id = `id-${i+1}`
+    pTagList[i].id = `id-${i + 1}`
 }
 
 for (let i = 0; i < pTagList.length; i++) {  // getting access for each P-tag
-    console.log(document.querySelector(`#id-${i+1}`))
+    console.log(document.querySelector(`#id-${i + 1}`))
 }
 
 // ex3
@@ -32,19 +32,19 @@ pTagList[3].innerHTML = 'Fourth Paragraph'
 
 // ex6
 for (let i = 0; i < pTagList.length; i++) {     // using 'setAttribute'
-    pTagList[i].setAttribute(`class`, `par-${i+1}`)
-    pTagList[i].setAttribute(`id`, `par-id-${i+1}`)
+    pTagList[i].setAttribute(`class`, `par-${i + 1}`)
+    pTagList[i].setAttribute(`id`, `par-id-${i + 1}`)
 }
 
 for (let i = 0; i < pTagList.length; i++) {     // using 'normal Obj method'
-    pTagList[i].className = `paragrapgh-${i+1}`
-    pTagList[i].id = `paragrapgh-id-${i+1}`
+    pTagList[i].className = `paragrapgh-${i + 1}`
+    pTagList[i].id = `paragrapgh-id-${i + 1}`
 }
 
 // Level 2
 // ex1
 for (let i = 0; i < pTagList.length; i++) {     // for making more visible of result
-    pTagList[i].innerHTML = `${i+1} PARAGRAPH`
+    pTagList[i].innerHTML = `${i + 1} PARAGRAPH`
     pTagList[i].style.fontFamily = 'Cursive'
 }
 
@@ -64,9 +64,9 @@ for (let i = 0; i < pTagList.length; i++) {
 
 // ex3
 for (let i = 0; i < pTagList.length; i++) {
-    let id = `id-p-${i+1}`
-    let className = `class-p-${i+1}`
-    let text = `Hi, I'm ${i+1} paragraph. Here is the text for filling the paragraph and make it more visible. My id is: "${id}" and my class name is: "${className}"`
+    let id = `id-p-${i + 1}`
+    let className = `class-p-${i + 1}`
+    let text = `Hi, I'm ${i + 1} paragraph. Here is the text for filling the paragraph and make it more visible. My id is: "${id}" and my class name is: "${className}"`
     pTagList[i].innerHTML = `${text}`
     pTagList[i].id = `${id}`
     pTagList[i].className = `${className}`
@@ -82,13 +82,13 @@ const year = yearTextArr.pop()    // '2023'
 const mainText = yearFullText.innerText.replace(year, '').trim()    // text
 
 const getRandomColor = () => {      // color generator
+    const b = Math.floor(Math.random() * 256)
     const r = Math.floor(Math.random() * 256)
     const g = Math.floor(Math.random() * 256)
-    const b = Math.floor(Math.random() * 256)
     return `rgb(${r},${g},${b})`
 }
 
-yearFullText.innerHTML = `${mainText}<span> ${year}</span>`     // <h1> text <span> 2023 </span></h1>
+yearFullText.innerHTML = `${mainText}<span> ${year}</span>`   // <h1> text <span> 2023 </span></h1>
 let spanYear = document.querySelector('span')       // <span> 2023 </span>
 
 setInterval(() => {     // change color for  <span> 2023 </span> every sec

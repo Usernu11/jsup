@@ -82,21 +82,21 @@ const getTenLargestCountries = async (url, full = false) => {
         // let sortedCountries = countries.sort((a,b) => {
         //     return Number(b.area) - Number(a.area)
         // })
-        let sortedCountries = countries.sort((a,b) => { // 1
+        let sortedCountries = countries.sort((a, b) => { // 1
             const areaA = +a.area || 0;
             const areaB = +b.area || 0;
             return areaB - areaA;
-          });
+        });
         let topTen = sortedCountries.slice(0, 10)       // 2        
-        
+
         let isFull = full
-        
+
         if (isFull === false) {                         // 3,4
             topTen.forEach(el => {
                 console.log(`🎫 Country: ${el.name}\n🗾 Area: ${el.area}`)  // 5
             })
         } else {
-            console.log(topTen)            
+            console.log(topTen)
         }
     } catch (err) {
         console.log(err)
@@ -120,10 +120,10 @@ const getOffLangs = async (url) => {
 
         const languages = countries.reduce((acc, cur) => {
             cur.languages.forEach((language) => {
-              acc.add(language.name);
+                acc.add(language.name);
             });
             return acc;
-          }, new Set());
+        }, new Set());
 
         languages.forEach((language) => console.log(`🙂 ${language}`));
 
@@ -135,3 +135,27 @@ const getOffLangs = async (url) => {
 getOffLangs() // <- put here 'countriesAPI'
 
 console.groupEnd('Level 3')
+
+// Additional simple exercises
+// 1. Write a function that takes a number and returns a Promise that resolves with the square of that number.
+const squareNum = (n) => {
+    return new Promise((resolve, reject) => {
+        if (typeof n !== 'number') {
+            reject(`Error: arg isn't a num`)
+        } else {
+            resolve(n ** 2)
+        }
+    })
+}
+
+squareNum(16)
+    .then((result) => console.log(result))
+    .catch((error) => console.log(error))
+
+// 2. Write a function that takes a URL and returns a Promise that resolves with the contents of the page at that URL.
+
+// 3. Write a function that takes an array of numbers and returns a Promise that resolves with the sum of those numbers.
+
+// 4. Write a function that takes an array of strings and returns a Promise that resolves with the length of the longest string in the array.
+
+// 5. Write a function that takes two numbers and returns a Promise that resolves with the result of dividing the first number by the second number. If the second number is 0, the Promise should reject with an error message.
