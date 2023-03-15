@@ -95,4 +95,87 @@ setInterval(() => {     // change color for  <span> 2023 </span> every sec
     spanYear.style.color = `${getRandomColor()}`
 }, 1000)
 
-// 2nd point -> changing date and bg every sec
+// 2nd point -> changing date, time and bg every sec
+// time block creation
+
+
+// time block
+const h2Tag = document.querySelector('h2')
+const timeDateBlock=  document.createElement('div')
+h2Tag.insertAdjacentElement('afterend', timeDateBlock)
+timeDateBlock.style.background = `red`
+timeDateBlock.style.width = `fit-content`
+timeDateBlock.style.padding = `10px 20px`
+timeDateBlock.style.borderRadius = `5px`
+
+
+
+setInterval(() => {
+    const time = new Date()
+    const day = time.getDate()
+    const yearDate = time.getFullYear()
+    const getCurrentMonth = () => {
+        const monthNum = time.getMonth() + 1
+        if (monthNum === 1) {
+            return 'January'
+        }
+        if (monthNum === 2) {
+            return 'February'
+        }
+        if (monthNum === 3) {
+            return 'March'
+        }
+        if (monthNum === 4) {
+            return 'April'
+        }
+        if (monthNum === 5) {
+            return 'May'
+        }
+        if (monthNum === 6) {
+            return 'June'
+        }
+        if (monthNum === 7) {
+            return 'July'
+        }
+        if (monthNum === 8) {
+            return 'August'
+        }
+        if (monthNum === 9) {
+            return 'September'
+        }
+        if (monthNum === 10) {
+            return 'October'
+        }
+        if (monthNum === 11) {
+            return 'November'
+        }
+        if (monthNum === 12) {
+            return 'December'
+        }
+    }
+    const month = getCurrentMonth()
+    const getCurrentTime = () => {
+        let hours = time.getHours()
+        let minutes = time.getMinutes()
+        let second = time.getSeconds()
+        if (hours.toString().length < 2) {
+            hours = `0${hours}`
+        }
+        if (minutes.toString().length < 2) {
+            minutes = `0${minutes}`
+        }
+        if (second.toString().length < 2) {
+            second = `0${second}`
+        }
+        
+        const oclock = `${hours}:${minutes}:${second}`
+        
+        return oclock
+    }
+    const currentTime = getCurrentTime()
+
+    timeDateBlock.innerHTML = `${month} ${day}, ${yearDate} ${currentTime}`
+    timeDateBlock.style.background = `${getRandomColor()}`
+}, 1000)
+
+
