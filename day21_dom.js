@@ -152,4 +152,17 @@ setInterval(() => {
     timeDateBlock.style.background = `${getRandomColor()}`
 }, 1000)
 
+// 3,4,5 points -> change color for conditionlas (done, ongoing, coming)
+// using loop get el
+// if the last el = conditional -> change color for the el
 
+// or -> using loop check all ul list and give to each el class
+// and then give for classes styles
+
+let ulList = document.querySelectorAll('li')
+console.log(ulList)
+ulList.forEach(el => {
+    if (el.toString().split(' ').reverse()[0] === 'Done') {
+        el.style.background = 'green'
+    }
+})
