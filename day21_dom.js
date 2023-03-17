@@ -159,25 +159,54 @@ setInterval(() => {
 // or -> using loop check all ul list and give to each el class
 // and then give for classes styles
 
-let ulList = document.getElementsByTagName('li')
-for (let i = 0; i < ulList.length; i++) {
-    let condition = ulList[i].textContent.split(' ').reverse()[0]
+const liElements = document.querySelectorAll('li')
+// for (let i = 0; i < liElements.length; i++) {    // 1th way
+//     const condition = liElements[i].textContent.split(' ').reverse()[0]
 
-    ulList[i].style.width = '400px'
-    ulList[i].style.margin = '5px 0'
-    ulList[i].style.padding = '2px 10px'
-    ulList[i].style.borderRadius = '15px'
+//     liElements[i].style.width = '400px'
+//     liElements[i].style.margin = '5px 0'
+//     liElements[i].style.padding = '2px 10px'
+//     liElements[i].style.borderRadius = '15px'
+
+//     switch (condition) {
+//         case 'Done':
+//             liElements[i].style.background = 'darkseagreen'
+//             break
+//         case 'Ongoing':
+//             liElements[i].style.background = 'gold'
+//             break
+//         case 'Coming':
+//             liElements[i].style.background = 'salmon'
+//             break
+//     }
+// }
+const liStyles = {      // styles for li
+    width: '400px',
+    margin: '5px 0',
+    padding: '2px 10px',
+    borderRadius: '15px'
+}
+
+liElements.forEach((li) => {    // optimizated 2nd way
+    // const condition = li.textContent.match(/\w/g)        // ['3','D','a','y','s'...]
+    // const condition = li.textContent.match(/\w+/g)      // ['30DaysOfJavaScript', 'Challenge', 'Done']
+    // const condition = li.textContent.match(/\w+$/g)      // ['Done']
+    const condition = li.textContent.match(/\w+$/g)[0]      // 'Done'
+    console.log(condition)
+    Object.assign(li.style, liStyles)
 
     switch (condition) {
         case 'Done':
-            ulList[i].style.background = 'darkseagreen'
+            li.style.background = 'darkseagreen'
             break
         case 'Ongoing':
-            ulList[i].style.background = 'gold'
+            li.style.background = 'gold'
             break
         case 'Coming':
-            ulList[i].style.background = 'salmon'
+            li.style.background = 'salmon'
             break
     }
-}
+});
 
+// beautify output 
+document.querySelector(`.wrapper`).style.marginLeft = `35px`
