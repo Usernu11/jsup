@@ -90,6 +90,7 @@ const getRandomColor = () => {      // color generator
 
 yearFullText.innerHTML = `${mainText}<span> ${year}</span>`   // <h1> text <span> 2023 </span></h1>
 let spanYear = document.querySelector('span')       // <span> 2023 </span>
+spanYear.style.fontSize =  '70px'
 
 setInterval(() => {     // change color for  <span> 2023 </span> every sec
     spanYear.style.color = `${getRandomColor()}`
@@ -98,8 +99,8 @@ setInterval(() => {     // change color for  <span> 2023 </span> every sec
 // 2nd point -> changing date, time and bg every sec
 // creating block for time
 const h2Tag = document.querySelector('h2')
-const timeDateBlock = document.createElement('div')
-h2Tag.insertAdjacentElement('afterend', timeDateBlock)
+const timeDateBlock = document.createElement('div')     // 2nd el
+h2Tag.insertAdjacentElement('afterend', timeDateBlock)  // creating '2nd el' after '1th el'
 timeDateBlock.style.background = `red`
 timeDateBlock.style.width = `fit-content`
 timeDateBlock.style.padding = `10px 20px`
@@ -144,7 +145,14 @@ setInterval(() => {
         let minutes = time.getMinutes().toString().padStart(2, 0)
         let second = time.getSeconds().toString().padStart(2, 0)
 
-        return `${hours}:${minutes}:${second}`
+        switch(true) {
+            case +hours >= 0 && +hours < 6:
+                return `${hours}:${minutes}:${second} 🌛`
+            case +hours >= 6 && +hours < 18:
+                return `${hours}:${minutes}:${second} 🌞`
+            default:
+                return `${hours}:${minutes}:${second}`
+        }
     }
     const currentTime = getCurrentTime()
 
@@ -180,11 +188,13 @@ const liElements = document.querySelectorAll('li')
 //             break
 //     }
 // }
+
 const liStyles = {      // styles for li
     width: '400px',
     margin: '5px 0',
-    padding: '2px 10px',
-    borderRadius: '15px'
+    padding: '10px',
+    borderRadius: '15px',
+    listStyle: 'none'
 }
 
 liElements.forEach((li) => {    // optimizated 2nd way
@@ -192,8 +202,9 @@ liElements.forEach((li) => {    // optimizated 2nd way
     // const condition = li.textContent.match(/\w+/g)      // ['30DaysOfJavaScript', 'Challenge', 'Done']
     // const condition = li.textContent.match(/\w+$/g)      // ['Done']
     const condition = li.textContent.match(/\w+$/g)[0]      // 'Done'
-    console.log(condition)
+    // console.log(condition)
     Object.assign(li.style, liStyles)
+    li.parentElement.style.padding = '0'        // removing padding from ul
 
     switch (condition) {
         case 'Done':
@@ -209,4 +220,18 @@ liElements.forEach((li) => {    // optimizated 2nd way
 });
 
 // beautify output 
-document.querySelector(`.wrapper`).style.marginLeft = `35px`
+const wrapper = document.querySelector(`.wrapper`)
+wrapper.style.marginLeft = `35px`
+wrapper.style.display = `flex`
+wrapper.style.flexDirection = `column`
+wrapper.style.alignItems = `center`
+// wrapper.style.width = `60%`
+
+// making a link to the course
+const linkText = document.querySelector('h2').textContent   // 30DaysOfJavaScript Challenge
+document.querySelector('h2').textContent = ''   // clear content inside h2
+const linkTag = document.createElement('a')     // create a tag (link)
+document.querySelector('h2').appendChild(linkTag)   // adding link tag into h2
+linkTag.textContent = linkText  // paste our content to the link
+linkTag.href = `https://github.com/Asabeneh/30-Days-Of-JavaScript/`     // making link clickable and worked
+linkTag.target = '_blank'       // makinkg additional page when click to link
