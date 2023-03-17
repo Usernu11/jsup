@@ -159,10 +159,25 @@ setInterval(() => {
 // or -> using loop check all ul list and give to each el class
 // and then give for classes styles
 
-let ulList = document.querySelectorAll('li')
-console.log(ulList)
-ulList.forEach(el => {
-    if (el.toString().split(' ').reverse()[0] === 'Done') {
-        el.style.background = 'green'
+let ulList = document.getElementsByTagName('li')
+for (let i = 0; i < ulList.length; i++) {
+    let condition = ulList[i].textContent.split(' ').reverse()[0]
+
+    ulList[i].style.width = '400px'
+    ulList[i].style.margin = '5px 0'
+    ulList[i].style.padding = '2px 10px'
+    ulList[i].style.borderRadius = '15px'
+
+    switch (condition) {
+        case 'Done':
+            ulList[i].style.background = 'darkseagreen'
+            break
+        case 'Ongoing':
+            ulList[i].style.background = 'gold'
+            break
+        case 'Coming':
+            ulList[i].style.background = 'salmon'
+            break
     }
-})
+}
+
