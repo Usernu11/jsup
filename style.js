@@ -1,5 +1,5 @@
 document.getElementsByTagName('body')[0].style.margin = "inherit"
-document.getElementsByTagName('body')[0].style.overflow = 'hidden'
+// document.getElementsByTagName('body')[0].style.overflow = 'hidden'
 
 const changeGradBg = () => {
     const body = document.getElementsByTagName('body')[0];
