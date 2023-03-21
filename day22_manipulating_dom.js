@@ -2,7 +2,8 @@
 // ex1
 const wrapper = document.createElement('div')
 wrapper.className = 'wrapper'
-document.querySelector('body').appendChild(wrapper)
+const body = document.querySelector('body')
+body.appendChild(wrapper)
 
 const styles = {
   wrapper: {
@@ -55,9 +56,65 @@ for (let i = 0; i <= 100; i++) {
   wrapper.appendChild(numItem) // append child to wrapper
 }
 
-
 // Level 2
 // ex1
+document.querySelector('.wrapper').remove()   // clean previous ex
+
+const countriesAPI = 'https://restcountries.com/v2/all'   // countries data
+
+// preparing header elements
+const h1 = document.createElement('h1')
+const h4 = document.createElement('h4')
+const span = document.createElement('span')
+const link = document.createElement('a')
+const div = document.createElement('div')
+
+// filling context
+h1.textContent = 'world countries list'
+span.textContent = `30DaysOfJavaScript: DOM-Day-2`
+h4.textContent = `Total Number of countries: ...`
+link.textContent = `Student: Bohdan Lavrentiev`
+
+// setting up styles -> h1
+h1.style.textTransform = 'uppercase'
+h1.style.letterSpacing = '8px'
+h1.style.fontSize = '50px'
+h1.style.margin = '0'
+
+// setting up styles -> h4
+h4.style.fontSize = '30px'
+h4.style.margin = '0'
+
+// setting up styles -> body
+body.style.display = 'flex'
+// body.style.justifyContent = 'center'
+body.style.flexDirection = 'column'
+body.style.alignItems = 'center'
+body.style.height = '100vh'
+
+// setting up attr & styles -> link
+link.href = 'https://github.com/Usernu11'
+link.style.textDecoration = 'none'
+link.style.color = 'inherit'
+
+// setting up styles for div (wrapper for country elements)
+
+// joining elements
+body.appendChild(h1)
+h1.insertAdjacentElement('afterend', h4)
+h4.insertAdjacentElement('afterend', span)
+span.insertAdjacentElement('afterend', link)
+link.insertAdjacentElement('afterend', div)
+
+// calling countries data
+fetch(countriesAPI)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+    let arrLength = new Array(...data).length
+    h4.textContent = `Total Number of countries: ${arrLength}`
+  })
+
 
 // Level 3
 // ex1
