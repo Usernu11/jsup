@@ -14,7 +14,7 @@ const styles = {
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
     gap: '10px',
-    padding: '15px',    
+    padding: '15px',
   },
   numItem: {
     width: '100px',
@@ -97,8 +97,6 @@ link.href = 'https://github.com/Usernu11'
 link.style.textDecoration = 'none'
 link.style.color = 'inherit'
 
-// setting up styles for div (wrapper for country elements)
-
 // joining elements
 body.appendChild(h1)
 h1.insertAdjacentElement('afterend', h4)
@@ -113,7 +111,25 @@ fetch(countriesAPI)
     console.log(data)
     let arrLength = new Array(...data).length
     h4.textContent = `Total Number of countries: ${arrLength}`
+
+    data.forEach(country => {
+      let newCountrySquare = document.createElement('div')
+      newCountrySquare.style.width = '100px'
+      newCountrySquare.style.height = '100px'
+      newCountrySquare.style.border = '1px solid gray'
+      newCountrySquare.style.display = 'flex'
+      newCountrySquare.style.alignItems = 'center'
+      newCountrySquare.style.justifyContent = 'center'
+      div.style.display = 'flex'
+      div.style.flexWrap = 'wrap'
+      div.style.gap = '10px'
+      div.style.marginTop = '10px'
+      div.appendChild(newCountrySquare)
+      newCountrySquare.textContent = `${country.name}`
+    });
   })
+
+// BEAUTIFY CODE + OPTIMIZATE 🧨🎇🎇🎇
 
 
 // Level 3
