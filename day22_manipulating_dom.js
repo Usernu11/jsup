@@ -69,68 +69,93 @@ const span = document.createElement('span')
 const link = document.createElement('a')
 const div = document.createElement('div')
 
+const elementStyles = {
+  h1: {
+    textTransform: 'uppercase',
+    letterSpacing: '8px',
+    fontSize: '50px',
+    margin: '0'
+  },
+  h4: {
+    fontSize: '30px',
+    margin: '0'
+  },
+  link: {
+    textDecoration: 'none',
+    color: 'inherit'
+  },
+  body: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    height: '100vh'
+  },
+  newCountrySquare: {
+    width: '100px',
+    height: '100px',
+    border: '1px solid gray',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center'
+  },
+  div: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '10px',
+    marginTop: '10px',
+    justifyContent: 'center'
+  }
+}
+
 // filling context
 h1.textContent = 'world countries list'
 span.textContent = `30DaysOfJavaScript: DOM-Day-2`
 h4.textContent = `Total Number of countries: ...`
 link.textContent = `Student: Bohdan Lavrentiev`
 
-// setting up styles -> h1
-h1.style.textTransform = 'uppercase'
-h1.style.letterSpacing = '8px'
-h1.style.fontSize = '50px'
-h1.style.margin = '0'
-
-// setting up styles -> h4
-h4.style.fontSize = '30px'
-h4.style.margin = '0'
-
-// setting up styles -> body
-body.style.display = 'flex'
-// body.style.justifyContent = 'center'
-body.style.flexDirection = 'column'
-body.style.alignItems = 'center'
-body.style.height = '100vh'
+// setting up styles for elements
+const applyStyles = (element, styles) => Object.assign(element.style, styles)
+applyStyles(h1, elementStyles.h1)
+applyStyles(h4, elementStyles.h4)
+applyStyles(link, elementStyles.link)
+applyStyles(body, elementStyles.body)
 
 // setting up attr & styles -> link
 link.href = 'https://github.com/Usernu11'
-link.style.textDecoration = 'none'
-link.style.color = 'inherit'
 
 // joining elements
 body.appendChild(h1)
-h1.insertAdjacentElement('afterend', h4)
-h4.insertAdjacentElement('afterend', span)
-span.insertAdjacentElement('afterend', link)
-link.insertAdjacentElement('afterend', div)
+body.appendChild(h4)
+body.appendChild(span)
+body.appendChild(link)
+body.appendChild(div)
 
 // calling countries data
 fetch(countriesAPI)
   .then(response => response.json())
   .then(data => {
     console.log(data)
-    let arrLength = new Array(...data).length
-    h4.textContent = `Total Number of countries: ${arrLength}`
+    
+    let i = 0;
+    const interval = setInterval(() => {  // for displaing each country after 50 mls
+      if (i >= data.length) {   // breaks for interval machine
+        clearInterval(interval)
+        return
+      }
+      h4.textContent = `Total Number of countries: ${i+1}`  // added new feature
 
-    data.forEach(country => {
-      let newCountrySquare = document.createElement('div')
-      newCountrySquare.style.width = '100px'
-      newCountrySquare.style.height = '100px'
-      newCountrySquare.style.border = '1px solid gray'
-      newCountrySquare.style.display = 'flex'
-      newCountrySquare.style.alignItems = 'center'
-      newCountrySquare.style.justifyContent = 'center'
-      div.style.display = 'flex'
-      div.style.flexWrap = 'wrap'
-      div.style.gap = '10px'
-      div.style.marginTop = '10px'
+      const country = data[i]
+      const newCountrySquare = document.createElement('div')
+      applyStyles(newCountrySquare, elementStyles.newCountrySquare)
+      applyStyles(div, elementStyles.div)
+      
       div.appendChild(newCountrySquare)
       newCountrySquare.textContent = `${country.name}`
-    });
+      
+      i++
+    }, 50)
   })
-
-// BEAUTIFY CODE + OPTIMIZATE 🧨🎇🎇🎇
-
 
 // Level 3
 // ex1
