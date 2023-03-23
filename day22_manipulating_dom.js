@@ -143,23 +143,23 @@ fetch(countriesAPI) // <- put hier 'countriesAPI'
   .then(response => response.json())
   .then(data => {
     // console.log(data)
-    
+
     let i = 0;
     const interval = setInterval(() => {  // for displaing each country after 50 mls
       if (i >= data.length) {   // breaks for interval machine
         clearInterval(interval)
         return
       }
-      h4.textContent = `Total Number of countries: ${i+1}`  // added new feature
+      h4.textContent = `Total Number of countries: ${i + 1}`  // added new feature
 
       const country = data[i]
       const newCountrySquare = document.createElement('div')
       applyStyles(newCountrySquare, elementStyles.newCountrySquare)
       applyStyles(div, elementStyles.div)
-      
+
       div.appendChild(newCountrySquare)
       newCountrySquare.textContent = `${country.name}`
-      
+
       i++
     }, 50)
   })
@@ -176,32 +176,108 @@ fetch(countriesAPI) // <- put hier 'countriesAPI'
 const challenges = ['Python', 'JavaScript', 'HTML & CSS', 'React', 'ReactNative', 'Fullstack', 'Data Analasis', 'Machine Learning']
 const list = document.querySelectorAll('li')
 
-for (let i = 0; i < list.length; i++) {   // '30 Days Of ...' 
-  list[i].textContent = `30 Days Of ${challenges[i]}`
-  const newLink = document.createElement('a')
+const pyStack = ['Python', 'Flask', 'Numpy', 'Pandas', 'Statistics', 'API', 'MongoDB']
+const jsStack = ['JavaScript', 'ES6', 'Promise', 'async and await', 'DOM']
+const mlStack = ['Python', 'Numpy', 'Pandas', 'Scikit-learn', 'Scipy', 'Linear Algebra', 'Statistics', 'Vizualization']
 
-  const liText = list[i].textContent
-  
-  if (challenges[i] === 'Python') {
-    list[i].textContent = ''
-    list[i].appendChild(newLink)
-    newLink.setAttribute('class', 'li-link-Python') 
-    const pyLink = document.querySelector('.li-link-Python')
-    
-    pyLink.textContent = liText
-    pyLink.href = 'https://github.com/Asabeneh/30-Days-Of-Python'
-    pyLink.style.textDecoration = 'underline'
+for (let i = 0; i < list.length; i++) {   // '30 Days Of ...' 
+  list[i].textContent = `30 Days Of ${challenges[i]}` // main text
+  list[i].style.display = 'flex' // li
+  list[i].style.justifyContent = 'space-between' // li
+
+  const newLink = document.createElement('a') // main text
+
+  const liText = list[i].textContent  // main text
+
+  if (challenges[i] === 'Python') { // python li
+    list[i].textContent = ''  // main text
+    list[i].appendChild(newLink)  // link
+
+    newLink.setAttribute('class', 'li-link-Python') // link
+    const pyLink = document.querySelector('.li-link-Python') // link
+
+    pyLink.textContent = liText // main text
+    pyLink.href = 'https://github.com/Asabeneh/30-Days-Of-Python'  // link
+    pyLink.style.textDecoration = 'underline' // link
   }
 
-  if (challenges[i] === 'JavaScript') {
-    list[i].textContent = ''
-    list[i].appendChild(newLink)
-    newLink.setAttribute('class', 'li-link-JavaScript') 
-    const jsLink = document.querySelector('.li-link-JavaScript')
-    
-    jsLink.textContent = liText
-    jsLink.href = 'https://github.com/Asabeneh/30-Days-Of-JavaScript'
-    jsLink.style.textDecoration = 'underline'
+  if (challenges[i] === 'JavaScript') { // js li
+    list[i].textContent = ''  // main text
+    list[i].appendChild(newLink)  // link
+    newLink.setAttribute('class', 'li-link-JavaScript') // link 
+    const jsLink = document.querySelector('.li-link-JavaScript')  // link
+
+    jsLink.textContent = liText // link
+    jsLink.href = 'https://github.com/Asabeneh/30-Days-Of-JavaScript' // link
+    jsLink.style.textDecoration = 'underline' // link
   }
 }
 
+const fillStack = (name) => {
+  const dropDownList = document.createElement('details')  // details
+
+  if (name === 'Python') {
+    for (let i = 0; i < pyStack.length; i++) {
+      const dropDownListItem = document.createElement('p') // details
+      dropDownList.appendChild(dropDownListItem)
+      newItem.className = `item-py-${i}`  // details
+      newItem.textContent = pyStack[i]
+      // document.querySelector(`.item-py-${i}`).textContent = pyStack[i] // use newItem variable here
+      dropDownListItem.style.margin = '2px 0'
+    }
+  }
+
+  if (name === 'JavaScript') {
+    for (let i = 0; i < jsStack.length; i++) {
+      const dropDownList = document.createElement('details')  // details
+
+      const dropDownListItem = document.createElement('p') // details
+      const newItem = dropDownList.appendChild(dropDownListItem)
+      newItem.className = `item-js-${i}`  // details
+      newItem.textContent = pyStack[i]
+
+      // document.querySelector(`.item-js-${i}`).textContent = jsStack[i] // use newItem variable here
+      dropDownListItem.style.margin = '2px 0'
+    }
+  }
+
+  if (name === 'Machine Learning') {
+    for (let i = 0; i < mlStack.length; i++) {
+      const dropDownList = document.createElement('details')  // details
+
+      const dropDownListItem = document.createElement('p') // details
+      const newItem = dropDownList.appendChild(dropDownListItem)
+      newItem.className = `item-ml-${i}`  // details
+      newItem.textContent = pyStack[i]
+
+      // document.querySelector(`.item-ml-${i}`).textContent = mlStack[i] // use newItem variable here
+      dropDownListItem.style.margin = '2px 0'
+    }
+  }
+}
+
+
+for (let i = 0; i < list.length; i++) {   // dropdown list or details tag 
+  const dropDownList = document.createElement('details')  // details
+  const dropDownListName = document.createElement('summary') // details
+  dropDownListName.style.marginBottom = '8px'
+
+  list[i].appendChild(dropDownList) // details
+  dropDownList.appendChild(dropDownListName)  // details
+  dropDownListName.textContent = `${challenges[i]}` // details
+
+  if (dropDownListName.textContent === 'Python') {  // fulling p tag for details
+    fillStack(dropDownListName.textContent)
+    // console.log(dropDownListName.textContent)
+  }
+
+  if (dropDownListName.textContent === 'JavaScript') {  // fulling p tag for details
+    fillStack(dropDownListName.textContent)
+    // console.log(dropDownListName.textContent)
+  }
+
+  if (dropDownListName.textContent === 'Machine Learning') {  // fulling p tag for details
+    fillStack(dropDownListName.textContent)
+    // console.log(dropDownListName.textContent)
+  }
+}
