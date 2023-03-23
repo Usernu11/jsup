@@ -58,7 +58,7 @@ for (let i = 0; i <= 100; i++) {
 
 // Level 2
 // ex1
-document.querySelector('.wrapper').remove()   // clean previous ex
+// document.querySelector('.wrapper').remove()   // clean previous ex
 
 const countriesAPI = 'https://restcountries.com/v2/all'   // countries data
 
@@ -66,8 +66,15 @@ const countriesAPI = 'https://restcountries.com/v2/all'   // countries data
 const h1 = document.createElement('h1')
 const h4 = document.createElement('h4')
 const span = document.createElement('span')
-const link = document.createElement('a')
+const newLink = document.createElement('a')
 const div = document.createElement('div')
+
+// adding classes for managing
+h1.className = 'h1-day22'
+h4.className = 'h4-day22'
+span.className = 'span-day22'
+newLink.className = 'link-day22'
+div.className = 'div-day22'
 
 const elementStyles = {
   h1: {
@@ -112,30 +119,30 @@ const elementStyles = {
 h1.textContent = 'world countries list'
 span.textContent = `30DaysOfJavaScript: DOM-Day-2`
 h4.textContent = `Total Number of countries: ...`
-link.textContent = `Student: Bohdan Lavrentiev`
+newLink.textContent = `Student: Bohdan Lavrentiev`
 
 // setting up styles for elements
 const applyStyles = (element, styles) => Object.assign(element.style, styles)
 applyStyles(h1, elementStyles.h1)
 applyStyles(h4, elementStyles.h4)
-applyStyles(link, elementStyles.link)
+applyStyles(newLink, elementStyles.link)
 applyStyles(body, elementStyles.body)
 
 // setting up attr & styles -> link
-link.href = 'https://github.com/Usernu11'
+newLink.href = 'https://github.com/Usernu11'
 
 // joining elements
 body.appendChild(h1)
 body.appendChild(h4)
 body.appendChild(span)
-body.appendChild(link)
+body.appendChild(newLink)
 body.appendChild(div)
 
 // calling countries data
-fetch(countriesAPI)
+fetch(countriesAPI) // <- put hier 'countriesAPI'
   .then(response => response.json())
   .then(data => {
-    console.log(data)
+    // console.log(data)
     
     let i = 0;
     const interval = setInterval(() => {  // for displaing each country after 50 mls
@@ -159,3 +166,42 @@ fetch(countriesAPI)
 
 // Level 3
 // ex1
+// Prepare workplace for next ex
+// document.querySelector('.h1-day22').remove()
+// document.querySelector('.h4-day22').remove()
+// document.querySelector('.span-day22').remove()
+// document.querySelector('.link-day22').remove()
+
+// replacing text for li
+const challenges = ['Python', 'JavaScript', 'HTML & CSS', 'React', 'ReactNative', 'Fullstack', 'Data Analasis', 'Machine Learning']
+const list = document.querySelectorAll('li')
+
+for (let i = 0; i < list.length; i++) {   // '30 Days Of ...' 
+  list[i].textContent = `30 Days Of ${challenges[i]}`
+  const newLink = document.createElement('a')
+
+  const liText = list[i].textContent
+  
+  if (challenges[i] === 'Python') {
+    list[i].textContent = ''
+    list[i].appendChild(newLink)
+    newLink.setAttribute('class', 'li-link-Python') 
+    const pyLink = document.querySelector('.li-link-Python')
+    
+    pyLink.textContent = liText
+    pyLink.href = 'https://github.com/Asabeneh/30-Days-Of-Python'
+    pyLink.style.textDecoration = 'underline'
+  }
+
+  if (challenges[i] === 'JavaScript') {
+    list[i].textContent = ''
+    list[i].appendChild(newLink)
+    newLink.setAttribute('class', 'li-link-JavaScript') 
+    const jsLink = document.querySelector('.li-link-JavaScript')
+    
+    jsLink.textContent = liText
+    jsLink.href = 'https://github.com/Asabeneh/30-Days-Of-JavaScript'
+    jsLink.style.textDecoration = 'underline'
+  }
+}
+
