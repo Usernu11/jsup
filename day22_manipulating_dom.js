@@ -196,6 +196,11 @@ for (let i = 0; i < li.length; i++) {   // '30 Days Of ...'
     pyLink.style.textDecoration = 'underline' // link
   }
 
+  // const statusText = document.createElement('p') // status
+  //   statusText.textContent = 'Done' // status
+  //   statusText.style.margin = '0' // status
+  //   li[i].appendChild(statusText) // status
+
   if (challenges[i] === 'JavaScript') { // js li
     li[i].textContent = ''  // main text
     li[i].appendChild(newLink)  // link
@@ -215,6 +220,7 @@ for (let i = 0; i < li.length; i++) {   // dropdown list or details tag
   const dropDownList = document.createElement('details')  // details
   const dropDownListName = document.createElement('summary') // details
   dropDownListName.style.marginBottom = '8px'
+  const statusText = document.createElement('p') // status
 
   li[i].appendChild(dropDownList) // details
   dropDownList.appendChild(dropDownListName)  // details
@@ -230,6 +236,10 @@ for (let i = 0; i < li.length; i++) {   // dropdown list or details tag
       newItem.textContent = `${pyStack[py]}`
       newItem.style.margin = '0'
     }
+
+    statusText.textContent = 'Done' // status
+    statusText.style.margin = '0' // status
+    li[i].appendChild(statusText) // status
   }
 
   if (dropDownListName.textContent === 'JavaScript') {  // fulling p tag for details
@@ -242,6 +252,10 @@ for (let i = 0; i < li.length; i++) {   // dropdown list or details tag
       newItem.textContent = `${jsStack[js]}`
       newItem.style.margin = '0'
     }
+
+    statusText.textContent = 'Ongoing' // status
+    statusText.style.margin = '0' // status
+    li[i].appendChild(statusText) // status
   }
 
   if (dropDownListName.textContent === 'Machine Learning') {  // fulling p tag for details
@@ -256,4 +270,14 @@ for (let i = 0; i < li.length; i++) {   // dropdown list or details tag
       newItem.style.margin = '0'
     }
   }
+
+  if (dropDownListName.textContent !== 'Python' && dropDownListName.textContent !== 'JavaScript') { // for status
+    statusText.textContent = 'Coming' // status
+  }
+
+  statusText.style.margin = '0' // status
+  li[i].appendChild(statusText) // status
+
+  document.querySelector('ul').style.width = '100%'
+  li[i].style.width = '100%'
 }
