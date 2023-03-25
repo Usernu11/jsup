@@ -166,32 +166,27 @@ fetch(countriesAPI) // <- put hier 'countriesAPI'
 
 // Level 3
 // ex1
-// Prepare workplace for next ex
-// document.querySelector('.h1-day22').remove()
-// document.querySelector('.h4-day22').remove()
-// document.querySelector('.span-day22').remove()
-// document.querySelector('.link-day22').remove()
 
 // replacing text for li
 const challenges = ['Python', 'JavaScript', 'HTML & CSS', 'React', 'ReactNative', 'Fullstack', 'Data Analasis', 'Machine Learning']
-const list = document.querySelectorAll('li')
+const li = document.querySelectorAll('li')
 
 const pyStack = ['Python', 'Flask', 'Numpy', 'Pandas', 'Statistics', 'API', 'MongoDB']
 const jsStack = ['JavaScript', 'ES6', 'Promise', 'async and await', 'DOM']
 const mlStack = ['Python', 'Numpy', 'Pandas', 'Scikit-learn', 'Scipy', 'Linear Algebra', 'Statistics', 'Vizualization']
 
-for (let i = 0; i < list.length; i++) {   // '30 Days Of ...' 
-  list[i].textContent = `30 Days Of ${challenges[i]}` // main text
-  list[i].style.display = 'flex' // li
-  list[i].style.justifyContent = 'space-between' // li
+for (let i = 0; i < li.length; i++) {   // '30 Days Of ...' 
+  li[i].textContent = `30 Days Of ${challenges[i]}` // main text
+  li[i].style.display = 'flex' // li
+  li[i].style.justifyContent = 'space-between' // li
 
   const newLink = document.createElement('a') // main text
 
-  const liText = list[i].textContent  // main text
+  const liText = li[i].textContent  // main text
 
   if (challenges[i] === 'Python') { // python li
-    list[i].textContent = ''  // main text
-    list[i].appendChild(newLink)  // link
+    li[i].textContent = ''  // main text
+    li[i].appendChild(newLink)  // link
 
     newLink.setAttribute('class', 'li-link-Python') // link
     const pyLink = document.querySelector('.li-link-Python') // link
@@ -202,8 +197,8 @@ for (let i = 0; i < list.length; i++) {   // '30 Days Of ...'
   }
 
   if (challenges[i] === 'JavaScript') { // js li
-    list[i].textContent = ''  // main text
-    list[i].appendChild(newLink)  // link
+    li[i].textContent = ''  // main text
+    li[i].appendChild(newLink)  // link
     newLink.setAttribute('class', 'li-link-JavaScript') // link 
     const jsLink = document.querySelector('.li-link-JavaScript')  // link
 
@@ -213,71 +208,52 @@ for (let i = 0; i < list.length; i++) {   // '30 Days Of ...'
   }
 }
 
-const fillStack = (name) => {
-  const dropDownList = document.createElement('details')  // details
-
-  if (name === 'Python') {
-    for (let i = 0; i < pyStack.length; i++) {
-      const dropDownListItem = document.createElement('p') // details
-      dropDownList.appendChild(dropDownListItem)
-      newItem.className = `item-py-${i}`  // details
-      newItem.textContent = pyStack[i]
-      // document.querySelector(`.item-py-${i}`).textContent = pyStack[i] // use newItem variable here
-      dropDownListItem.style.margin = '2px 0'
-    }
-  }
-
-  if (name === 'JavaScript') {
-    for (let i = 0; i < jsStack.length; i++) {
-      const dropDownList = document.createElement('details')  // details
-
-      const dropDownListItem = document.createElement('p') // details
-      const newItem = dropDownList.appendChild(dropDownListItem)
-      newItem.className = `item-js-${i}`  // details
-      newItem.textContent = pyStack[i]
-
-      // document.querySelector(`.item-js-${i}`).textContent = jsStack[i] // use newItem variable here
-      dropDownListItem.style.margin = '2px 0'
-    }
-  }
-
-  if (name === 'Machine Learning') {
-    for (let i = 0; i < mlStack.length; i++) {
-      const dropDownList = document.createElement('details')  // details
-
-      const dropDownListItem = document.createElement('p') // details
-      const newItem = dropDownList.appendChild(dropDownListItem)
-      newItem.className = `item-ml-${i}`  // details
-      newItem.textContent = pyStack[i]
-
-      // document.querySelector(`.item-ml-${i}`).textContent = mlStack[i] // use newItem variable here
-      dropDownListItem.style.margin = '2px 0'
-    }
-  }
-}
 
 
-for (let i = 0; i < list.length; i++) {   // dropdown list or details tag 
+// making dropdown list + fill out it -> details tag
+for (let i = 0; i < li.length; i++) {   // dropdown list or details tag 
   const dropDownList = document.createElement('details')  // details
   const dropDownListName = document.createElement('summary') // details
   dropDownListName.style.marginBottom = '8px'
 
-  list[i].appendChild(dropDownList) // details
+  li[i].appendChild(dropDownList) // details
   dropDownList.appendChild(dropDownListName)  // details
   dropDownListName.textContent = `${challenges[i]}` // details
 
   if (dropDownListName.textContent === 'Python') {  // fulling p tag for details
-    fillStack(dropDownListName.textContent)
-    // console.log(dropDownListName.textContent)
+    dropDownList.className = 'py-details'
+    let det = document.querySelector('.py-details')
+
+    for (let py = 0; py < pyStack.length; py++) {
+      let newItem = document.createElement('p')
+      det.appendChild(newItem)
+      newItem.textContent = `${pyStack[py]}`
+      newItem.style.margin = '0'
+    }
   }
 
   if (dropDownListName.textContent === 'JavaScript') {  // fulling p tag for details
-    fillStack(dropDownListName.textContent)
-    // console.log(dropDownListName.textContent)
+    dropDownList.className = 'js-details'
+    let det = document.querySelector('.js-details')
+
+    for (let js = 0; js < jsStack.length; js++) {
+      let newItem = document.createElement('p')
+      det.appendChild(newItem)
+      newItem.textContent = `${jsStack[js]}`
+      newItem.style.margin = '0'
+    }
   }
 
   if (dropDownListName.textContent === 'Machine Learning') {  // fulling p tag for details
-    fillStack(dropDownListName.textContent)
-    // console.log(dropDownListName.textContent)
+    dropDownList.className = 'ml-details'
+
+    let det = document.querySelector('.ml-details')
+
+    for (let ml = 0; ml < mlStack.length; ml++) {
+      let newItem = document.createElement('p')
+      det.appendChild(newItem)
+      newItem.textContent = `${mlStack[ml]}`
+      newItem.style.margin = '0'
+    }
   }
 }
