@@ -281,3 +281,28 @@ for (let i = 0; i < li.length; i++) {   // dropdown list or details tag
   document.querySelector('ul').style.width = '100%'
   li[i].style.width = '100%'
 }
+
+// maikng profile information
+// educator name
+const educator = document.createElement('h1')
+educator.textContent = 'Asabeneh Yetayeh'
+document.querySelector('.wrapper').appendChild(educator)
+
+// social icons
+const icon = document.createElement('a')
+icon.style.width = '30px'
+icon.style.height = '30px'
+// icon.style.border = '2px solid black'
+icon.style.backgroundImage = 'url("img/icons8-linkedin-50.png")'
+icon.style.backgroundPosition = 'center'
+icon.style.backgroundSize = 'contain'
+icon.style.cursor = 'pointer'
+
+document.querySelector('.wrapper').appendChild(icon)
+
+// iconImg.src = 'https://www.flaticon.com/free-icons/linkedin'
+// iconImg.title = 'linkedin icons'
+// <a href="https://www.flaticon.com/free-icons/linkedin" title="linkedin icons">Linkedin icons created by Google - Flaticon</a>
+
+
+
