@@ -287,18 +287,36 @@ for (let i = 0; i < li.length; i++) {   // dropdown list or details tag
 const educator = document.createElement('h1')
 educator.textContent = 'Asabeneh Yetayeh'
 document.querySelector('.wrapper').appendChild(educator)
+educator.style.marginBottom = '10px'
 
 // social icons
-const icon = document.createElement('a')
-icon.style.width = '30px'
-icon.style.height = '30px'
-// icon.style.border = '2px solid black'
-icon.style.backgroundImage = 'url("img/icons8-linkedin-50.png")'
-icon.style.backgroundPosition = 'center'
-icon.style.backgroundSize = 'contain'
-icon.style.cursor = 'pointer'
+const iconWrapper = document.createElement('div')
+document.querySelector('.wrapper').appendChild(iconWrapper)
+iconWrapper.style.width = '100%'
+iconWrapper.style.height = 'auto'
+iconWrapper.style.display = 'flex'
+iconWrapper.style.justifyContent = 'center'
 
-document.querySelector('.wrapper').appendChild(icon)
+for (let i = 0; i < 3; i++) {
+  let icon = document.createElement('a')
+  icon.className = `icon-${i + 1}`
+  iconWrapper.appendChild(icon)
+
+  icon.style.display = 'block'
+  icon.style.width = '30px'
+  icon.style.height = '30px'
+  icon.style.backgroundPosition = 'center'
+  icon.style.backgroundSize = 'contain'
+  icon.style.cursor = 'pointer'
+  // icon.style.border = '2px solid black'
+}
+
+document.querySelector(`.icon-1`).style.backgroundImage = 'url("img/icons8-linkedin-50.png")'
+document.querySelector(`.icon-2`).style.backgroundImage = 'url("img/icons8-twitter-squared-100.png")'
+document.querySelector(`.icon-3`).style.backgroundImage = 'url("img/icons8-linkedin-50.png")'
+
+
+
 
 // iconImg.src = 'https://www.flaticon.com/free-icons/linkedin'
 // iconImg.title = 'linkedin icons'
