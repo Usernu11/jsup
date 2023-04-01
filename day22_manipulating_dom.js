@@ -14,7 +14,7 @@ const styles = {
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
     gap: '10px',
-    padding: '15px',
+    // padding: '15px',
   },
   numItem: {
     width: '100px',
@@ -315,12 +315,12 @@ document.querySelector(`.icon-1`).style.backgroundImage = 'url("img/icons8-linke
 document.querySelector(`.icon-2`).style.backgroundImage = 'url("img/icons8-twitter-squared-100.png")'
 document.querySelector(`.icon-3`).style.backgroundImage = 'url("img/icons8-linkedin-50.png")'
 
+// text about point
+const textAboutEducator = `I am an educator, developer, motivator and content creator. I'm a life-long learner. If yoi like to know more about me checkout my LinkedIn or Github profile. Thank you so my for joining in my quest of chanining everyone to developer.` 
 
-
-
-// iconImg.src = 'https://www.flaticon.com/free-icons/linkedin'
-// iconImg.title = 'linkedin icons'
-// <a href="https://www.flaticon.com/free-icons/linkedin" title="linkedin icons">Linkedin icons created by Google - Flaticon</a>
-
-
+const about = document.createElement('div')
+document.querySelector('.wrapper').appendChild(about)
+about.textContent = textAboutEducator
+about.style.margin = '30px 0'
+about.style.textAlign = 'center'
 
