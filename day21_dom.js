@@ -237,3 +237,5 @@ document.querySelector('h2').appendChild(linkTag)   // adding link tag into h2
 linkTag.textContent = linkText  // paste our content to the link
 linkTag.href = `https://github.com/Asabeneh/30-Days-Of-JavaScript/`     // making link clickable and worked
 linkTag.target = '_blank'       // makinkg additional page when click to link
+
+export { getRandomColor }

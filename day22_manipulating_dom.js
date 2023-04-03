@@ -355,7 +355,7 @@ for (let i = 0; i < 3; i++) {
   // aboutSkillsEl.style.border = '2px solid black'
   aboutSkillsEl.style.padding = '0'
   aboutSkillsEl.style.margin = '0'
-  aboutSkillsEl.style.listStyleType = 'none'  
+  aboutSkillsEl.style.listStyleType = 'none'
   aboutSkillsEl.style.fontSize = '25px'  // the current font-family doesn't have any sizes, so it was decided solve the task using different font-sizes for ul and li
 }
 
@@ -392,3 +392,49 @@ for (let i = 0; i < qualificationsArr.length; i++) {
   qualificationsList.appendChild(liEl)
   liEl.style.fontSize = '16px'
 }
+
+// Keywords point
+const keywordsList = document.createElement('ul')
+const keywordsArr = ['HTML', 'HTML5', 'CSS', 'CSS3', 'JS', 'JavaScript', 'ES6', 'Promise', 'async await', 'Database', 'React', 'React Hooks', 'Context API', 'React Router', 'Redux', 'Node', 'MongoDB', 'SQL', 'API', 'DOM', 'data science', 'MERN', 'Python', 'Flask', 'Statistics', 'Linear Algebra', 'Numpy', 'Pandas', 'Scipy', 'Scikit-learn', 'Visualization', 'D3.js']
+const keywordsTitle = document.createElement('h2')
+
+keywordsTitle.textContent = 'Keywords'
+keywordsTitle.style.margin = '10px 0 0 0'
+keywordsTitle.style.textAlign = 'left'
+keywordsTitle.style.width = '100%'
+
+
+document.querySelector('.wrapper-list').appendChild(keywordsTitle)
+document.querySelector('.wrapper-list').appendChild(keywordsList)
+
+// ul styles
+// keywordsList.style.outline = '2px dashed black'
+keywordsList.style.width = '100%'
+keywordsList.style.height = 'auto'
+keywordsList.style.fontSize = '25px'
+keywordsList.style.display = 'flex'
+keywordsList.style.flexWrap = 'wrap'
+keywordsList.style.justifyContent = 'space-between'
+keywordsList.style.listStyleType = 'none'
+keywordsList.style.margin = '0'
+keywordsList.style.padding = '0 0 0 50px'
+
+// keywordsList.textContent = `Keywords`
+import { getRandomColor } from "./day21_dom.js"
+
+for (let i = 0; i < keywordsArr.length; i++) {
+  const liKey = document.createElement('li')
+
+  keywordsList.appendChild(liKey)
+  liKey.textContent = `# ${keywordsArr[i]}`
+  liKey.style.backgroundColor = getRandomColor()
+  liKey.style.borderRadius = '15px'
+  liKey.style.padding = '0 10px'
+  liKey.style.margin = '2px 1px'
+  liKey.style.fontSize = '20px'
+
+  const randomNum = Math.ceil(Math.random() * 50)
+
+  liKey.style.paddingRight = `${randomNum}px`
+}
+
