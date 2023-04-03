@@ -150,6 +150,8 @@ setInterval(() => {
                 return `${hours}:${minutes}:${second} 🌛`
             case +hours >= 6 && +hours < 18:
                 return `${hours}:${minutes}:${second} 🌞`
+            case +hours >= 18:
+                return `${hours}:${minutes}:${second} 👾`
             default:
                 return `${hours}:${minutes}:${second}`
         }
@@ -220,7 +222,7 @@ liElements.forEach((li) => {    // optimizated 2nd way
 });
 
 // beautify output 
-const wrapper = document.querySelector(`.wrapper`)
+const wrapper = document.querySelector(`.wrapper-list`)
 wrapper.style.marginLeft = `35px`
 wrapper.style.display = `flex`
 wrapper.style.flexDirection = `column`

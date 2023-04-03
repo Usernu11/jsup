@@ -286,12 +286,12 @@ for (let i = 0; i < li.length; i++) {   // dropdown list or details tag
 // educator name
 const educator = document.createElement('h1')
 educator.textContent = 'Asabeneh Yetayeh'
-document.querySelector('.wrapper').appendChild(educator)
+document.querySelector('.wrapper-list').appendChild(educator)
 educator.style.marginBottom = '10px'
 
 // social icons
 const iconWrapper = document.createElement('div')
-document.querySelector('.wrapper').appendChild(iconWrapper)
+document.querySelector('.wrapper-list').appendChild(iconWrapper)
 iconWrapper.style.width = '100%'
 iconWrapper.style.height = 'auto'
 iconWrapper.style.display = 'flex'
@@ -316,11 +316,79 @@ document.querySelector(`.icon-2`).style.backgroundImage = 'url("img/icons8-twitt
 document.querySelector(`.icon-3`).style.backgroundImage = 'url("img/icons8-linkedin-50.png")'
 
 // text about point
-const textAboutEducator = `I am an educator, developer, motivator and content creator. I'm a life-long learner. If yoi like to know more about me checkout my LinkedIn or Github profile. Thank you so my for joining in my quest of chanining everyone to developer.` 
+const textAboutEducator = `I am an educator, developer, motivator and content creator. I'm a life-long learner. If yoi like to know more about me checkout my LinkedIn or Github profile. Thank you so my for joining in my quest of chanining everyone to developer.`
 
 const about = document.createElement('div')
-document.querySelector('.wrapper').appendChild(about)
+document.querySelector('.wrapper-list').appendChild(about)
 about.textContent = textAboutEducator
 about.style.margin = '30px 0'
 about.style.textAlign = 'center'
 
+// some general fix
+// console.log(document.querySelectorAll('.wrapper-list'))
+document.querySelector('.wrapper-list').style.width = '50%'
+
+// titles, skills, qualifications
+const titlesArr = ['🌱 Educator', '💻 Programmer', '🌐 Developer', '🔥 Motivator', '📔 Content Creator']
+const skillsArr = ['Web Development', 'Data Analysis', 'Data Visualization', 'Programming', 'Databases', 'Developing API']
+const qualificationsArr = ['📖 MSc. Computer Science Ongoing', '👨‍🎓 BSc.Information and Communication Eng.', '👨‍🎓 MSc. Food Technology', '👨‍🎓 BSc. Food Technology']
+
+// wrapper
+const skillsWrapper = document.createElement('div')
+document.querySelector('.wrapper-list').appendChild(skillsWrapper)
+skillsWrapper.className = 'skill-wrapper'
+skillsWrapper.style.display = 'flex'
+skillsWrapper.style.justifyContent = 'space-between'
+skillsWrapper.style.width = '130%'
+skillsWrapper.style.height = 'auto'
+// skillsWrapper.style.outline = '2px dashed yellow'
+
+// ul (3)
+for (let i = 0; i < 3; i++) {
+  const aboutSkillsEl = document.createElement('ul')
+
+  aboutSkillsEl.className = `ul-skills-${i + 1}`
+  document.querySelector('.skill-wrapper').appendChild(aboutSkillsEl)
+
+  aboutSkillsEl.style.width = 'fit-content'
+  aboutSkillsEl.style.height = 'auto'
+  // aboutSkillsEl.style.border = '2px solid black'
+  aboutSkillsEl.style.padding = '0'
+  aboutSkillsEl.style.margin = '0'
+  aboutSkillsEl.style.listStyleType = 'none'  
+  aboutSkillsEl.style.fontSize = '25px'  // the current font-family doesn't have any sizes, so it was decided solve the task using different font-sizes for ul and li
+}
+
+// us classes
+const titlesList = document.querySelector('.ul-skills-1')
+const skillsList = document.querySelector('.ul-skills-2')
+const qualificationsList = document.querySelector('.ul-skills-3')
+
+// ul titles
+titlesList.textContent = 'Titles'
+skillsList.textContent = 'Skills'
+qualificationsList.textContent = 'Qualifications'
+
+// ul filling li - 1
+for (let i = 0; i < titlesArr.length; i++) {
+  let liEl = document.createElement('li')
+  liEl.textContent = titlesArr[i]
+  titlesList.appendChild(liEl)
+  liEl.style.fontSize = '16px'
+}
+
+// ul filling li - 2
+for (let i = 0; i < skillsArr.length; i++) {
+  let liEl = document.createElement('li')
+  liEl.textContent = `✅ ${skillsArr[i]}`
+  skillsList.appendChild(liEl)
+  liEl.style.fontSize = '16px'
+}
+
+// ul filling li - 3
+for (let i = 0; i < qualificationsArr.length; i++) {
+  let liEl = document.createElement('li')
+  liEl.textContent = qualificationsArr[i]
+  qualificationsList.appendChild(liEl)
+  liEl.style.fontSize = '16px'
+}
