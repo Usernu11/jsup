@@ -437,4 +437,3 @@ for (let i = 0; i < keywordsArr.length; i++) {
 
   liKey.style.paddingRight = `${randomNum}px`
 }
-
