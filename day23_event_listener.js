@@ -52,7 +52,7 @@ const numGen = (count) => {
 
     let i = 0
     const smoothCount = setInterval(() => {
-        if (i >= count+1) {   // breaks for interval machine
+        if (i >= count + 1) {   // breaks for interval machine
             clearInterval(smoothCount)
             return
         }
@@ -139,13 +139,49 @@ document.body.addEventListener('keypress', e => {
 
 // ex2
 const kpWrapper = document.querySelector('.keypress-wrapper')
-kpWrapper.style.outline = '2px dashed black'
+// kpWrapper.style.outline = '2px dashed black'
 kpWrapper.style.display = 'flex'
 kpWrapper.style.justifyContent = 'center'
+kpWrapper.style.flexDirection = 'column'
+kpWrapper.style.alignItems = 'center'
 kpWrapper.style.fontSize = '40px'
 
 const text = document.querySelector('.text')
-text.style.outline = '2px solid yellow'
+// text.style.outline = '2px solid yellow'
 text.style.padding = '20px'
 text.style.boxShadow = '3px 3px 11px 3px black'
-text.style.textShadow = '1px 1px 0px #E7E7E7'
+text.style.textShadow = '1px 1px 0px whitesmoke'
+text.style.backgroundColor = 'tan'
+text.style.width = '30%'
+text.style.textAlign = 'center'
+
+const key = document.createElement('div')
+kpWrapper.appendChild(key)
+key.textContent = ''
+key.style.width = '180px'
+key.style.height = '180px'
+key.style.marginTop = '30px'
+key.style.color = 'green'
+key.style.textShadow = '2px 2px 0px black'
+key.style.fontSize = '100px'
+// key.style.outline = '2px solid black'
+key.style.display = 'flex'
+key.style.alignItems = 'center'
+key.style.justifyContent = 'center'
+key.style.backgroundColor = 'wheat'
+key.style.borderRadius = '15px'
+key.style.boxShadow = '0px 0px 7px 2px #000000'
+
+const eventText = document.createElement('span')
+text.appendChild(eventText)
+
+document.body.addEventListener('keypress', e => {
+    const span = document.querySelector('span')
+    key.textContent = e.keyCode
+    eventText.textContent = `${e.key}`
+    text.textContent = `You pressed `
+    text.appendChild(eventText)
+    eventText.style.color = 'green'
+    eventText.style.textTransform = 'Capitalize'
+    eventText.style.textShadow = '2px 2px 0px black'
+})
