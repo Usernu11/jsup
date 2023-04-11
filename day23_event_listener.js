@@ -31,13 +31,14 @@ button.style.cursor = 'pointer'
 
 const isPrime = num => {        // a function for checking prime numbers
     for (let i = 2, s = Math.sqrt(num); i <= s; i++) {
-      if (num % i === 0) return false
+        if (num % i === 0) return false
     }
     return num > 1
 }
 
 const numGen = (count) => {
     const numsWrapper = document.createElement('div')
+    numsWrapper.className = 'numbers-wrapper'
     // numsWrapper.style.outline = '2px dashed black'
     numsWrapper.style.display = 'flex'
     numsWrapper.style.flexWrap = 'wrap'
@@ -61,7 +62,7 @@ const numGen = (count) => {
         } else {
             newNumEl.style.background = 'darkseagreen'
         }
-        
+
         if (isPrime(i)) {   // check if the number is prime
             newNumEl.style.background = 'salmon'
         }
@@ -72,29 +73,63 @@ const numGen = (count) => {
 
 button.addEventListener('click', () => {
     const warnMess = document.createElement('div')
+    const getNumWrapper = document.querySelector('.numbers-wrapper')
+
     if (+input.value === '' || typeof +input.value === 'string') {
         input.insertAdjacentElement('beforebegin', warnMess)
         warnMess.style.color = 'red'
         warnMess.style.fontSize = '18px'
         warnMess.style.marginLeft = '10px'
         warnMess.textContent = 'Enter NUMBER value please 👾'
-    }
+    } else {
+        const newNumWrapper = document.createElement('div')
+        newNumWrapper.className = 'numbers-wrapper'
+        newNumWrapper.style.display = 'flex'
+        newNumWrapper.style.flexWrap = 'wrap'
+        newNumWrapper.style.width = '50%'
 
-    if (input.value !== '' && input.value !== 0) {
-        numGen(input.value)
-    }
+        for (let i = 0; i < +input.value + 1; i++) {
+            const newNumEl = document.createElement('div')
+            newNumEl.textContent = `${i}`
+            newNumEl.style.width = '80px'
+            newNumEl.style.height = '60px'
+            newNumEl.style.margin = '5px'
+            newNumEl.style.display = 'flex'
+            newNumEl.style.alignItems = 'center'
+            newNumEl.style.justifyContent = 'center'
+            newNumEl.style.fontSize = '40px'
 
-    return
+            if (i % 2) {
+                newNumEl.style.background = 'gold'
+            } else {
+                newNumEl.style.background = 'darkseagreen'
+            }
+
+            if (isPrime(i)) {
+                newNumEl.style.background = 'salmon'
+            }
+
+            newNumWrapper.appendChild(newNumEl)
+        }
+
+        if (getNumWrapper) {
+            wrapper.replaceChild(newNumWrapper, getNumWrapper)
+        } else {
+            wrapper.appendChild(newNumWrapper)
+        }
+    }
 })
+
+
 
 // доп функц submit при помощи кнопки энтер
 // до функц при ген цифр сделать создание элементов одним за другим видимым очень быстро, но не мгновенно
 
 
 // bugs
-// 1. при пустом поле или строке нажатие на кнопку создаёт доп элемент постоянно
+// 1. при пустом поле или строке нажатие на кнопку создаёт доп элемент постоянно ✅
 // 2. при введении числа предупреждение всё равно выводится на экран ✅
-// 3. при новом значении нужно убирать старые результаты (убрать дублирование и добавление элементов на стр при постоянном нажатии на кнопку)
+// 3. при новом значении нужно убирать старые результаты (убрать дублирование и добавление элементов на стр при постоянном нажатии на кнопку) ✅
 // 4. после генерации чисел кнопка не реаг на пустое поле
 // 5. кнопка реаг на 0 и вызывает функц ген чисел
 
