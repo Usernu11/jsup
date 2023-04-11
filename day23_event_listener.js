@@ -50,7 +50,13 @@ const numGen = (count) => {
     wrapper.appendChild(numsWrapper)
     // wrapper.removeChild(document.querySelector('.warn-message'))
 
-    for (let i = 0; i < +count + 1; i++) {
+let i = 0
+const smoothCount = setInterval(() => {
+        if (i >= count+1) {   // breaks for interval machine
+            clearInterval(smoothCount)
+            return
+        }
+
         const newNumEl = document.createElement('div')
         newNumEl.textContent = `${i}`
         newNumEl.style.width = '80px'
@@ -83,9 +89,10 @@ const numGen = (count) => {
         }
 
         numsWrapper.appendChild(newNumEl)
-    }
-}
 
+        i++
+    }, 20)
+}
 
 button.addEventListener('click', () => {
     const warnMess = document.createElement('div')
@@ -111,8 +118,6 @@ button.addEventListener('click', () => {
         if (warn) {
             input.replaceChildren(warn, warn)
         }
-
-
     }
 
     if (typeof inputNumValue === 'number' && inputNumValue !== 0) {
@@ -126,18 +131,13 @@ button.addEventListener('click', () => {
     }
 })
 
+document.body.addEventListener('keypress', e => {
+    if (e.key === 'Enter') {
+        button.click()
+    }
+})
 
-
-// доп функц submit при помощи кнопки энтер
-// до функц при ген цифр сделать создание элементов одним за другим видимым очень быстро, но не мгновенно
-
-
-// bugs
-// 1. при пустом поле или строке нажатие на кнопку создаёт доп элемент постоянно ✅
-// 2. при введении числа предупреждение всё равно выводится на экран ✅
-// 3. при новом значении нужно убирать старые результаты (убрать дублирование и добавление элементов на стр при постоянном нажатии на кнопку) ✅
-// 4. после генерации чисел кнопка не реаг на пустое поле ✅
-// 5. кнопка реаг на 0 и вызывает функц ген чисел ✅
-
+// доп функц submit при помощи кнопки энтер ✅
+// до функц при ген цифр сделать создание элементов одним за другим видимым очень быстро, но не мгновенно ✅
 
 // ex2
