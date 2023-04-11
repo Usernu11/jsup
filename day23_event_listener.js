@@ -7,6 +7,7 @@ wrapper.style.margin = '0 auto'
 wrapper.style.display = 'flex'
 wrapper.style.flexDirection = 'column'
 wrapper.style.alignItems = 'center'
+wrapper.style.marginBottom = '100px'
 
 document.querySelector('.title').style.margin = '5px'
 document.querySelector('.title').style.color = 'green'
@@ -48,10 +49,9 @@ const numGen = (count) => {
     numsWrapper.style.flexWrap = 'wrap'
     numsWrapper.style.width = '50%'
     wrapper.appendChild(numsWrapper)
-    // wrapper.removeChild(document.querySelector('.warn-message'))
 
-let i = 0
-const smoothCount = setInterval(() => {
+    let i = 0
+    const smoothCount = setInterval(() => {
         if (i >= count+1) {   // breaks for interval machine
             clearInterval(smoothCount)
             return
@@ -137,7 +137,15 @@ document.body.addEventListener('keypress', e => {
     }
 })
 
-// доп функц submit при помощи кнопки энтер ✅
-// до функц при ген цифр сделать создание элементов одним за другим видимым очень быстро, но не мгновенно ✅
-
 // ex2
+const kpWrapper = document.querySelector('.keypress-wrapper')
+kpWrapper.style.outline = '2px dashed black'
+kpWrapper.style.display = 'flex'
+kpWrapper.style.justifyContent = 'center'
+kpWrapper.style.fontSize = '40px'
+
+const text = document.querySelector('.text')
+text.style.outline = '2px solid yellow'
+text.style.padding = '20px'
+text.style.boxShadow = '3px 3px 11px 3px black'
+text.style.textShadow = '1px 1px 0px #E7E7E7'
