@@ -1,7 +1,7 @@
 // Level 1
 // ex1
 const wrapper = document.querySelector('.wrapper')
-wrapper.style.outline = '2px dashed black'
+// wrapper.style.outline = '2px dashed black'
 wrapper.style.width = '100%'
 wrapper.style.margin = '0 auto'
 wrapper.style.display = 'flex'
@@ -29,6 +29,16 @@ button.style.border = 'none'
 button.style.padding = '15px'
 button.style.cursor = 'pointer'
 
+button.addEventListener('click', () => {
+    const warnMess = document.createElement('div')
+    if (input.value === '') {
+        input.insertAdjacentElement('beforebegin', warnMess)
+        warnMess.style.color = 'red'
+        warnMess.style.fontSize = '18px'
+        warnMess.style.marginLeft = '10px'
+        warnMess.textContent = 'Enter number value in the number generation field please 👾'
+    }
 
-// Level 2
-// Level 3
+
+})
+// ex2
