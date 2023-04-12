@@ -169,6 +169,16 @@ document.body.addEventListener('keypress', e => {
 })
 
 // ex2
+// Preparing HTML
+const kpParrentEl = document.createElement('div')
+const textBlock = document.createElement('div')
+kpParrentEl.className = 'keypress-wrapper'
+textBlock.className = 'text'
+textBlock.textContent = 'Press any keyboard key'
+
+document.body.appendChild(kpParrentEl)
+kpParrentEl.appendChild(textBlock)
+
 const kpWrapper = document.querySelector('.keypress-wrapper')
 // kpWrapper.style.outline = '2px dashed black'
 kpWrapper.style.display = 'flex'
