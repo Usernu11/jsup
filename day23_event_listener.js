@@ -1,5 +1,29 @@
 // Level 1
 // ex1
+// Preparin HTML
+const parrentBlock = document.createElement('div')
+const h1Title = document.createElement('h1')
+const h2Title = document.createElement('h2')
+const h3Title = document.createElement('h3')
+const inputWrapper = document.createElement('div')
+const inputEl = document.createElement('input')
+const buttonEl = document.createElement('button')
+
+parrentBlock.className = 'wrapper'
+h1Title.className = 'title'
+h2Title.className = 'subtitle'
+h3Title.className = 'author'
+inputWrapper.className = 'input-wrapper'
+inputEl.type = 'text'
+inputEl.placeholder = 'Generate more numbers...'
+buttonEl.className = 'submit'
+
+h1Title.textContent = 'Number Generator'
+h2Title.textContent = '30DaysOfJavaScript'
+h3Title.textContent = 'Bohdan Lavrentiev'
+buttonEl.textContent = 'Generate numbers'
+
+document.body.appendChild(parrentBlock)
 const wrapper = document.querySelector('.wrapper')
 // wrapper.style.outline = '2px dashed black'
 wrapper.style.width = '100%'
@@ -8,6 +32,13 @@ wrapper.style.display = 'flex'
 wrapper.style.flexDirection = 'column'
 wrapper.style.alignItems = 'center'
 wrapper.style.marginBottom = '100px'
+
+wrapper.appendChild(h1Title)
+wrapper.appendChild(h2Title)
+wrapper.appendChild(h3Title)
+wrapper.appendChild(inputWrapper)
+inputWrapper.appendChild(inputEl)
+inputWrapper.appendChild(buttonEl)
 
 document.querySelector('.title').style.margin = '5px'
 document.querySelector('.title').style.color = 'green'
@@ -184,4 +215,8 @@ document.body.addEventListener('keypress', e => {
     eventText.style.color = 'green'
     eventText.style.textTransform = 'Capitalize'
     eventText.style.textShadow = '2px 2px 0px black'
+
+    if (e.keyCode === 32) {
+        eventText.textContent = 'Space'
+    }
 })
