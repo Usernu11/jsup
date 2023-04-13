@@ -324,6 +324,86 @@ input.addEventListener('input', e => {
         planetInfo.textContent = 'Mass is required'
     }
 
+    if (input.value.toLowerCase() === 'one') {
+        input.value = 1
+    }
+
+    if (input.value.toLowerCase() === 'two') {
+        input.value = 2
+    }
+
+    if (input.value.toLowerCase() === 'three') {
+        input.value = 3
+    }
+
+    if (input.value.toLowerCase() === 'four') {
+        input.value = 4
+    }
+
+    if (input.value.toLowerCase() === 'five') {
+        input.value = 5
+    }
+
+    if (input.value.toLowerCase() === 'six') {
+        input.value = 6
+    }
+
+    if (input.value.toLowerCase() === 'seven') {
+        input.value = 7
+    }
+
+    if (input.value.toLowerCase() === 'eight') {
+        input.value = 8
+    }
+
+    if (input.value.toLowerCase() === 'nine') {
+        input.value = 9
+    }
+
+    if (input.value.toLowerCase() === 'ten') {
+        input.value = 10
+    }
+
+    if (input.value.toLowerCase() === 'eleven') {
+        input.value = 11
+    }
+
+    if (input.value.toLowerCase() === 'twelf') {
+        input.value = 12
+    }
+
+    if (input.value.toLowerCase() === 'twenty') {
+        input.value = 20
+    }
+
+    if (input.value.toLowerCase() === 'thirty') {
+        input.value = 30
+    }
+
+    if (input.value.toLowerCase() === 'fourty') {
+        input.value = 40
+    }
+
+    if (input.value.toLowerCase() === 'fifty') {
+        input.value = 50
+    }
+
+    if (input.value.toLowerCase() === 'sixty') {
+        input.value = 60
+    }
+
+    if (input.value.toLowerCase() === 'seventy') {
+        input.value = 70
+    }
+
+    if (input.value.toLowerCase() === 'eighty') {
+        input.value = 80
+    }
+
+    if (input.value.toLowerCase() === 'ninety') {
+        input.value = 90
+    }
+
     getInputValue = input.value
 })
 
@@ -462,8 +542,8 @@ button.addEventListener('click', () => {
 // make changes
 // 1. gifs for bg ❌
 // 2. box-shadow for focudes input, select, button ✅
-// 3. allow input apply words like 'ten' and convert then to numbers (maybe not all words, short)
-// 4. add mark to textContent in option which selected
+// 3. allow input apply words like 'ten' and convert then to numbers (maybe not all words, short) ✅
+// 4. add mark to textContent in option which selected ?❌
 // 5. add spinned planet gifs ❌
-// 6. make planets bigger
+// 6. make planets bigger ✅
 // 7. code optimization
