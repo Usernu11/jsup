@@ -9,6 +9,16 @@ const button = document.createElement('button')
 const resultWrapper = document.createElement('div')
 const planetInfo = document.createElement('div')
 
+// planet consts
+const mercury = 3.7
+const venus = 8.87
+const earth = 9.8
+const mars = 3.7
+const jupiter = 24.8
+const saturn = 10.4
+const uranus = 8.87
+const neptune = 10.15
+
 // appending HTML elements
 document.body.appendChild(spaceBg)
 document.body.appendChild(contentWrapper)
@@ -132,3 +142,60 @@ planetInfo.style.flexDirection = 'column'
 planetInfo.style.justifyContent = 'center'
 planetInfo.style.alignItems = 'center'
 planetInfo.style.backgroundColor = 'rgba(120 , 120, 120 , .5)'
+
+const getSelect = document.querySelector('select')
+let getInputValue = input.value
+
+let getOptionValue = getSelect.value
+
+getSelect.addEventListener('change', e => {
+    getOptionValue = e.target.value
+})
+
+input.addEventListener('input', e => {
+    if (getOptionValue === '- - select planet - - 🌏') {
+        planetInfo.textContent = 'Planet is required 🌏'
+    }
+    if (input.value === '') {
+        planetInfo.textContent = 'Mass is required'
+    }
+    getInputValue = input.value
+})
+
+button.addEventListener('click', () => {
+    const weightInfoEl = document.createElement('div')
+    weightInfoEl.style.width = '120px'
+    weightInfoEl.style.height = '120px'
+    weightInfoEl.style.borderRadius = '50%'
+    weightInfoEl.style.backgroundColor = 'rgba(180 , 180, 180 , .6)'
+    weightInfoEl.style.fontSize = '35px'
+    weightInfoEl.style.color = 'white'
+    weightInfoEl.style.display = 'flex'
+    weightInfoEl.style.justifyContent = 'center'
+    weightInfoEl.style.alignItems = 'center'
+    weightInfoEl.style.margin = '10px'
+    weightInfoEl.style.textShadow = '1px 1px 0 white'
+    // weightInfoEl.textContent = ''
+
+    switch (getOptionValue) {
+        case '- - select planet - - 🌏':
+            planetInfo.textContent = 'Planet is required 🌏'
+            planetInfo.style.boxShadow = 'inset 0 0 10px 1px red'
+            break
+
+        case 'Mercury':
+            planetInfo.textContent = `The weight of the object on ${getOptionValue.toUpperCase()}`
+            weightInfoEl.textContent = `${(getInputValue * mercury).toFixed(2)} N`
+            planetInfo.style.height = 'auto'
+            planetInfo.style.padding = '10px'
+            planetInfo.appendChild(weightInfoEl)
+            resultWrapper.style.height = '300px'
+            break
+    }
+})
+
+// add features
+// 1. gifs for bg
+// 2. box-shadow for focudes input, select, button
+// 3. allow input apply words like 'ten' and convert then to numbers (maybe not all words, short)
+// 4. add mark to textContent in option which selected
