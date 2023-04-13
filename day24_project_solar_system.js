@@ -8,6 +8,7 @@ const select = document.createElement('select')
 const button = document.createElement('button')
 const resultWrapper = document.createElement('div')
 const planetInfo = document.createElement('div')
+const planetIMG = document.createElement('div')
 
 // planet consts
 const mercury = 3.7
@@ -18,6 +19,7 @@ const jupiter = 24.8
 const saturn = 10.4
 const uranus = 8.87
 const neptune = 10.15
+const pluto = 0.66
 
 // appending HTML elements
 document.body.appendChild(spaceBg)
@@ -79,7 +81,7 @@ select.style.color = 'gray'
 select.style.border = 'none'
 
 // filling select of options
-for (let i = 0; i < 9; i++) {
+for (let i = 0; i < 10; i++) {
     const newOption = document.createElement('option')
     select.appendChild(newOption)
     switch (i) {
@@ -98,7 +100,7 @@ for (let i = 0; i < 9; i++) {
         case 4: newOption.textContent = 'Mars'
             break
 
-        case 5: newOption.textContent = 'Juputer'
+        case 5: newOption.textContent = 'Jupiter'
             break
 
         case 6: newOption.textContent = 'Saturn'
@@ -108,6 +110,9 @@ for (let i = 0; i < 9; i++) {
             break
 
         case 8: newOption.textContent = 'Neptune'
+            break
+
+        case 9: newOption.textContent = 'Pluto'
             break
     }
 }
@@ -143,22 +148,153 @@ planetInfo.style.justifyContent = 'center'
 planetInfo.style.alignItems = 'center'
 planetInfo.style.backgroundColor = 'rgba(120 , 120, 120 , .5)'
 
+// work with eventListeners
 const getSelect = document.querySelector('select')
 let getInputValue = input.value
-
 let getOptionValue = getSelect.value
 
 getSelect.addEventListener('change', e => {
     getOptionValue = e.target.value
+
+    switch (getOptionValue) {
+        case 'Mercury':
+            resultWrapper.appendChild(planetIMG)
+            resultWrapper.style.flexDirection = 'row-reverse'
+            planetIMG.style.width = '182px'
+            planetIMG.style.height = '182px'
+            // planetIMG.style.outline = '2px dashed blue'
+            planetIMG.style.backgroundImage = 'url("img/planets/mercury.png")'
+            planetIMG.style.backgroundSize = 'contain'
+            planetIMG.style.backgroundRepeat = 'no-repeat'
+            planetIMG.style.marginRight = '20px'
+            planetIMG.style.display = 'block'
+            planetInfo.style.display = 'none'
+            break
+
+        case 'Venus':
+            resultWrapper.appendChild(planetIMG)
+            resultWrapper.style.flexDirection = 'row-reverse'
+            planetIMG.style.width = '182px'
+            planetIMG.style.height = '182px'
+            // planetIMG.style.outline = '2px dashed blue'
+            planetIMG.style.backgroundImage = 'url("img/planets/venus.png")'
+            planetIMG.style.backgroundSize = 'contain'
+            planetIMG.style.backgroundRepeat = 'no-repeat'
+            planetIMG.style.marginRight = '20px'
+            planetIMG.style.display = 'block'
+            planetInfo.style.display = 'none'
+            break
+
+        case 'Earth':
+            resultWrapper.appendChild(planetIMG)
+            resultWrapper.style.flexDirection = 'row-reverse'
+            planetIMG.style.width = '182px'
+            planetIMG.style.height = '182px'
+            // planetIMG.style.outline = '2px dashed blue'
+            planetIMG.style.backgroundImage = 'url("img/planets/earth.png")'
+            planetIMG.style.backgroundSize = 'contain'
+            planetIMG.style.backgroundRepeat = 'no-repeat'
+            planetIMG.style.marginRight = '20px'
+            planetIMG.style.display = 'block'
+            planetInfo.style.display = 'none'
+            break
+
+        case 'Mars':
+            resultWrapper.appendChild(planetIMG)
+            resultWrapper.style.flexDirection = 'row-reverse'
+            planetIMG.style.width = '182px'
+            planetIMG.style.height = '182px'
+            // planetIMG.style.outline = '2px dashed blue'
+            planetIMG.style.backgroundImage = 'url("img/planets/mars.png")'
+            planetIMG.style.backgroundSize = 'contain'
+            planetIMG.style.backgroundRepeat = 'no-repeat'
+            planetIMG.style.marginRight = '20px'
+            planetIMG.style.display = 'block'
+            planetInfo.style.display = 'none'
+            break
+
+        case 'Jupiter':
+            resultWrapper.appendChild(planetIMG)
+            resultWrapper.style.flexDirection = 'row-reverse'
+            planetIMG.style.width = '182px'
+            planetIMG.style.height = '182px'
+            // planetIMG.style.outline = '2px dashed blue'
+            planetIMG.style.backgroundImage = 'url("img/planets/jupiter.png")'
+            planetIMG.style.backgroundSize = 'contain'
+            planetIMG.style.backgroundRepeat = 'no-repeat'
+            planetIMG.style.marginRight = '20px'
+            planetIMG.style.display = 'block'
+            planetInfo.style.display = 'none'
+            break
+
+        case 'Saturn':
+            resultWrapper.appendChild(planetIMG)
+            resultWrapper.style.flexDirection = 'row-reverse'
+            planetIMG.style.width = '182px'
+            planetIMG.style.height = '182px'
+            // planetIMG.style.outline = '2px dashed blue'
+            planetIMG.style.backgroundImage = 'url("img/planets/saturn.png")'
+            planetIMG.style.backgroundSize = 'contain'
+            planetIMG.style.backgroundRepeat = 'no-repeat'
+            planetIMG.style.marginRight = '20px'
+            planetInfo.style.display = 'none'
+            planetIMG.style.display = 'block'
+            planetIMG.style.backgroundPosition = 'center'
+            break
+
+        case 'Uranus':
+            resultWrapper.appendChild(planetIMG)
+            resultWrapper.style.flexDirection = 'row-reverse'
+            planetIMG.style.width = '182px'
+            planetIMG.style.height = '182px'
+            // planetIMG.style.outline = '2px dashed blue'
+            planetIMG.style.backgroundImage = 'url("img/planets/uranus.png")'
+            planetIMG.style.backgroundSize = 'contain'
+            planetIMG.style.backgroundRepeat = 'no-repeat'
+            planetIMG.style.marginRight = '20px'
+            planetIMG.style.display = 'block'
+            planetInfo.style.display = 'none'
+            break
+
+        case 'Neptune':
+            resultWrapper.appendChild(planetIMG)
+            resultWrapper.style.flexDirection = 'row-reverse'
+            planetIMG.style.width = '182px'
+            planetIMG.style.height = '182px'
+            // planetIMG.style.outline = '2px dashed blue'
+            planetIMG.style.backgroundImage = 'url("img/planets/neptune.png")'
+            planetIMG.style.backgroundSize = 'contain'
+            planetIMG.style.backgroundRepeat = 'no-repeat'
+            planetIMG.style.marginRight = '20px'
+            planetIMG.style.display = 'block'
+            planetInfo.style.display = 'none'
+            break
+
+        case 'Pluto':
+            resultWrapper.appendChild(planetIMG)
+            resultWrapper.style.flexDirection = 'row-reverse'
+            planetIMG.style.width = '182px'
+            planetIMG.style.height = '182px'
+            // planetIMG.style.outline = '2px dashed blue'
+            planetIMG.style.backgroundImage = 'url("img/planets/pluto.png")'
+            planetIMG.style.backgroundSize = 'contain'
+            planetIMG.style.backgroundRepeat = 'no-repeat'
+            planetIMG.style.marginRight = '20px'
+            planetIMG.style.display = 'block'
+            planetInfo.style.display = 'none'
+            break
+    }
 })
 
 input.addEventListener('input', e => {
     if (getOptionValue === '- - select planet - - 🌏') {
         planetInfo.textContent = 'Planet is required 🌏'
     }
+
     if (input.value === '') {
         planetInfo.textContent = 'Mass is required'
     }
+
     getInputValue = input.value
 })
 
@@ -177,20 +313,118 @@ button.addEventListener('click', () => {
     weightInfoEl.style.textShadow = '1px 1px 0 white'
     // weightInfoEl.textContent = ''
 
-    switch (getOptionValue) {
-        case '- - select planet - - 🌏':
-            planetInfo.textContent = 'Planet is required 🌏'
-            planetInfo.style.boxShadow = 'inset 0 0 10px 1px red'
-            break
+    if (getInputValue !== '') {
+        switch (getOptionValue) {
+            case '- - select planet - - 🌏':
+                planetInfo.style.display = 'flex'
+                planetInfo.textContent = 'Planet is required 🌏'
+                planetInfo.style.boxShadow = 'inset 0 0 10px 1px red'
+                planetIMG.style.display = 'none'
+                break
 
-        case 'Mercury':
-            planetInfo.textContent = `The weight of the object on ${getOptionValue.toUpperCase()}`
-            weightInfoEl.textContent = `${(getInputValue * mercury).toFixed(2)} N`
-            planetInfo.style.height = 'auto'
-            planetInfo.style.padding = '10px'
-            planetInfo.appendChild(weightInfoEl)
-            resultWrapper.style.height = '300px'
-            break
+            case 'Mercury':
+                planetInfo.textContent = `The weight of the object on ${getOptionValue.toUpperCase()}`
+                weightInfoEl.textContent = `${(getInputValue * mercury).toFixed(2)} N`
+                planetInfo.style.height = 'auto'
+                planetInfo.style.padding = '10px'
+                planetInfo.appendChild(weightInfoEl)
+                resultWrapper.style.height = '300px'
+                planetInfo.style.display = 'flex'
+                planetInfo.style.boxShadow = 'none'
+                break
+
+            case 'Venus':
+                planetInfo.textContent = `The weight of the object on ${getOptionValue.toUpperCase()}`
+                weightInfoEl.textContent = `${(getInputValue * venus).toFixed(2)} N`
+                planetInfo.style.height = 'auto'
+                planetInfo.style.padding = '10px'
+                planetInfo.appendChild(weightInfoEl)
+                resultWrapper.style.height = '300px'
+                planetInfo.style.display = 'flex'
+                planetInfo.style.boxShadow = 'none'
+                break
+
+            case 'Earth':
+                planetInfo.textContent = `The weight of the object on ${getOptionValue.toUpperCase()}`
+                weightInfoEl.textContent = `${(getInputValue * earth).toFixed(2)} N`
+                planetInfo.style.height = 'auto'
+                planetInfo.style.padding = '10px'
+                planetInfo.appendChild(weightInfoEl)
+                resultWrapper.style.height = '300px'
+                planetInfo.style.display = 'flex'
+                planetInfo.style.boxShadow = 'none'
+                break
+
+            case 'Mars':
+                planetInfo.textContent = `The weight of the object on ${getOptionValue.toUpperCase()}`
+                weightInfoEl.textContent = `${(getInputValue * mars).toFixed(2)} N`
+                planetInfo.style.height = 'auto'
+                planetInfo.style.padding = '10px'
+                planetInfo.appendChild(weightInfoEl)
+                resultWrapper.style.height = '300px'
+                planetInfo.style.display = 'flex'
+                planetInfo.style.boxShadow = 'none'
+                break
+
+            case 'Jupiter':
+                planetInfo.textContent = `The weight of the object on ${getOptionValue.toUpperCase()}`
+                weightInfoEl.textContent = `${(getInputValue * jupiter).toFixed(2)} N`
+                planetInfo.style.height = 'auto'
+                planetInfo.style.padding = '10px'
+                planetInfo.appendChild(weightInfoEl)
+                resultWrapper.style.height = '300px'
+                planetInfo.style.display = 'flex'
+                planetInfo.style.boxShadow = 'none'
+                break
+
+            case 'Saturn':
+                planetInfo.textContent = `The weight of the object on ${getOptionValue.toUpperCase()}`
+                weightInfoEl.textContent = `${(getInputValue * saturn).toFixed(2)} N`
+                planetInfo.style.height = 'auto'
+                planetInfo.style.padding = '10px'
+                planetInfo.appendChild(weightInfoEl)
+                resultWrapper.style.height = '300px'
+                planetInfo.style.display = 'flex'
+                planetIMG.style.backgroundPosition = 'center'
+                planetInfo.style.boxShadow = 'none'
+                break
+
+            case 'Uranus':
+                planetInfo.textContent = `The weight of the object on ${getOptionValue.toUpperCase()}`
+                weightInfoEl.textContent = `${(getInputValue * uranus).toFixed(2)} N`
+                planetInfo.style.height = 'auto'
+                planetInfo.style.padding = '10px'
+                planetInfo.appendChild(weightInfoEl)
+                resultWrapper.style.height = '300px'
+                planetInfo.style.display = 'flex'
+                planetInfo.style.boxShadow = 'none'
+                break
+
+            case 'Neptune':
+                planetInfo.textContent = `The weight of the object on ${getOptionValue.toUpperCase()}`
+                weightInfoEl.textContent = `${(getInputValue * neptune).toFixed(2)} N`
+                planetInfo.style.height = 'auto'
+                planetInfo.style.padding = '10px'
+                planetInfo.appendChild(weightInfoEl)
+                resultWrapper.style.height = '300px'
+                planetInfo.style.display = 'flex'
+                planetInfo.style.boxShadow = 'none'
+                break
+
+            case 'Pluto':
+                planetInfo.textContent = `The weight of the object on ${getOptionValue.toUpperCase()}`
+                weightInfoEl.textContent = `${(getInputValue * pluto).toFixed(2)} N`
+                planetInfo.style.height = 'auto'
+                planetInfo.style.padding = '10px'
+                planetInfo.appendChild(weightInfoEl)
+                resultWrapper.style.height = '300px'
+                planetInfo.style.display = 'flex'
+                planetInfo.style.boxShadow = 'none'
+                break
+        }
+    } else {
+        planetInfo.style.display = 'flex'
+        planetInfo.style.boxShadow = 'inset 0 0 10px 1px red'
     }
 })
 
@@ -199,3 +433,5 @@ button.addEventListener('click', () => {
 // 2. box-shadow for focudes input, select, button
 // 3. allow input apply words like 'ten' and convert then to numbers (maybe not all words, short)
 // 4. add mark to textContent in option which selected
+// 5. add spinned planet gifs
+// 6. make planets bigger
