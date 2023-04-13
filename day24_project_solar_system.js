@@ -1,5 +1,6 @@
 // creating HTML elements
 const spaceBg = document.createElement('div')
+const iFrame = document.createElement('iframe')
 const contentWrapper = document.createElement('div')
 const titleEl = document.createElement('h1')
 const calcPannel = document.createElement('div')
@@ -153,8 +154,18 @@ const getSelect = document.querySelector('select')
 let getInputValue = input.value
 let getOptionValue = getSelect.value
 
+input.addEventListener('focus', e => {
+    input.style.boxShadow = 'inset 0 0 5px 1px blue'
+
+})
+
+getSelect.addEventListener('focus', e => {
+    select.style.boxShadow = 'inset 0 0 5px 1px blue'
+})
+
 getSelect.addEventListener('change', e => {
     getOptionValue = e.target.value
+    select.style.boxShadow = 'inset 0 0 5px 1px blue'
 
     switch (getOptionValue) {
         case 'Mercury':
@@ -311,7 +322,7 @@ button.addEventListener('click', () => {
     weightInfoEl.style.alignItems = 'center'
     weightInfoEl.style.margin = '10px'
     weightInfoEl.style.textShadow = '1px 1px 0 white'
-    // weightInfoEl.textContent = ''
+    button.style.boxShadow = 'inset 0 0 5px 1px blue'
 
     if (getInputValue !== '') {
         switch (getOptionValue) {
@@ -428,10 +439,13 @@ button.addEventListener('click', () => {
     }
 })
 
-// add features
-// 1. gifs for bg
+// totall work time: 3h : 37m
+
+// make changes
+// 1. gifs for bg ❌
 // 2. box-shadow for focudes input, select, button
 // 3. allow input apply words like 'ten' and convert then to numbers (maybe not all words, short)
 // 4. add mark to textContent in option which selected
-// 5. add spinned planet gifs
+// 5. add spinned planet gifs ❌
 // 6. make planets bigger
+// 7. code optimization
