@@ -171,8 +171,8 @@ getSelect.addEventListener('change', e => {
         case 'Mercury':
             resultWrapper.appendChild(planetIMG)
             resultWrapper.style.flexDirection = 'row-reverse'
-            planetIMG.style.width = '182px'
-            planetIMG.style.height = '182px'
+            planetIMG.style.width = '300px'
+            planetIMG.style.height = '300px'
             // planetIMG.style.outline = '2px dashed blue'
             planetIMG.style.backgroundImage = 'url("img/planets/mercury.png")'
             planetIMG.style.backgroundSize = 'contain'
@@ -180,13 +180,15 @@ getSelect.addEventListener('change', e => {
             planetIMG.style.marginRight = '20px'
             planetIMG.style.display = 'block'
             planetInfo.style.display = 'none'
+            resultWrapper.style.height = 'auto'
+            resultWrapper.style.padding = '30px'
             break
 
         case 'Venus':
             resultWrapper.appendChild(planetIMG)
             resultWrapper.style.flexDirection = 'row-reverse'
-            planetIMG.style.width = '182px'
-            planetIMG.style.height = '182px'
+            planetIMG.style.width = '300px'
+            planetIMG.style.height = '300px'
             // planetIMG.style.outline = '2px dashed blue'
             planetIMG.style.backgroundImage = 'url("img/planets/venus.png")'
             planetIMG.style.backgroundSize = 'contain'
@@ -194,13 +196,15 @@ getSelect.addEventListener('change', e => {
             planetIMG.style.marginRight = '20px'
             planetIMG.style.display = 'block'
             planetInfo.style.display = 'none'
+            resultWrapper.style.height = 'auto'
+            resultWrapper.style.padding = '30px'
             break
 
         case 'Earth':
             resultWrapper.appendChild(planetIMG)
             resultWrapper.style.flexDirection = 'row-reverse'
-            planetIMG.style.width = '182px'
-            planetIMG.style.height = '182px'
+            planetIMG.style.width = '300px'
+            planetIMG.style.height = '300px'
             // planetIMG.style.outline = '2px dashed blue'
             planetIMG.style.backgroundImage = 'url("img/planets/earth.png")'
             planetIMG.style.backgroundSize = 'contain'
@@ -208,13 +212,15 @@ getSelect.addEventListener('change', e => {
             planetIMG.style.marginRight = '20px'
             planetIMG.style.display = 'block'
             planetInfo.style.display = 'none'
+            resultWrapper.style.height = 'auto'
+            resultWrapper.style.padding = '30px'
             break
 
         case 'Mars':
             resultWrapper.appendChild(planetIMG)
             resultWrapper.style.flexDirection = 'row-reverse'
-            planetIMG.style.width = '182px'
-            planetIMG.style.height = '182px'
+            planetIMG.style.width = '300px'
+            planetIMG.style.height = '300px'
             // planetIMG.style.outline = '2px dashed blue'
             planetIMG.style.backgroundImage = 'url("img/planets/mars.png")'
             planetIMG.style.backgroundSize = 'contain'
@@ -222,13 +228,15 @@ getSelect.addEventListener('change', e => {
             planetIMG.style.marginRight = '20px'
             planetIMG.style.display = 'block'
             planetInfo.style.display = 'none'
+            resultWrapper.style.height = 'auto'
+            resultWrapper.style.padding = '30px'
             break
 
         case 'Jupiter':
             resultWrapper.appendChild(planetIMG)
             resultWrapper.style.flexDirection = 'row-reverse'
-            planetIMG.style.width = '182px'
-            planetIMG.style.height = '182px'
+            planetIMG.style.width = '300px'
+            planetIMG.style.height = '300px'
             // planetIMG.style.outline = '2px dashed blue'
             planetIMG.style.backgroundImage = 'url("img/planets/jupiter.png")'
             planetIMG.style.backgroundSize = 'contain'
@@ -236,13 +244,15 @@ getSelect.addEventListener('change', e => {
             planetIMG.style.marginRight = '20px'
             planetIMG.style.display = 'block'
             planetInfo.style.display = 'none'
+            resultWrapper.style.height = 'auto'
+            resultWrapper.style.padding = '30px'
             break
 
         case 'Saturn':
             resultWrapper.appendChild(planetIMG)
             resultWrapper.style.flexDirection = 'row-reverse'
-            planetIMG.style.width = '182px'
-            planetIMG.style.height = '182px'
+            planetIMG.style.width = '300px'
+            planetIMG.style.height = '300px'
             // planetIMG.style.outline = '2px dashed blue'
             planetIMG.style.backgroundImage = 'url("img/planets/saturn.png")'
             planetIMG.style.backgroundSize = 'contain'
@@ -251,13 +261,15 @@ getSelect.addEventListener('change', e => {
             planetInfo.style.display = 'none'
             planetIMG.style.display = 'block'
             planetIMG.style.backgroundPosition = 'center'
+            resultWrapper.style.height = 'auto'
+            resultWrapper.style.padding = '30px'
             break
 
         case 'Uranus':
             resultWrapper.appendChild(planetIMG)
             resultWrapper.style.flexDirection = 'row-reverse'
-            planetIMG.style.width = '182px'
-            planetIMG.style.height = '182px'
+            planetIMG.style.width = '300px'
+            planetIMG.style.height = '300px'
             // planetIMG.style.outline = '2px dashed blue'
             planetIMG.style.backgroundImage = 'url("img/planets/uranus.png")'
             planetIMG.style.backgroundSize = 'contain'
@@ -265,13 +277,15 @@ getSelect.addEventListener('change', e => {
             planetIMG.style.marginRight = '20px'
             planetIMG.style.display = 'block'
             planetInfo.style.display = 'none'
+            resultWrapper.style.height = 'auto'
+            resultWrapper.style.padding = '30px'
             break
 
         case 'Neptune':
             resultWrapper.appendChild(planetIMG)
             resultWrapper.style.flexDirection = 'row-reverse'
-            planetIMG.style.width = '182px'
-            planetIMG.style.height = '182px'
+            planetIMG.style.width = '300px'
+            planetIMG.style.height = '300px'
             // planetIMG.style.outline = '2px dashed blue'
             planetIMG.style.backgroundImage = 'url("img/planets/neptune.png")'
             planetIMG.style.backgroundSize = 'contain'
@@ -279,13 +293,15 @@ getSelect.addEventListener('change', e => {
             planetIMG.style.marginRight = '20px'
             planetIMG.style.display = 'block'
             planetInfo.style.display = 'none'
+            resultWrapper.style.height = 'auto'
+            resultWrapper.style.padding = '30px'
             break
 
         case 'Pluto':
             resultWrapper.appendChild(planetIMG)
             resultWrapper.style.flexDirection = 'row-reverse'
-            planetIMG.style.width = '182px'
-            planetIMG.style.height = '182px'
+            planetIMG.style.width = '300px'
+            planetIMG.style.height = '300px'
             // planetIMG.style.outline = '2px dashed blue'
             planetIMG.style.backgroundImage = 'url("img/planets/pluto.png")'
             planetIMG.style.backgroundSize = 'contain'
@@ -293,6 +309,8 @@ getSelect.addEventListener('change', e => {
             planetIMG.style.marginRight = '20px'
             planetIMG.style.display = 'block'
             planetInfo.style.display = 'none'
+            resultWrapper.style.height = 'auto'
+            resultWrapper.style.padding = '30px'
             break
     }
 })
@@ -443,7 +461,7 @@ button.addEventListener('click', () => {
 
 // make changes
 // 1. gifs for bg ❌
-// 2. box-shadow for focudes input, select, button
+// 2. box-shadow for focudes input, select, button ✅
 // 3. allow input apply words like 'ten' and convert then to numbers (maybe not all words, short)
 // 4. add mark to textContent in option which selected
 // 5. add spinned planet gifs ❌
