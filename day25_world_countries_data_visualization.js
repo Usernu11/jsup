@@ -9,12 +9,12 @@ const h2 = document.createElement('h2')
 const populationButton = document.createElement('button')
 const languagesButton = document.createElement('button')
 const subtitleInfo = document.createElement('span')
-const countriesNum = 0
-const curSubtitleInfo = ''
+const curSubtitleInfo = 'populated countries'
+const isPopulationButton = true
 
 // Filling HTML elements
 h1.textContent = 'World Countries Data'
-h2.textContent = `Currently, we have ${0} countries`
+h2.textContent = `Currently, we have 0 countries`
 populationButton.textContent = 'POPULATION'
 languagesButton.textContent = 'LANGUAGES'
 subtitleInfo.textContent = `10 Most ${curSubtitleInfo} in the world`
@@ -64,7 +64,7 @@ const styles = {
     h1: {
         fontSize: '60px',
         color: 'orange',
-        marginBottom: '0'
+        margin: '0'
     },
     h2: {
         marginTop: '10px'
@@ -86,7 +86,7 @@ const styles = {
         marginBottom: '10px'
     },
     country: {
-        outline: '2px dashed black',
+        // outline: '2px dashed black',
         margin: '5px 0',
         height: '30px',
         width: '60%',
@@ -95,10 +95,10 @@ const styles = {
         alignItems: 'center'
     },
     countryVisualData: {
-        backgroundColor: 'orange',
-        width: '100%',
+        // backgroundColor: 'orange',
+        width: '60%',
         height: '30px',
-        margin: '0 20px'
+        // margin: '0 20px'
     },
     countrySpan: {
         width: '20%'
@@ -106,6 +106,11 @@ const styles = {
     countryData: {
         width: '10%',
         textAlign: 'right'
+    },
+    dataColor: {
+        width: '100%',
+        height: '30px',
+        backgroundColor: 'orange'
     }
 }
 
@@ -120,33 +125,103 @@ Object.assign(populationButton.style, styles.button)
 Object.assign(languagesButton.style, styles.button)
 Object.assign(subtitleInfo.style, styles.span)
 
+// Creating visual data block
+for (let i = 0; i < 10; i++) {
+    // Creating additional HTML elements
+    const countryItem = document.createElement('div')
+    const countryName = document.createElement('span')
+    const countryBar = document.createElement('div')
+    const countryBarProgress = document.createElement('div')
+    const countryData = document.createElement('div')
+
+    // Filling content
+    countryItem.className = `country-${i + 1}`
+    countryName.className = `country-name-${i + 1}`
+    countryName.textContent = `country ${i + 1}`
+    countryData.textContent = `data ${i + 1}`
+    countryData.className = `country-data-${i + 1}`
+    countryBarProgress.className = `country-data-bar-${i + 1}`
+
+    // Appending elements
+    visualBlock.appendChild(countryItem)
+    countryItem.appendChild(countryName)
+    countryItem.appendChild(countryBar)
+    countryBar.appendChild(countryBarProgress)
+    countryItem.appendChild(countryData)
+
+    // Adding style for the elements
+    Object.assign(countryItem.style, styles.country)
+    Object.assign(countryName.style, styles.countrySpan)
+    Object.assign(countryBar.style, styles.countryVisualData)
+    Object.assign(countryBarProgress.style, styles.dataColor)
+    Object.assign(countryData.style, styles.countryData)
+}
+
+// Sort function
+const getTenMostCountries = (countryData, button) => {
+    if (button === true) {
+        // Creating additional HTML element for WORLD total data
+        const worldCountryItem = document.createElement('div')
+        const worldName = document.createElement('span')
+        const worldBar = document.createElement('div')
+        const worldBarProgress = document.createElement('div')
+        const worldData = document.createElement('div')
+
+        // Filling content
+        worldCountryItem.className = `world`
+        worldName.textContent = `World`
+        worldData.textContent = `0`
+
+        // Appending elements
+        visualBlock.appendChild(worldCountryItem)
+        worldCountryItem.appendChild(worldName)
+        worldCountryItem.appendChild(worldBar)
+        worldBar.appendChild(worldBarProgress)
+        worldCountryItem.appendChild(worldData)
+
+        // Adding style for the elements
+        Object.assign(worldCountryItem.style, styles.country)
+        Object.assign(worldName.style, styles.countrySpan)
+        Object.assign(worldBar.style, styles.countryVisualData)
+        Object.assign(worldBarProgress.style, styles.dataColor)
+        Object.assign(worldData.style, styles.countryData)
+
+        // 1 style rule for world item
+        worldCountryItem.style.order = '-1'
+
+        const worldPop = countryData.reduce((acc, cur) => {
+            return acc + cur.population
+        }, 0)
+
+        const pop = countryData.sort((a, b) => {
+            return b.population - a.population
+        })
+
+        for (let i = 0; i < 10; i++) {
+            const getCountryName = document.querySelector(`.country-name-${i + 1}`)
+            const getCountryData = document.querySelector(`.country-data-${i + 1}`)
+            const getCountryBarProgress = document.querySelector(`.country-data-bar-${i + 1}`)
+            const curDataBar = (pop[i].population / worldPop) * 100
+
+            getCountryName.textContent = pop[i].name
+            getCountryData.textContent = pop[i].population.toLocaleString()
+            getCountryBarProgress.style.width = `${curDataBar}%`
+            worldData.textContent = worldPop.toLocaleString()
+            console.log()
+        }
+    }
+
+    if (button === false) {
+
+    }
+}
+
+// Getting data from API
 fetch(countriesAPI)
     .then(response => response.json())
     .then(data => {
-        for (let i = 0; i < 10; i++) {
-            // Creating additional HTML elements
-            const countryItem = document.createElement('div')
-            const countryName = document.createElement('span')
-            const countryBar = document.createElement('div')
-            const countryData = document.createElement('div')
-
-            // Filling content
-            countryItem.className = `country-${i + 1}`
-            countryName.textContent = `country ${i + 1}`
-            countryData.textContent = `data ${i + 1}`
-
-            // Appending elements
-            visualBlock.appendChild(countryItem)
-            countryItem.appendChild(countryName)
-            countryItem.appendChild(countryBar)
-            countryItem.appendChild(countryData)
-
-            // Adding style for the elements
-            Object.assign(countryItem.style, styles.country)
-            Object.assign(countryName.style, styles.countrySpan)
-            Object.assign(countryBar.style, styles.countryVisualData)
-            Object.assign(countryData.style, styles.countryData)
-        }
-        console.log(data)
+        // console.log(data.length)
+        getTenMostCountries(data, isPopulationButton)
+        h2.textContent = `Currently, we have ${data.length} countries`
     })
-    .catch(error => console.log(error))
+    .catch(error => console.error(error))
