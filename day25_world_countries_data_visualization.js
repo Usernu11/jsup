@@ -1,4 +1,5 @@
 // Creating HTML elements
+const countriesAPI = 'https://restcountries.com/v2/all'
 const wrapper = document.createElement('div')
 const titleBlock = document.createElement('div')
 const switchBlock = document.createElement('div')
@@ -38,17 +39,27 @@ const styles = {
         // outline: '2px dashed blue',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
+        boxShadow: 'inset 0 -8px 10px -10px black'
     },
     switchBlock: {
         // outline: '2px dashed green',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '35%',
+        width: '100%',
         flexWrap: 'wrap',
         margin: '0 auto',
-        padding: '20px'
+        // padding: '20px',
+        boxShadow: 'inset 0 -8px 10px -10px black'
+    },
+    visualBlock: {
+        boxShadow: 'inset 0 -8px 10px -10px black',
+        display: 'flex',
+        // justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        padding: '20px 0'
     },
     h1: {
         fontSize: '60px',
@@ -64,14 +75,37 @@ const styles = {
         backgroundColor: 'orange',
         border: 'none',
         borderRadius: '3px',
-        margin: '15px 5px',
+        margin: '30px 5px 20px 5px',
         textShadow: '1px 0 black',
         cursor: 'pointer'
     },
     span: {
         display: 'block',
         width: '100%',
-        textAlign: 'center'
+        textAlign: 'center',
+        marginBottom: '10px'
+    },
+    country: {
+        outline: '2px dashed black',
+        margin: '5px 0',
+        height: '30px',
+        width: '60%',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+    countryVisualData: {
+        backgroundColor: 'orange',
+        width: '100%',
+        height: '30px',
+        margin: '0 20px'
+    },
+    countrySpan: {
+        width: '20%'
+    },
+    countryData: {
+        width: '10%',
+        textAlign: 'right'
     }
 }
 
@@ -79,8 +113,40 @@ const styles = {
 Object.assign(wrapper.style, styles.wrapper)
 Object.assign(titleBlock.style, styles.titleBlock)
 Object.assign(switchBlock.style, styles.switchBlock)
+Object.assign(visualBlock.style, styles.visualBlock)
 Object.assign(h1.style, styles.h1)
 Object.assign(h2.style, styles.h2)
 Object.assign(populationButton.style, styles.button)
 Object.assign(languagesButton.style, styles.button)
 Object.assign(subtitleInfo.style, styles.span)
+
+fetch(countriesAPI)
+    .then(response => response.json())
+    .then(data => {
+        for (let i = 0; i < 10; i++) {
+            // Creating additional HTML elements
+            const countryItem = document.createElement('div')
+            const countryName = document.createElement('span')
+            const countryBar = document.createElement('div')
+            const countryData = document.createElement('div')
+
+            // Filling content
+            countryItem.className = `country-${i + 1}`
+            countryName.textContent = `country ${i + 1}`
+            countryData.textContent = `data ${i + 1}`
+
+            // Appending elements
+            visualBlock.appendChild(countryItem)
+            countryItem.appendChild(countryName)
+            countryItem.appendChild(countryBar)
+            countryItem.appendChild(countryData)
+
+            // Adding style for the elements
+            Object.assign(countryItem.style, styles.country)
+            Object.assign(countryName.style, styles.countrySpan)
+            Object.assign(countryBar.style, styles.countryVisualData)
+            Object.assign(countryData.style, styles.countryData)
+        }
+        console.log(data)
+    })
+    .catch(error => console.log(error))
