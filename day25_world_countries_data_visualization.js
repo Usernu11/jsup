@@ -122,32 +122,32 @@ Object.assign(subtitleInfo.style, styles.span)
 for (let i = 0; i < 10; i++) {
     // Creating additional HTML elements
     const countryItem = document.createElement('div')
-    const countryName = document.createElement('span')
-    const countryBar = document.createElement('div')
-    const countryBarProgress = document.createElement('div')
-    const countryData = document.createElement('div')
+    const countryItemName = document.createElement('span')
+    const countryItemBar = document.createElement('div')
+    const countryBarLine = document.createElement('div')
+    const countryPopulation = document.createElement('div')
 
     // Filling content
     countryItem.className = `country-${i + 1}`
-    countryName.className = `country-name-${i + 1}`
-    countryName.textContent = `country ${i + 1}`
-    countryData.textContent = `data ${i + 1}`
-    countryData.className = `country-data-${i + 1}`
-    countryBarProgress.className = `country-data-bar-${i + 1}`
+    countryItemName.className = `country-name-${i + 1}`
+    countryItemName.textContent = `country ${i + 1}`
+    countryPopulation.textContent = `data ${i + 1}`
+    countryPopulation.className = `country-data-${i + 1}`
+    countryBarLine.className = `country-data-bar-${i + 1}`
 
     // Appending elements
     visualBlock.appendChild(countryItem)
-    countryItem.appendChild(countryName)
-    countryItem.appendChild(countryBar)
-    countryBar.appendChild(countryBarProgress)
-    countryItem.appendChild(countryData)
+    countryItem.appendChild(countryItemName)
+    countryItem.appendChild(countryItemBar)
+    countryItemBar.appendChild(countryBarLine)
+    countryItem.appendChild(countryPopulation)
 
     // Adding style for the elements
     Object.assign(countryItem.style, styles.country)
-    Object.assign(countryName.style, styles.countrySpan)
-    Object.assign(countryBar.style, styles.countryVisualData)
-    Object.assign(countryBarProgress.style, styles.dataColor)
-    Object.assign(countryData.style, styles.countryData)
+    Object.assign(countryItemName.style, styles.countrySpan)
+    Object.assign(countryItemBar.style, styles.countryVisualData)
+    Object.assign(countryBarLine.style, styles.dataColor)
+    Object.assign(countryPopulation.style, styles.countryData)
 }
 
 // Sort function
@@ -192,43 +192,43 @@ const getTenMostCountries = (countryData, button) => {
 
         for (let i = 0; i < 10; i++) {
             const getCountryName = document.querySelector(`.country-name-${i + 1}`)
-            const getCountryData = document.querySelector(`.country-data-${i + 1}`)
-            const getCountryBarProgress = document.querySelector(`.country-data-bar-${i + 1}`)
-            const curDataBar = (pop[i].population / worldPop) * 100
-            let loadNum = 0
-            let loadBar = 0
+            const getCountryPopulation = document.querySelector(`.country-data-${i + 1}`)
+            const getCountryBarLine = document.querySelector(`.country-data-bar-${i + 1}`)
+            const curPopulationLine = (pop[i].population / worldPop) * 100
+            let loadPopulation = 0
+            let loadLine = 0
 
             getCountryName.textContent = pop[i].name
 
             if (isPopdataLoaded === false) {
                 setInterval(() => {
-                    if (loadNum <= worldPop) {
-                        worldData.textContent = loadNum.toLocaleString().replace(/\s/g, ',')
-                        loadNum += 10000000
+                    if (loadPopulation <= worldPop) {
+                        worldData.textContent = loadPopulation.toLocaleString().replace(/\s/g, ',')
+                        loadPopulation += 10000000
                     }
 
-                    if (loadNum <= pop[i].population) {
-                        getCountryData.textContent = loadNum.toLocaleString().replace(/\s/g, ',')
-                        loadNum += 1000000
+                    if (loadPopulation <= pop[i].population) {
+                        getCountryPopulation.textContent = loadPopulation.toLocaleString().replace(/\s/g, ',')
+                        loadPopulation += 1000000
                     }
                 }, 5)
 
                 setInterval(() => {
-                    if (loadBar <= 100) {
-                        worldBarProgress.style.width = `${loadBar}%`
-                        loadBar++
+                    if (loadLine <= 100) {
+                        worldBarProgress.style.width = `${loadLine}%`
+                        loadLine++
                     }
 
-                    if (loadBar <= curDataBar) {
-                        getCountryBarProgress.style.width = `${loadBar}%`
-                        loadBar++
+                    if (loadLine <= curPopulationLine) {
+                        getCountryBarLine.style.width = `${loadLine}%`
+                        loadLine++
                     }
                 }, 40)
             } else {
                 worldData.textContent = worldPop.toLocaleString().replace(/\s/g, ',')
-                getCountryData.textContent = pop[i].population.toLocaleString().replace(/\s/g, ',')
+                getCountryPopulation.textContent = pop[i].population.toLocaleString().replace(/\s/g, ',')
                 worldBarProgress.style.width = '100%'
-                getCountryBarProgress.style.width = `${curDataBar}%`
+                getCountryBarLine.style.width = `${curPopulationLine}%`
             }
         }
 
@@ -236,57 +236,57 @@ const getTenMostCountries = (countryData, button) => {
     }
 
     if (button === false) {
-        const langCollection = []
-        const langCount = []
+        const allLanguages = []
+        const languageCount = []
 
         countriesData.forEach(country => {
             country.languages.forEach(lg => {
-                langCollection.push(lg.name)
+                allLanguages.push(lg.name)
             })
         })
 
-        const uniqueLangs = new Set(langCollection)
-        for (let curLang of uniqueLangs) {
-            const curLangNum = langCollection.filter(lang => lang === curLang).length
-            langCount.push({ [curLang]: curLangNum })
+        const uniqueLanguages = new Set(allLanguages)
+        for (let curLang of uniqueLanguages) {
+            const curLangNum = allLanguages.filter(lang => lang === curLang).length
+            languageCount.push({ [curLang]: curLangNum })
         }
 
-        langCount.sort((a, b) => {
+        languageCount.sort((a, b) => {
             const countA = Object.values(a)[0]
             const countB = Object.values(b)[0]
             return countB - countA
         })
 
-        const tenLangs = langCount.slice(0, 10)
+        const tenLangs = languageCount.slice(0, 10)
 
         for (let i = 0; i < 10; i++) {
             const getCountryName = document.querySelector(`.country-name-${i + 1}`)
             const getCountryData = document.querySelector(`.country-data-${i + 1}`)
-            const getCountryBarProgress = document.querySelector(`.country-data-bar-${i + 1}`)
-            const curLangData = Object.entries(tenLangs[i])[0]
-            const biggerLangData = Object.entries(tenLangs[0])[0][1]
-            const curDataBar = Math.round((curLangData[1] / biggerLangData) * 100)
-            let loadBar = 0
-            let countLang = 0
+            const getCountryBarLine = document.querySelector(`.country-data-bar-${i + 1}`)
+            const curLangCounts = Object.entries(tenLangs[i])[0]
+            const biggestLangCounts = Object.entries(tenLangs[0])[0][1]
+            const curCountLine = Math.round((curLangCounts[1] / biggestLangCounts) * 100)
+            let loadLine = 0
+            let loadCountLang = 0
 
-            getCountryName.textContent = curLangData[0]
+            getCountryName.textContent = curLangCounts[0]
             // getCountryData.textContent = curLangData[1]
 
             if (isLangDataLoaded === false) {
                 setInterval(() => {
-                    if (loadBar <= curDataBar) {
-                        getCountryBarProgress.style.width = `${loadBar}%`
-                        loadBar++
+                    if (loadLine <= curCountLine) {
+                        getCountryBarLine.style.width = `${loadLine}%`
+                        loadLine++
                     }
     
-                    if (countLang <= curLangData[1]) {
-                        getCountryData.textContent = countLang
-                        countLang++
+                    if (loadCountLang <= curLangCounts[1]) {
+                        getCountryData.textContent = loadCountLang
+                        loadCountLang++
                     }
                 }, 10)
             } else {
-                getCountryBarProgress.style.width = `${curDataBar}%`
-                getCountryData.textContent = curLangData[1]
+                getCountryBarLine.style.width = `${curCountLine}%`
+                getCountryData.textContent = curLangCounts[1]
             }
         }
 
