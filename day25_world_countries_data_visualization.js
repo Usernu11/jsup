@@ -204,10 +204,9 @@ const getTenMostCountries = (countryData, button) => {
             const curDataBar = (pop[i].population / worldPop) * 100
 
             getCountryName.textContent = pop[i].name
-            getCountryData.textContent = pop[i].population.toLocaleString()
+            getCountryData.textContent = pop[i].population.toLocaleString().replace(/\s/g, ',')
             getCountryBarProgress.style.width = `${curDataBar}%`
-            worldData.textContent = worldPop.toLocaleString()
-            console.log()
+            worldData.textContent = worldPop.toLocaleString().replace(/\s/g, ',')
         }
     }
 
