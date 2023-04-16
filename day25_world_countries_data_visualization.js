@@ -316,6 +316,8 @@ languagesButton.addEventListener('click', () => {
     isPopulationButton = false
     document.querySelector('.world').style.display = 'none'
     getTenMostCountries(countriesData, isPopulationButton)
+    languagesButton.style.boxShadow = 'inset 0 -8px 10px -10px black'
+    populationButton.style.boxShadow = 'none'
 })
 
 populationButton.addEventListener('click', () => {
@@ -325,4 +327,6 @@ populationButton.addEventListener('click', () => {
     if (document.querySelector('.world')) {
         document.querySelector('.world').remove()
     }
+    languagesButton.style.boxShadow = 'none'
+    populationButton.style.boxShadow = 'inset 0 -8px 10px -10px black'
 })
