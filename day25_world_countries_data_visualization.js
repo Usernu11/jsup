@@ -9,15 +9,15 @@ const h2 = document.createElement('h2')
 const populationButton = document.createElement('button')
 const languagesButton = document.createElement('button')
 const subtitleInfo = document.createElement('span')
-const curSubtitleInfo = 'populated countries'
-const isPopulationButton = true
+let isPopulationButton = true
+let countriesData = null
 
 // Filling HTML elements
 h1.textContent = 'World Countries Data'
 h2.textContent = `Currently, we have 0 countries`
 populationButton.textContent = 'POPULATION'
 languagesButton.textContent = 'LANGUAGES'
-subtitleInfo.textContent = `10 Most ${curSubtitleInfo} in the world`
+subtitleInfo.textContent = `10 Most populated countries in the world`
 
 // Appending HTML elements
 document.body.appendChild(wrapper)
@@ -77,7 +77,8 @@ const styles = {
         borderRadius: '3px',
         margin: '30px 5px 20px 5px',
         textShadow: '1px 0 black',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        outline: 'none'
     },
     span: {
         display: 'block',
@@ -211,7 +212,43 @@ const getTenMostCountries = (countryData, button) => {
     }
 
     if (button === false) {
+        const langCollection = []
+        const langCount = []
 
+        countriesData.forEach(country => {
+            country.languages.forEach(lg => {
+                langCollection.push(lg.name)
+            })
+        })
+
+        const uniqueLangs = new Set(langCollection)
+        for (let curLang of uniqueLangs) {
+            const curLangNum = langCollection.filter(lang => lang === curLang).length
+            langCount.push({ [curLang]: curLangNum })
+        }
+
+        langCount.sort((a,b) => {
+            const countA = Object.values(a)[0]
+            const countB = Object.values(b)[0]
+            return countB - countA
+        })
+
+        const tenLangs = langCount.slice(0, 10)
+
+        for (let i = 0; i < 10; i++) {
+            const getCountryName = document.querySelector(`.country-name-${i + 1}`)
+            const getCountryData = document.querySelector(`.country-data-${i + 1}`)
+            const getCountryBarProgress = document.querySelector(`.country-data-bar-${i + 1}`)
+            const curLangData = Object.entries(tenLangs[i])[0]
+            const biggerLangData = Object.entries(tenLangs[0])[0][1]
+            const curDataBar = Math.round((curLangData[1] / biggerLangData) * 100)
+
+            getCountryName.textContent = curLangData[0]
+            getCountryData.textContent = curLangData[1]
+            getCountryBarProgress.style.width = `${curDataBar}%`
+            // console.log(tenLangs[0])
+            // console.log(Math.round((curLangData[1] / biggerLangData) * 100))
+        }
     }
 }
 
@@ -222,5 +259,16 @@ fetch(countriesAPI)
         // console.log(data.length)
         getTenMostCountries(data, isPopulationButton)
         h2.textContent = `Currently, we have ${data.length} countries`
+        countriesData = data
+        console.log(data)
     })
     .catch(error => console.error(error))
+
+// Adding eventListener to buttons
+languagesButton.addEventListener('click', () => {
+    // h2.textContent = `10 Most Spoken languages in the world`
+    subtitleInfo.textContent = `10 Most Spoken languages in the world`
+    isPopulationButton = false
+    document.querySelector('.world').style.display = 'none'
+    getTenMostCountries(countriesData, isPopulationButton)
+}) 
