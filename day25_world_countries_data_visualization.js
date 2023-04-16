@@ -32,31 +32,24 @@ switchBlock.appendChild(subtitleInfo)
 
 // Styles
 const styles = {
-    wrapper: {
-        // outline: '2px solid red',
-    },
     titleBlock: {
-        // outline: '2px dashed blue',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         boxShadow: 'inset 0 -8px 10px -10px black'
     },
     switchBlock: {
-        // outline: '2px dashed green',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
         flexWrap: 'wrap',
         margin: '0 auto',
-        // padding: '20px',
         boxShadow: 'inset 0 -8px 10px -10px black'
     },
     visualBlock: {
         boxShadow: 'inset 0 -8px 10px -10px black',
         display: 'flex',
-        // justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
         padding: '20px 0'
@@ -87,7 +80,6 @@ const styles = {
         marginBottom: '10px'
     },
     country: {
-        // outline: '2px dashed black',
         margin: '5px 0',
         height: '30px',
         width: '60%',
@@ -96,10 +88,8 @@ const styles = {
         alignItems: 'center'
     },
     countryVisualData: {
-        // backgroundColor: 'orange',
         width: '60%',
-        height: '30px',
-        // margin: '0 20px'
+        height: '30px'
     },
     countrySpan: {
         width: '20%'
@@ -167,6 +157,7 @@ const getTenMostCountries = (countryData, button) => {
         const worldBar = document.createElement('div')
         const worldBarProgress = document.createElement('div')
         const worldData = document.createElement('div')
+        const getWorldItem = document.querySelector('.world')
 
         // Filling content
         worldCountryItem.className = `world`
@@ -227,7 +218,7 @@ const getTenMostCountries = (countryData, button) => {
             langCount.push({ [curLang]: curLangNum })
         }
 
-        langCount.sort((a,b) => {
+        langCount.sort((a, b) => {
             const countA = Object.values(a)[0]
             const countB = Object.values(b)[0]
             return countB - countA
@@ -246,8 +237,6 @@ const getTenMostCountries = (countryData, button) => {
             getCountryName.textContent = curLangData[0]
             getCountryData.textContent = curLangData[1]
             getCountryBarProgress.style.width = `${curDataBar}%`
-            // console.log(tenLangs[0])
-            // console.log(Math.round((curLangData[1] / biggerLangData) * 100))
         }
     }
 }
@@ -256,19 +245,25 @@ const getTenMostCountries = (countryData, button) => {
 fetch(countriesAPI)
     .then(response => response.json())
     .then(data => {
-        // console.log(data.length)
         getTenMostCountries(data, isPopulationButton)
         h2.textContent = `Currently, we have ${data.length} countries`
         countriesData = data
-        console.log(data)
     })
     .catch(error => console.error(error))
 
 // Adding eventListener to buttons
 languagesButton.addEventListener('click', () => {
-    // h2.textContent = `10 Most Spoken languages in the world`
     subtitleInfo.textContent = `10 Most Spoken languages in the world`
     isPopulationButton = false
     document.querySelector('.world').style.display = 'none'
     getTenMostCountries(countriesData, isPopulationButton)
-}) 
+})
+
+populationButton.addEventListener('click', () => {
+    subtitleInfo.textContent = `10 Most populated countries in the world`
+    isPopulationButton = true
+    getTenMostCountries(countriesData, isPopulationButton)
+    if (document.querySelector('.world')) {
+        document.querySelector('.world').remove()
+    }
+})
