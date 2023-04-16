@@ -11,6 +11,8 @@ const languagesButton = document.createElement('button')
 const subtitleInfo = document.createElement('span')
 let isPopulationButton = true
 let countriesData = null
+let isPopdataLoaded = false
+let isLangDataLoaded = false
 
 // Filling HTML elements
 h1.textContent = 'World Countries Data'
@@ -99,7 +101,7 @@ const styles = {
         textAlign: 'right'
     },
     dataColor: {
-        width: '100%',
+        width: '0%',
         height: '30px',
         backgroundColor: 'orange'
     }
@@ -157,7 +159,6 @@ const getTenMostCountries = (countryData, button) => {
         const worldBar = document.createElement('div')
         const worldBarProgress = document.createElement('div')
         const worldData = document.createElement('div')
-        const getWorldItem = document.querySelector('.world')
 
         // Filling content
         worldCountryItem.className = `world`
@@ -194,12 +195,44 @@ const getTenMostCountries = (countryData, button) => {
             const getCountryData = document.querySelector(`.country-data-${i + 1}`)
             const getCountryBarProgress = document.querySelector(`.country-data-bar-${i + 1}`)
             const curDataBar = (pop[i].population / worldPop) * 100
+            let loadNum = 0
+            let loadBar = 0
 
             getCountryName.textContent = pop[i].name
-            getCountryData.textContent = pop[i].population.toLocaleString().replace(/\s/g, ',')
-            getCountryBarProgress.style.width = `${curDataBar}%`
-            worldData.textContent = worldPop.toLocaleString().replace(/\s/g, ',')
+
+            if (isPopdataLoaded === false) {
+                setInterval(() => {
+                    if (loadNum <= worldPop) {
+                        worldData.textContent = loadNum.toLocaleString().replace(/\s/g, ',')
+                        loadNum += 10000000
+                    }
+
+                    if (loadNum <= pop[i].population) {
+                        getCountryData.textContent = loadNum.toLocaleString().replace(/\s/g, ',')
+                        loadNum += 1000000
+                    }
+                }, 5)
+
+                setInterval(() => {
+                    if (loadBar <= 100) {
+                        worldBarProgress.style.width = `${loadBar}%`
+                        loadBar++
+                    }
+
+                    if (loadBar <= curDataBar) {
+                        getCountryBarProgress.style.width = `${loadBar}%`
+                        loadBar++
+                    }
+                }, 40)
+            } else {
+                worldData.textContent = worldPop.toLocaleString().replace(/\s/g, ',')
+                getCountryData.textContent = pop[i].population.toLocaleString().replace(/\s/g, ',')
+                worldBarProgress.style.width = '100%'
+                getCountryBarProgress.style.width = `${curDataBar}%`
+            }
         }
+
+        isPopdataLoaded = true
     }
 
     if (button === false) {
@@ -233,11 +266,31 @@ const getTenMostCountries = (countryData, button) => {
             const curLangData = Object.entries(tenLangs[i])[0]
             const biggerLangData = Object.entries(tenLangs[0])[0][1]
             const curDataBar = Math.round((curLangData[1] / biggerLangData) * 100)
+            let loadBar = 0
+            let countLang = 0
 
             getCountryName.textContent = curLangData[0]
-            getCountryData.textContent = curLangData[1]
-            getCountryBarProgress.style.width = `${curDataBar}%`
+            // getCountryData.textContent = curLangData[1]
+
+            if (isLangDataLoaded === false) {
+                setInterval(() => {
+                    if (loadBar <= curDataBar) {
+                        getCountryBarProgress.style.width = `${loadBar}%`
+                        loadBar++
+                    }
+    
+                    if (countLang <= curLangData[1]) {
+                        getCountryData.textContent = countLang
+                        countLang++
+                    }
+                }, 10)
+            } else {
+                getCountryBarProgress.style.width = `${curDataBar}%`
+                getCountryData.textContent = curLangData[1]
+            }
         }
+
+        isLangDataLoaded = true
     }
 }
 
@@ -246,7 +299,13 @@ fetch(countriesAPI)
     .then(response => response.json())
     .then(data => {
         getTenMostCountries(data, isPopulationButton)
-        h2.textContent = `Currently, we have ${data.length} countries`
+        let countryCount = 0
+        setInterval(() => {
+            if (countryCount < 250) {
+                countryCount += 1
+                h2.textContent = `Currently, we have ${countryCount} countries`
+            }
+        }, 5)
         countriesData = data
     })
     .catch(error => console.error(error))
