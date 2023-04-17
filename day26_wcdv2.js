@@ -14,6 +14,8 @@ const searchIcon = document.createElement('div')
 const getBody = document.querySelector('body')
 const videoBg = document.createElement('video')
 const videoBgSource = document.createElement('source')
+const countriesAPI = 'https://restcountries.com/v2/all'
+const countryWrapper = document.createElement('div')
 
 // Appending HTML elements
 document.body.appendChild(header)
@@ -30,6 +32,7 @@ buttonWrapper.appendChild(sortButton)
 container.appendChild(inputWrapper)
 inputWrapper.appendChild(input)
 inputWrapper.appendChild(searchIcon)
+document.body.appendChild(countryWrapper)
 
 // Filling HTML elements content
 title.textContent = 'world countries list'
@@ -45,7 +48,7 @@ videoBgSource.type = 'video/mp4'
 // Styles for HTML elements
 const styles = {
     container: {
-        outline: '2px solid black',
+        // outline: '2px solid black',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -56,7 +59,8 @@ const styles = {
         height: '60vh'
     },
     body: {
-        margin: '0'
+        margin: '0',
+        background: 'linear-gradient(0deg, rgba(48,16,78,1) 0%, rgba(94,29,154,1) 50%, rgba(138,43,226,1) 100%)'
     },
     title: {
         fontSize: '60px',
@@ -68,7 +72,7 @@ const styles = {
         textShadow: 'blueViolet 0px 0px 5px, blueViolet 0px 0px 10px, blueViolet 0px 0px 15px, blueViolet 0px 0px 20px, blueViolet 0px 0px 30px, blueViolet 0px 0px 40px, blueViolet 0px 0px 50px, blueViolet 0px 0px 75px, 2px 2px 2px blueViolet'
     },
     videoBg: {
-        position: 'fixed',
+        position: 'absolute',
         top: '0',
         left: '0',
         width: '100%',
@@ -133,6 +137,33 @@ const styles = {
         backgroundPosition: 'center',
         backgroundSize: '60%',
         width: '7%'
+    },
+    countryWrapper: {
+        width: '70%',
+        height: 'auto',
+        display: 'flex',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        margin: '0 auto',
+        gap: '30px',
+        padding: '50px 0'
+    },
+    country: {
+        width: '150px',
+        height: '150px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: '30px',
+        textAlign: 'center',
+        textShadow: '1px 1px 0 white',
+        color: 'white',
+        backgroundColor: 'mediumPurple',
+        border: '2px solid black',
+        backgroundImage: 'url("img/planets/globuspng.png")',
+        backgroundSize: 'cover',
+        borderRadius: '10px',
+        padding: '10px'
     }
 }
 
@@ -152,3 +183,23 @@ Object.assign(sortButton.style, styles.sortButton)
 Object.assign(inputWrapper.style, styles.inputWrapper)
 Object.assign(input.style, styles.input)
 Object.assign(searchIcon.style, styles.searchIcon)
+Object.assign(countryWrapper.style, styles.countryWrapper)
+
+// Fetching countries data
+fetch(countriesAPI)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        generateCountries(data)
+    })
+    .catch(error => console.error(error))
+
+// Generation countries
+const generateCountries = (array) => {
+    for (let i = 0; i < array.length; i++) {
+        const countrySquare = document.createElement('div')
+        countryWrapper.appendChild(countrySquare)
+        countrySquare.textContent = `${array[i].name}`
+        Object.assign(countrySquare.style, styles.country)
+    }
+}
