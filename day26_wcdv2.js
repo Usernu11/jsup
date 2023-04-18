@@ -16,6 +16,8 @@ const videoBg = document.createElement('video')
 const videoBgSource = document.createElement('source')
 const countriesAPI = 'https://restcountries.com/v2/all'
 const countryWrapper = document.createElement('div')
+let localStorageData = localStorage.getItem('storageData')
+let isStartingWord = true
 
 // Appending HTML elements
 document.body.appendChild(header)
@@ -185,21 +187,63 @@ Object.assign(input.style, styles.input)
 Object.assign(searchIcon.style, styles.searchIcon)
 Object.assign(countryWrapper.style, styles.countryWrapper)
 
-// Fetching countries data
-fetch(countriesAPI)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
-        generateCountries(data)
-    })
-    .catch(error => console.error(error))
-
 // Generation countries
-const generateCountries = (array) => {
-    for (let i = 0; i < array.length; i++) {
-        const countrySquare = document.createElement('div')
-        countryWrapper.appendChild(countrySquare)
-        countrySquare.textContent = `${array[i].name}`
-        Object.assign(countrySquare.style, styles.country)
+const generateCountries = (array, wordPattern) => {
+    const wordPatternCountries = array.filter(country => country.name.toLowerCase().startsWith(wordPattern))
+
+    if (wordPatternCountries.length > 0) {
+        for (let i = 0; i < wordPatternCountries.length; i++) {
+            const countrySquare = document.createElement('div')
+            countryWrapper.appendChild(countrySquare)
+            countrySquare.textContent = `${wordPatternCountries[i].name}`
+            countrySquare.className = `country-item`
+            Object.assign(countrySquare.style, styles.country)
+        }
+    } else {
+        for (let i = 0; i < array.length; i++) {
+            const countrySquare = document.createElement('div')
+            countryWrapper.appendChild(countrySquare)
+            countrySquare.textContent = `${array[i].name}`
+            countrySquare.className = `country-item`
+            Object.assign(countrySquare.style, styles.country)
+        }
     }
 }
+
+const cleanCountries = () => {
+    const getCountryItems = document.querySelectorAll('.country-item')
+    getCountryItems.forEach(item => item.remove())
+}
+
+// Fetching countries data
+let dataFromLocalStorage = null
+if (localStorageData) {
+    dataFromLocalStorage = JSON.parse(localStorageData)
+    console.log(dataFromLocalStorage)
+    generateCountries(dataFromLocalStorage)
+} else {
+    fetch(countriesAPI)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            const dataForStorage = JSON.stringify(data, undefined, 4)
+            localStorage.setItem('storageData', dataForStorage)
+            generateCountries(data)
+        })
+        .catch(error => console.error(error))
+}
+
+// const genCountriesStore = JSON.stringify(generateCountries(localStorageData))
+// console.log(genCountriesStore)
+
+// Adding eventListeners
+input.addEventListener('input', key => {
+    let words = input.value
+    cleanCountries()
+    generateCountries(dataFromLocalStorage, words.toLocaleLowerCase())
+    console.log(words)
+})
+
+// Sort Options
+// 1. remove all countries and generate countries with special words
+// 2. remove only special countries by class name, but how to add?
