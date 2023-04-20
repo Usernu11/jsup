@@ -3,7 +3,11 @@ const container = document.createElement('div')
 const header = document.createElement('div')
 const title = document.createElement('h1')
 const subtitle = document.createElement('span')
-const searchInfo = document.createElement('span')
+const searchInfo = document.createElement('div')
+const startText = document.createElement('span')
+const countText = document.createElement('span')
+const wordPatternText = document.createElement('span')
+const wordPatternNum = document.createElement('span')
 const buttonWrapper = document.createElement('div')
 const startingWordButton = document.createElement('button')
 const anyWordButton = document.createElement('button')
@@ -29,6 +33,10 @@ videoBg.appendChild(videoBgSource)
 container.appendChild(title)
 container.appendChild(subtitle)
 container.appendChild(searchInfo)
+searchInfo.appendChild(startText)
+searchInfo.appendChild(wordPatternText)
+searchInfo.appendChild(countText)
+searchInfo.appendChild(wordPatternNum)
 container.appendChild(buttonWrapper)
 buttonWrapper.appendChild(startingWordButton)
 buttonWrapper.appendChild(anyWordButton)
@@ -40,7 +48,7 @@ document.body.appendChild(countryWrapper)
 
 // Filling HTML elements content
 title.textContent = 'world countries list'
-subtitle.textContent = 'total numbers of countries:'
+subtitle.textContent = 'total numbers of countries: 0'
 startingWordButton.textContent = 'starting word'
 anyWordButton.textContent = 'search with any word'
 input.placeholder = 'search country ...'
@@ -53,7 +61,6 @@ sortButton.textContent = 'A\nZ'
 // Styles for HTML elements
 const styles = {
     container: {
-        // outline: '2px solid black',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -119,9 +126,11 @@ const styles = {
     },
     searchInfo: {
         height: '30px',
-        width: '30%',
+        width: '50%',
         marginBottom: '20px',
-        color: 'white'
+        color: 'white',
+        textAlign: 'center',
+        fontSize: '25px'
     },
     inputWrapper: {
         width: '40%',
@@ -201,15 +210,22 @@ Object.assign(input.style, styles.input)
 Object.assign(searchIcon.style, styles.searchIcon)
 Object.assign(countryWrapper.style, styles.countryWrapper)
 
+// Generating colors for some elements
+const randomColorInfoGenerator = () => {
+    const letters = "0123456789ABCDEF"
+    let newColor = "#"
+
+    for (let i = 0; i < 6; i++) {
+        newColor += letters[Math.floor(Math.random() * 16)]
+    }
+
+    return newColor
+}
+
 // Generation countries
 const generateCountries = (array, wordPattern, anyWordOption, isSort) => {
     const wordPatternCountries = array.filter(country => country.name.toLowerCase().startsWith(wordPattern))
     const anyWord = array.filter(country => country.name.toLocaleLowerCase().includes(wordPattern))
-    // console.log(wordPatternCountries.sort((a, b) => {
-    //     if (a.name > b.name) { return -1; }
-    //     if (a.name < b.name) { return 1; }
-    //     return 0
-    // }))
 
     if (isSort) {
         wordPatternCountries.sort((a, b) => {
@@ -219,6 +235,12 @@ const generateCountries = (array, wordPattern, anyWordOption, isSort) => {
         })
 
         anyWord.sort((a, b) => {
+            if (a.name > b.name) { return -1; }
+            if (a.name < b.name) { return 1; }
+            return 0
+        })
+
+        array.sort((a, b) => {
             if (a.name > b.name) { return -1; }
             if (a.name < b.name) { return 1; }
             return 0
@@ -235,9 +257,22 @@ const generateCountries = (array, wordPattern, anyWordOption, isSort) => {
             if (a.name > b.name) { return 1; }
             return 0
         })
+
+        array.sort((a, b) => {
+            if (a.name > b.name) { return -1; }
+            if (a.name < b.name) { return 1; }
+            return 0
+        })
     }
 
     if (anyWordOption === true) {
+        startText.textContent = 'Countries starting with '
+        countText.textContent = ' are '
+        wordPatternText.textContent = wordPattern.toUpperCase()
+        wordPatternNum.textContent = anyWord.length
+        wordPatternText.style.color = randomColorInfoGenerator()
+        wordPatternNum.style.color = randomColorInfoGenerator()
+
         for (let i = 0; i < anyWord.length; i++) {
             const countrySquare = document.createElement('div')
             countryWrapper.appendChild(countrySquare)
@@ -245,7 +280,15 @@ const generateCountries = (array, wordPattern, anyWordOption, isSort) => {
             countrySquare.className = `country-item`
             Object.assign(countrySquare.style, styles.country)
         }
+
     } else if (wordPatternCountries.length > 0) {
+        startText.textContent = 'Countries starting with '
+        countText.textContent = ' are '
+        wordPatternText.textContent = wordPattern.toUpperCase()
+        wordPatternNum.textContent = wordPatternCountries.length
+        wordPatternText.style.color = randomColorInfoGenerator()
+        wordPatternNum.style.color = randomColorInfoGenerator()
+
         for (let i = 0; i < wordPatternCountries.length; i++) {
             const countrySquare = document.createElement('div')
             countryWrapper.appendChild(countrySquare)
@@ -264,6 +307,7 @@ const generateCountries = (array, wordPattern, anyWordOption, isSort) => {
     }
 }
 
+// Function for removing all generated square countries before created new
 const cleanCountries = () => {
     const getCountryItems = document.querySelectorAll('.country-item')
     getCountryItems.forEach(item => item.remove())
@@ -275,6 +319,7 @@ if (localStorageData) {
     dataFromLocalStorage = JSON.parse(localStorageData)
     console.log(dataFromLocalStorage)
     generateCountries(dataFromLocalStorage)
+    subtitle.textContent = `total numbers of countries: ${dataFromLocalStorage.length}`
 } else {
     fetch(countriesAPI)
         .then(response => response.json())
@@ -283,12 +328,10 @@ if (localStorageData) {
             const dataForStorage = JSON.stringify(data, undefined, 4)
             localStorage.setItem('storageData', dataForStorage)
             generateCountries(data)
+            subtitle.textContent = `total numbers of countries: ${data.length}`
         })
         .catch(error => console.error(error))
 }
-
-// const genCountriesStore = JSON.stringify(generateCountries(localStorageData))
-// console.log(genCountriesStore)
 
 // Adding eventListeners
 input.addEventListener('input', key => {
@@ -300,20 +343,12 @@ input.addEventListener('input', key => {
 
 anyWordButton.addEventListener('click', () => {
     isAnyWord = true
-    // cleanCountries()
-    // generateCountries(dataFromLocalStorage, words.toLocaleLowerCase(), isAnyWord, isSortZA)
-    // console.log('click')
-    // console.log(`isAnyWord changed -> ${isAnyWord}`)
     Object.assign(anyWordButton.style, styles.activeButton)
     Object.assign(startingWordButton.style, styles.nonActiveButton)
 })
 
 startingWordButton.addEventListener('click', () => {
     isAnyWord = false
-    // cleanCountries()
-    // generateCountries(dataFromLocalStorage, words.toLocaleLowerCase(), isAnyWord, isSortZA)
-    // console.log('click')
-    // console.log(`isAnyWord changed -> ${isAnyWord}`)
     Object.assign(startingWordButton.style, styles.activeButton)
     Object.assign(anyWordButton.style, styles.nonActiveButton)
 })
@@ -333,4 +368,7 @@ sortButton.addEventListener('click', () => {
         Object.assign(sortButton.style, styles.nonActiveButton)
         sortButton.textContent = 'A\nZ'
     }
+
+    cleanCountries()
+    generateCountries(dataFromLocalStorage, input.value, isAnyWord, isSortZA)
 })
