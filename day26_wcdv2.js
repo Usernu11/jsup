@@ -18,6 +18,8 @@ const countriesAPI = 'https://restcountries.com/v2/all'
 const countryWrapper = document.createElement('div')
 let localStorageData = localStorage.getItem('storageData')
 let isStartingWord = true
+let isAnyWord = false
+let isSortZA = false
 
 // Appending HTML elements
 document.body.appendChild(header)
@@ -46,6 +48,7 @@ videoBg.autoplay = 'true'
 videoBg.loop = 'true'
 videoBgSource.src = 'img/Rotating-Digital-Earth.mp4'
 videoBgSource.type = 'video/mp4'
+sortButton.textContent = 'A\nZ'
 
 // Styles for HTML elements
 const styles = {
@@ -106,10 +109,13 @@ const styles = {
     },
     sortButton: {
         width: '40px',
-        backgroundImage: 'url("img/descending.png")',
+        fontSize: '9px',
+        textAlign: 'right',
+        backgroundImage: 'url("img/down-arrow.png")',
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundSize: '60%'
+        backgroundPosition: '25%',
+        backgroundSize: '45%',
+        paddingLeft: '22px'
     },
     searchInfo: {
         height: '30px',
@@ -166,6 +172,14 @@ const styles = {
         backgroundSize: 'cover',
         borderRadius: '10px',
         padding: '10px'
+    },
+    activeButton: {
+        boxShadow: 'inset 0px 0px 10px 5px indigo',
+        border: '1px solid thistle'
+    },
+    nonActiveButton: {
+        boxShadow: 'none',
+        border: 'none'
     }
 }
 
@@ -188,10 +202,50 @@ Object.assign(searchIcon.style, styles.searchIcon)
 Object.assign(countryWrapper.style, styles.countryWrapper)
 
 // Generation countries
-const generateCountries = (array, wordPattern) => {
+const generateCountries = (array, wordPattern, anyWordOption, isSort) => {
     const wordPatternCountries = array.filter(country => country.name.toLowerCase().startsWith(wordPattern))
+    const anyWord = array.filter(country => country.name.toLocaleLowerCase().includes(wordPattern))
+    // console.log(wordPatternCountries.sort((a, b) => {
+    //     if (a.name > b.name) { return -1; }
+    //     if (a.name < b.name) { return 1; }
+    //     return 0
+    // }))
 
-    if (wordPatternCountries.length > 0) {
+    if (isSort) {
+        wordPatternCountries.sort((a, b) => {
+            if (a.name > b.name) { return -1; }
+            if (a.name < b.name) { return 1; }
+            return 0
+        })
+
+        anyWord.sort((a, b) => {
+            if (a.name > b.name) { return -1; }
+            if (a.name < b.name) { return 1; }
+            return 0
+        })
+    } else {
+        wordPatternCountries.sort((a, b) => {
+            if (a.name < b.name) { return -1; }
+            if (a.name > b.name) { return 1; }
+            return 0
+        })
+
+        anyWord.sort((a, b) => {
+            if (a.name < b.name) { return -1; }
+            if (a.name > b.name) { return 1; }
+            return 0
+        })
+    }
+
+    if (anyWordOption === true) {
+        for (let i = 0; i < anyWord.length; i++) {
+            const countrySquare = document.createElement('div')
+            countryWrapper.appendChild(countrySquare)
+            countrySquare.textContent = `${anyWord[i].name}`
+            countrySquare.className = `country-item`
+            Object.assign(countrySquare.style, styles.country)
+        }
+    } else if (wordPatternCountries.length > 0) {
         for (let i = 0; i < wordPatternCountries.length; i++) {
             const countrySquare = document.createElement('div')
             countryWrapper.appendChild(countrySquare)
@@ -240,10 +294,43 @@ if (localStorageData) {
 input.addEventListener('input', key => {
     let words = input.value
     cleanCountries()
-    generateCountries(dataFromLocalStorage, words.toLocaleLowerCase())
+    generateCountries(dataFromLocalStorage, words.toLocaleLowerCase(), isAnyWord, isSortZA)
     console.log(words)
 })
 
-// Sort Options
-// 1. remove all countries and generate countries with special words
-// 2. remove only special countries by class name, but how to add?
+anyWordButton.addEventListener('click', () => {
+    isAnyWord = true
+    // cleanCountries()
+    // generateCountries(dataFromLocalStorage, words.toLocaleLowerCase(), isAnyWord, isSortZA)
+    // console.log('click')
+    // console.log(`isAnyWord changed -> ${isAnyWord}`)
+    Object.assign(anyWordButton.style, styles.activeButton)
+    Object.assign(startingWordButton.style, styles.nonActiveButton)
+})
+
+startingWordButton.addEventListener('click', () => {
+    isAnyWord = false
+    // cleanCountries()
+    // generateCountries(dataFromLocalStorage, words.toLocaleLowerCase(), isAnyWord, isSortZA)
+    // console.log('click')
+    // console.log(`isAnyWord changed -> ${isAnyWord}`)
+    Object.assign(startingWordButton.style, styles.activeButton)
+    Object.assign(anyWordButton.style, styles.nonActiveButton)
+})
+
+sortButton.addEventListener('click', () => {
+    if (isSortZA === true) {
+        isSortZA = false
+    } else {
+        isSortZA = true
+    }
+
+    if (isSortZA) {
+        Object.assign(sortButton.style, styles.activeButton)
+        sortButton.textContent = 'Z\nA'
+    } else {
+        isSortZA = false
+        Object.assign(sortButton.style, styles.nonActiveButton)
+        sortButton.textContent = 'A\nZ'
+    }
+})
