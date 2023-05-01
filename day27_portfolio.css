@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Itim&family=Quantico:wght@400;700&family=Vollkorn:wght@500&display=swap");
+.container {
+  width: 50%;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 80px;
+  margin: 0 auto;
+}
+
+.general-text {
+  font-family: Quantico, sans-serif;
+  text-align: justify;
+}
+
+.marked-text {
+  font-weight: 700;
+}
+
+.qualifications {
+  font-family: Itim, sans-serif;
+}
+
+/*# sourceMappingURL=day27_portfolio.css.map */
