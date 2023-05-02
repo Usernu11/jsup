@@ -2,15 +2,14 @@ const qualificationsBlock = document.querySelector('.qualifications')
 const life = ['👨‍💻 developer', '⚡ motivator', '🏐 volleyball player', '🎨 charcoal artist']
 const skills = ['JavaScript', 'HTML/CSS3', 'ES6', 'Sass', 'mySQL']
 const signBlock = document.createElement('div')
-const lifeBLock = document.createElement('div')
+const lifeBlock = document.createElement('div')
 const getTechnologies = document.querySelector('.technologies')
 
 // Styles
 const styles = {
     qualifications: {
-        width: '100%',
+        width: '94%',
         height: '80px',
-        // outline: '2px solid red',
         backgroundColor: 'LemonChiffon',
         margin: '20px 0',
         display: 'flex',
@@ -20,7 +19,6 @@ const styles = {
     sign: {
         width: '40px',
         height: '40px',
-        // outline: '2px solid red',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -29,7 +27,6 @@ const styles = {
     hobbie: {
         width: 'fit-content',
         height: '40px',
-        // outline: '2px solid blue',
         textTransform: 'capitalize',
         fontSize: '35px',
         display: 'flex',
@@ -48,84 +45,66 @@ const styles = {
 
 // Joining new HTML elements
 qualificationsBlock.appendChild(signBlock)
-qualificationsBlock.appendChild(lifeBLock)
+qualificationsBlock.appendChild(lifeBlock)
 
 // Applying styles
 Object.assign(qualificationsBlock.style, styles.qualifications)
 Object.assign(signBlock.style, styles.sign)
-Object.assign(lifeBLock.style, styles.hobbie)
+Object.assign(lifeBlock.style, styles.hobbie)
 Object.assign(getTechnologies.style, styles.skills)
 
 // Move skill and change content
-// for (let i = 0; i < skills.length; i++) {
-//     const currentSign = skills[i].split(' ').slice(0, 1)
-//     const currentText = skills[i].split(' ').slice(1, skills[i].length).join(' ')
+// The hobbies movement 💚
+let i = 0
+let startingMargin = -40
+let startingOpacity = .1
+let isHobbieChanges = false     // setIntervals synchronizer
 
-//     signBlock.textContent = currentSign
-//     skillBlock.textContent = currentText
-// }
+const changeHobbie = () => {
+    const currentSign = life[i].split(' ').slice(0, 1)
+    const currentText = life[i]
+        .split(' ')
+        .slice(1, life[i].length)
+        .join(' ')
 
-// setInterval(() => {
+    signBlock.textContent = currentSign
+    lifeBlock.textContent = currentText
+    isHobbieChanges = true
+    startingOpacity = .1
+    startingMargin = -40
 
+    i++
 
-//      else {
-//         i = 0
-//     }
+    if (i === life.length) {
+        i = 0
+    }
+}
 
-//     i++
-// }, 4000)
+const hobbieMovement = () => {  
+    if (startingMargin !== 50) {
+        lifeBlock.style.marginLeft = `${startingMargin}px`
+        startingMargin++
+    }
 
-// The movement bug
-// let i = 0
-// let marginMove = -40
-// let opacityChange = .1
+    if (startingOpacity <= 1 && isHobbieChanges === true) {
+        lifeBlock.style.opacity = startingOpacity.toFixed(1)
+        startingOpacity += .01
+    } else {
+        isHobbieChanges = false
+    }
+}
 
-// const changeSkill = setInterval(() => {
-//     const currentSign = skills[i].split(' ').slice(0, 1)
-//     const currentText = skills[i]
-//         .split(' ')
-//         .slice(1, skills[i].length)
-//         .join(' ')
+setInterval(changeHobbie, 4000)
+setInterval(hobbieMovement, 40)
 
-//     signBlock.textContent = currentSign
-//     skillBlock.textContent = currentText
-
-//     i++
-
-//     if (i === skills.length) {
-//         i = 0
-//     }
-
-// }, 4000)
-
-// const skillMovement = setInterval(() => {  
-//     if (marginMove !== 50) {
-//         skillBlock.style.marginLeft = `${marginMove}px`
-//         marginMove++
-//     } else {
-//         clearInterval(changeSkill)
-//         marginMove = -40
-//         changeSkill()
-//     }
-
-//     if (opacityChange <= 1) {
-//         skillBlock.style.opacity = opacityChange.toFixed(1)
-//         opacityChange += .01
-//     } else {
-//         opacityChange = .1
-//     }
-// }, 40)
-
-// Appearing for technologies 🎾
-// 1. try to make 2 functions
-// 2. then using conditionals use intervals
+// Appearing for technologies 💠
 let skillIndex = 0
 let startedFontOpacity = .1
-let isSkillChanged = false
+let isSkillChanged = false      // setIntervals synchronizer
 
 const changeSkill = () => {
     const curSkill = skills[skillIndex]
-    
+
     if (curSkill.toLowerCase() == 'javascript') {
         getTechnologies.style.color = 'yellow'
     }
