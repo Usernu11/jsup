@@ -1,7 +1,9 @@
 const qualificationsBlock = document.querySelector('.qualifications')
-const skills = ['👨‍💻 developer', '⚡ motivator', '🏐 volleyball player', '🎨 charcoal artist']
+const life = ['👨‍💻 developer', '⚡ motivator', '🏐 volleyball player', '🎨 charcoal artist']
+const skills = ['JavaScript', 'HTML', 'CSS3', 'ES6', 'Sass', 'mySQL']
 const signBlock = document.createElement('div')
 const skillBlock = document.createElement('div')
+const getTechnologies = document.querySelector('.technologies')
 
 // Styles
 const styles = {
@@ -34,7 +36,12 @@ const styles = {
         padding: '0 10px',
         alignItems: 'center',
         marginLeft: '-40px',
-        opacity: .1
+        opacity: '.1'
+    },
+    skills: {
+        opacity: '1',
+        color: 'black',
+        fontWeight: '700'
     }
 }
 
@@ -46,6 +53,7 @@ qualificationsBlock.appendChild(skillBlock)
 Object.assign(qualificationsBlock.style, styles.qualifications)
 Object.assign(signBlock.style, styles.sign)
 Object.assign(skillBlock.style, styles.skill)
+Object.assign(getTechnologies.style, styles.skills)
 
 // Move skill and change content
 // for (let i = 0; i < skills.length; i++) {
@@ -66,43 +74,75 @@ Object.assign(skillBlock.style, styles.skill)
 //     i++
 // }, 4000)
 
-// The movement
-let i = 0
-let marginMove = -40
-let opacityChange = .1
+// The movement bug
+// let i = 0
+// let marginMove = -40
+// let opacityChange = .1
 
-const changeSkill = setInterval(() => {
-    const currentSign = skills[i].split(' ').slice(0, 1)
-    const currentText = skills[i]
-        .split(' ')
-        .slice(1, skills[i].length)
-        .join(' ')
+// const changeSkill = setInterval(() => {
+//     const currentSign = skills[i].split(' ').slice(0, 1)
+//     const currentText = skills[i]
+//         .split(' ')
+//         .slice(1, skills[i].length)
+//         .join(' ')
 
-    signBlock.textContent = currentSign
-    skillBlock.textContent = currentText
+//     signBlock.textContent = currentSign
+//     skillBlock.textContent = currentText
     
-    i++
+//     i++
     
-    if (i === skills.length) {
-        i = 0
-    }
+//     if (i === skills.length) {
+//         i = 0
+//     }
 
-}, 4000)
+// }, 4000)
 
-const skillMovement = setInterval(() => {  
-    if (marginMove !== 50) {
-        skillBlock.style.marginLeft = `${marginMove}px`
-        marginMove++
+// const skillMovement = setInterval(() => {  
+//     if (marginMove !== 50) {
+//         skillBlock.style.marginLeft = `${marginMove}px`
+//         marginMove++
+//     } else {
+//         clearInterval(changeSkill)
+//         marginMove = -40
+//         changeSkill()
+//     }
+
+//     if (opacityChange <= 1) {
+//         skillBlock.style.opacity = opacityChange.toFixed(1)
+//         opacityChange += .01
+//     } else {
+//         opacityChange = .1
+//     }
+// }, 40)
+
+// Appearing for technologies 🎾
+let ti = 0
+let tOpacity = .1
+let changeFontOpId
+
+setInterval(() => {
+    const curSkill = skills[ti]
+
+    getTechnologies.textContent = curSkill
+
+
+    // changing technologies
+    if (ti < skills.length - 1) {
+        ti++
+        changeFontOpId = setInterval(changeFontOp, 40)
     } else {
-        clearInterval(changeSkill)
-        marginMove = -40
-        changeSkill()
+        ti = 0
     }
+    clearInterval(changeFontOp)
+}, 2000)
 
-    if (opacityChange <= 1) {
-        skillBlock.style.opacity = opacityChange.toFixed(1)
-        opacityChange += .01
+// changing font opacity 
+const changeFontOp = () => {
+    getTechnologies.style.opacity = tOpacity
+
+    if (tOpacity < .9 ) {
+        tOpacity += .1
     } else {
-        opacityChange = .1
+        tOpacity = .1
     }
-}, 40)
+}
