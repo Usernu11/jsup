@@ -4,6 +4,7 @@ const skills = ['JavaScript', 'HTML/CSS3', 'ES6', 'Sass', 'mySQL']
 const signBlock = document.createElement('div')
 const lifeBlock = document.createElement('div')
 const getTechnologies = document.querySelector('.technologies')
+const getProjects = document.querySelector('.projects')
 
 // Styles
 const styles = {
@@ -40,6 +41,22 @@ const styles = {
         color: 'black',
         fontWeight: '700',
         fontSize: '35px'
+    },
+    projectsWrapper: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'space-between',
+        margin: '30px 0 10px 0'
+    },
+    project: {
+        width: '30%',
+        height: '140px',
+        // outline: '2px solid red',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        backgroundColor: 'PeachPuff'
     }
 }
 
@@ -52,6 +69,7 @@ Object.assign(qualificationsBlock.style, styles.qualifications)
 Object.assign(signBlock.style, styles.sign)
 Object.assign(lifeBlock.style, styles.hobbie)
 Object.assign(getTechnologies.style, styles.skills)
+Object.assign(getProjects.style, styles.projectsWrapper)
 
 // Move skill and change content
 // The hobbies movement 💚
@@ -80,7 +98,7 @@ const changeHobbie = () => {
     }
 }
 
-const hobbieMovement = () => {  
+const hobbieMovement = () => {
     if (startingMargin !== 50) {
         lifeBlock.style.marginLeft = `${startingMargin}px`
         startingMargin++
@@ -143,3 +161,19 @@ const changeFontOpacity = () => {
 
 setInterval(changeSkill, 2000)
 setInterval(changeFontOpacity, 100)
+
+for (let u = 0; u < 3; u++) {
+    const newProject = document.createElement('div')
+    getProjects.appendChild(newProject)
+    Object.assign(newProject.style, styles.project)
+    
+    if (u === 0) {
+        newProject.textContent = 'Project Solar System'
+    }
+    if (u === 1) {
+        newProject.textContent = 'World Countries Data Visualization'
+    }
+    if (u === 2) {
+        newProject.textContent = 'World Countries Data Visualization 2'
+    }
+}
