@@ -89,9 +89,9 @@ Object.assign(getTechnologies.style, styles.skills)
 
 //     signBlock.textContent = currentSign
 //     skillBlock.textContent = currentText
-    
+
 //     i++
-    
+
 //     if (i === skills.length) {
 //         i = 0
 //     }
@@ -125,9 +125,27 @@ let isSkillChanged = false
 
 const changeSkill = () => {
     const curSkill = skills[skillIndex]
+    
+    if (curSkill.toLowerCase() == 'javascript') {
+        getTechnologies.style.color = 'yellow'
+    }
+    if (curSkill.toLowerCase() == 'html/css3') {
+        getTechnologies.style.color = 'Navy'
+    }
+    if (curSkill.toLowerCase() == 'sass') {
+        getTechnologies.style.color = 'HotPink'
+    }
+    if (curSkill.toLowerCase() == 'mysql') {
+        getTechnologies.style.color = 'MediumSeaGreen'
+    }
+    if (curSkill.toLowerCase() == 'es6') {
+        getTechnologies.style.color = 'DarkOrange'
+    }
+
     getTechnologies.textContent = curSkill
     isSkillChanged = true
     startedFontOpacity = .1
+
     if (skillIndex < skills.length - 1) {
         skillIndex++
     } else {
