@@ -1,8 +1,8 @@
 const qualificationsBlock = document.querySelector('.qualifications')
 const life = ['👨‍💻 developer', '⚡ motivator', '🏐 volleyball player', '🎨 charcoal artist']
-const skills = ['JavaScript', 'HTML', 'CSS3', 'ES6', 'Sass', 'mySQL']
+const skills = ['JavaScript', 'HTML/CSS3', 'ES6', 'Sass', 'mySQL']
 const signBlock = document.createElement('div')
-const skillBlock = document.createElement('div')
+const lifeBLock = document.createElement('div')
 const getTechnologies = document.querySelector('.technologies')
 
 // Styles
@@ -26,7 +26,7 @@ const styles = {
         alignItems: 'center',
         fontSize: '25px'
     },
-    skill: {
+    hobbie: {
         width: 'fit-content',
         height: '40px',
         // outline: '2px solid blue',
@@ -41,18 +41,19 @@ const styles = {
     skills: {
         opacity: '1',
         color: 'black',
-        fontWeight: '700'
+        fontWeight: '700',
+        fontSize: '35px'
     }
 }
 
 // Joining new HTML elements
 qualificationsBlock.appendChild(signBlock)
-qualificationsBlock.appendChild(skillBlock)
+qualificationsBlock.appendChild(lifeBLock)
 
 // Applying styles
 Object.assign(qualificationsBlock.style, styles.qualifications)
 Object.assign(signBlock.style, styles.sign)
-Object.assign(skillBlock.style, styles.skill)
+Object.assign(lifeBLock.style, styles.hobbie)
 Object.assign(getTechnologies.style, styles.skills)
 
 // Move skill and change content
@@ -116,33 +117,32 @@ Object.assign(getTechnologies.style, styles.skills)
 // }, 40)
 
 // Appearing for technologies 🎾
-let ti = 0
-let tOpacity = .1
-let changeFontOpId
+// 1. try to make 2 functions
+// 2. then using conditionals use intervals
+let skillIndex = 0
+let startedFontOpacity = .1
+let isSkillChanged = false
 
-setInterval(() => {
-    const curSkill = skills[ti]
-
+const changeSkill = () => {
+    const curSkill = skills[skillIndex]
     getTechnologies.textContent = curSkill
-
-
-    // changing technologies
-    if (ti < skills.length - 1) {
-        ti++
-        changeFontOpId = setInterval(changeFontOp, 40)
+    isSkillChanged = true
+    startedFontOpacity = .1
+    if (skillIndex < skills.length - 1) {
+        skillIndex++
     } else {
-        ti = 0
-    }
-    clearInterval(changeFontOp)
-}, 2000)
-
-// changing font opacity 
-const changeFontOp = () => {
-    getTechnologies.style.opacity = tOpacity
-
-    if (tOpacity < .9 ) {
-        tOpacity += .1
-    } else {
-        tOpacity = .1
+        skillIndex = 0
     }
 }
+
+const changeFontOpacity = () => {
+    getTechnologies.style.opacity = startedFontOpacity
+    if (startedFontOpacity < .9 && isSkillChanged === true) {
+        startedFontOpacity += .1
+    } else {
+        isSkillChanged = false
+    }
+}
+
+setInterval(changeSkill, 2000)
+setInterval(changeFontOpacity, 100)
