@@ -1,5 +1,5 @@
 const qualificationsBlock = document.querySelector('.qualifications')
-const life = ['👨‍💻 developer', '⚡ motivator', '🏐 volleyball player', '🎨 charcoal artist']
+const life = ['👨‍💻 programmer', '⚡ motivator', '🏐 volleyball player', '🎨 charcoal artist']
 const skills = ['JavaScript', 'HTML/CSS3', 'ES6', 'Sass', 'mySQL']
 const signBlock = document.createElement('div')
 const lifeBlock = document.createElement('div')
@@ -56,7 +56,8 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        backgroundColor: 'PeachPuff'
+        backgroundColor: 'PeachPuff',
+        cursor: 'pointer'
     }
 }
 
@@ -162,10 +163,12 @@ const changeFontOpacity = () => {
 setInterval(changeSkill, 2000)
 setInterval(changeFontOpacity, 100)
 
+// Creating projects
 for (let u = 0; u < 3; u++) {
     const newProject = document.createElement('div')
     getProjects.appendChild(newProject)
     Object.assign(newProject.style, styles.project)
+    newProject.className = 'project'
     
     if (u === 0) {
         newProject.textContent = 'Project Solar System'
@@ -177,3 +180,25 @@ for (let u = 0; u < 3; u++) {
         newProject.textContent = 'World Countries Data Visualization 2'
     }
 }
+
+// Making CSS visual effects for projects
+const projectElements = document.querySelectorAll('.project')
+
+// getProject.addEventListener('mouseenter', () => {
+//     getProject.style.boxShadow = 'inset 0px 0px 15px 0px yellow'
+// })
+
+// getProject.addEventListener('mouseout', () => {
+//     getProject.style.boxShadow = 'none'
+// })
+console.log(projectElements)
+
+projectElements.forEach((projectElement) => {
+    projectElement.addEventListener('mouseenter', () => {
+      projectElement.style.boxShadow = 'inset 0px 0px 15px 0px yellow'
+    })
+  
+    projectElement.addEventListener('mouseout', () => {
+      projectElement.style.boxShadow = 'none'
+    })
+  })
