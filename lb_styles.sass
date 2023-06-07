@@ -1,0 +1,100 @@
+@import _mixins.sass
+// General
+body
+    background-color: steelblue
+    font-family: 'Comfortaa'
+
+.container
+    width: 60%
+    margin: 0 auto
+    display: flex
+    flex-direction: column
+    align-items: center
+
+// Inputs
+.inputs
+    width: 100%
+    // outline: 2px dashed navy
+    display: flex
+    justify-content: space-between
+    margin-bottom: 20px
+    &__input
+        outline: none
+        height: 40px
+        border: 2px solid navy
+        letter-spacing: 2px
+        padding: 0 10px
+        font-family: 'Comfortaa'
+    & > *   // inputs + btn
+        width: 150px
+    & > :last-child     // btn
+        height: 42px
+        border: none
+        background-color: navy
+        color: #fff
+        font-family: 'Comfortaa'
+        transition: opacity .5s
+    & > :last-child:hover   // btn hover
+        opacity: .7
+        cursor: pointer
+
+.lb
+    width: 100%
+    display: flex
+    flex-direction: column
+    &__player
+        width: 98%
+        @include flexBetween()
+        padding: 10px
+        margin: 10px 0
+        background-color: navy
+        color: #fff
+        text-transform: uppercase
+        order: 0
+    &__player-data
+        display: flex
+        width: 55%
+    &__player-nd
+        width: 54%
+    &__player-cs
+        @include flexBetween()
+        width: 46%
+    &__name
+        font-size: 20px
+        margin-bottom: 10px
+    &__date
+        font-size: 11px
+    &__btns > *
+        border-radius: 50%
+        width: 50px
+        height: 50px
+        border: none
+        padding: 0
+        font-family: 'Comfortaa'
+        font-size: 15px
+        transition: background-color .5s
+        &:hover
+            cursor: pointer
+            background-color: steelblue
+
+// Additional
+.warn
+    color: yellow
+    text-shadow: 1px 1px red
+    margin-bottom: 10px
+    display: block
+
+.disabled
+    display: none
+
+.img
+    width: 230px
+    height: 100px
+    position: fixed
+    bottom: 0
+    right: 0
+    opacity: .9
+    border-top-left-radius: 68px
+    background-image: url('img/jq.png')
+    background-repeat: no-repeat
+    background-size: cover

@@ -5,35 +5,157 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="styles.css">
+    <!-- CSS for day28_leaderboard ↓ -->
+    <link rel="stylesheet" href="lb_styles.css">
     <!-- CSS for day27_portfolio ↓ -->
-    <link rel="stylesheet" href="day27_portfolio.css"> 
+    <!-- <link rel="stylesheet" href="day27_portfolio.css">  -->
     <link rel="icon" type="image/png" href="/img/js.ico">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- font for day28 ↓ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Iceland&family=Roboto+Mono&display=swap"
+        rel="stylesheet">
+    <!-- jq for da28 ↓ -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>UP ⚡</title>
 </head>
 
 <body style="background-color: steelblue" id="body">
 
-    <div class="stopwatch" id="stopwatch"></div>
+    <!-- <div class="stopwatch" id="stopwatch"></div>
 
     <div id="start" onclick="start"></div>
     <div id="pause" onclick="pause"></div>
-    <div id="stop" onclick="stop"></div>
+    <div id="stop" onclick="stop"></div> -->
 
-    <img src="/img/github.png" id="github">
+    <!-- <img src="/img/github.png" id="github"> -->
 
     <!-- HTML for day27_portfolio ↓ -->
+        <!-- <div class="container">
+            <h1>Bohdan Lavrentiev</h1>
+            <div class="qualifications"></div>
+            <p class="general-text">I'm a Front-End developer from Ukraine, who learns always something new, and who also likes motivate, creates content. I realy like do program, work with program languages, play volleyball, travel and discover new places. Roughly in begin of the February 2022 I found and started a course <span class="marked-text">"30DaysOfJavaScript"</span> from the great teacher, motivator and content creator <span class="marked-text">Asabeneh Yetayeh</span>. It should take 30 days, but the war between Ukraine and Russia began and I can't continue the learn process due no electricity in my Mariupol city. After some months I succesfully escaped from the hell and continued the work. Sometimes I needed stop the procces, because I looked for a silence place where I could continue my normal life. So, when was in trip I didn't learn, because I was quite busy at those time. But, when I came to the Switzerland I decided I can continue and finish the great course. Here is day 27 of 30 JavaScript challenge.</p>
+            <div class="projects"></div>
+            <span class="general-text">The technologies which I learned: <span class="technologies"></span></span>
+        </div> -->
+
+    <!-- HTML for day28_leaderboard ↓ -->
     <div class="container">
-        <h1>Bohdan Lavrentiev</h1>
-        <div class="qualifications"></div>
-        <p class="general-text">I'm a Front-End developer from Ukraine, who learns always something new, and who also likes motivate, creates content. I realy like do program, work with program languages, play volleyball, travel and discover new places. Roughly in begin of the February 2022 I found and started a course <span class="marked-text">"30DaysOfJavaScript"</span> from the great teacher, motivator and content creator <span class="marked-text">Asabeneh Yetayeh</span>. It should take 30 days, but the war between Ukraine and Russia began and I can't continue the learn process due no electricity in my Mariupol city. After some months I succesfully escaped from the hell and continued the work. Sometimes I needed stop the procces, because I looked for a silence place where I could continue my normal life. So, when was in trip I didn't learn, because I was quite busy at those time. But, when I came to the Switzerland I decided I can continue and finish the great course. Here is day 27 of 30 JavaScript challenge.</p>
-        <div class="projects"></div>
-        <span class="general-text">The technologies which I learned: <span class="technologies"></span></span>
+        <h1>30 Days Of JavaScript Challenge Leaderboard</h1>
+        <div class="inputs">
+            <input id="input-name" class="inputs__input" type="text" placeholder="First Name">
+            <input id="input-l-name" class="inputs__input" type="text" placeholder="Last name">
+            <input id="input-country" class="inputs__input" type="text" placeholder="Country">
+            <input id="input-score" class="inputs__input" type="number" placeholder="Player Score">
+            <button id="input-btn">Add Player</button>
+        </div>
+
+        <div class="warn disabled">All fields are required</div>
+
+        <div class="lb">
+            <div class="lb__player" id="my-jan-f">
+                <div class="lb__player-data">
+                    <div class="lb__player-nd">
+                        <div class="lb__name">
+                            <span class="lb__name--first">martha</span>
+                            <span class="lb__name--last">yohanes</span>
+                        </div>
+    
+                        <div class="lb__date">jan 30, 2020 01:09</div>
+                    </div>
+    
+                    <div class="lb__player-cs">
+                        <div class="lb__country">finland</div>
+                        <div class="lb__score">85</div>
+                    </div>
+                </div>
+
+                <div class="lb__btns">
+                    <button class="lb__btns--remove">❌</button>
+                    <button class="lb__btns--plus">+5</button>
+                    <button class="lb__btns--minus">-5</button>
+                </div>
+            </div>
+
+            <div class="lb__player" id="ds-jan-uk">
+                <div class="lb__player-data">
+                    <div class="lb__player-nd">
+                        <div class="lb__name">
+                            <span class="lb__name--first">david</span>
+                            <span class="lb__name--last">smith</span>
+                        </div>
+    
+                        <div class="lb__date">jan 30, 2020 01:09</div>
+                    </div>
+    
+                    <div class="lb__player-cs">
+                        <div class="lb__country">united kingdom</div>
+                        <div class="lb__score">80</div>
+                    </div>
+                </div>
+
+                <div class="lb__btns">
+                    <button class="lb__btns--remove">❌</button>
+                    <button class="lb__btns--plus">+5</button>
+                    <button class="lb__btns--minus">-5</button>
+                </div>
+            </div>
+            
+            <div class="lb__player" id="ay-jan-f">
+                <div class="lb__player-data">
+                    <div class="lb__player-nd">
+                        <div class="lb__name">
+                            <span class="lb__name--first">asabeneh</span>
+                            <span class="lb__name--last">yetayeh</span>
+                        </div>
+    
+                        <div class="lb__date">jan 30, 2020 01:09</div>
+                    </div>
+    
+                    <div class="lb__player-cs">
+                        <div class="lb__country">finland</div>
+                        <div class="lb__score">75</div>
+                    </div>
+                </div>
+
+                <div class="lb__btns">
+                    <button class="lb__btns--remove">❌</button>
+                    <button class="lb__btns--plus">+5</button>
+                    <button class="lb__btns--minus">-5</button>
+                </div>
+            </div>
+
+            <div class="lb__player" id="me-jan-s">
+                <div class="lb__player-data">
+                    <div class="lb__player-nd">
+                        <div class="lb__name">
+                            <span class="lb__name--first">mathias</span>
+                            <span class="lb__name--last">elias</span>
+                        </div>
+    
+                        <div class="lb__date">jan 30, 2020 01:09</div>
+                    </div>
+    
+                    <div class="lb__player-cs">
+                        <div class="lb__country">sweden</div>
+                        <div class="lb__score">70</div>
+                    </div>
+                </div>
+
+                <div class="lb__btns">
+                    <button class="lb__btns--remove">❌</button>
+                    <button class="lb__btns--plus">+5</button>
+                    <button class="lb__btns--minus">-5</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script src="/stopwatch.js"></script>
-    <script src="/day27_portfolio.js" type="module"></script>
+    <div class="img"></div>
+
+
+    <!-- <script src="/stopwatch.js"></script> -->
+    <script src="day28_mp_leaderboard.js" type="module"></script>
 </body>
 
 </html>
