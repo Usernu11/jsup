@@ -1,0 +1,29 @@
+{
+  "name": "challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/day29_mp_animating_characters.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --watch 'day29_mp_animating_characters.ts' --exec 'npx ts-node' day29_mp_animating_characters.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Usernu11/jsup.git"
+  },
+  "keywords": [
+    "javascript",
+    "typescript",
+    "jQuery",
+    "js-practice"
+  ],
+  "author": "Bohdan Lavrentiev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Usernu11/jsup/issues"
+  },
+  "homepage": "https://github.com/Usernu11/jsup#readme",
+  "devDependencies": {
+    "ts-node": "^10.9.1"
+  }
+}
