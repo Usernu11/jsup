@@ -19,10 +19,37 @@ const interfaceEl = (
     </div>
 )
 
+const countries = (
+    <div className="countries">{countryCard}</div>
+)
+
+const stat = (
+    <div className="stat">
+        <div className="buttons">
+            <button className="buttons__pop"></button>
+            <button className="buttons__langs"></button>
+        </div>
+    </div>
+)
+
+const countryCard = (
+    countriesObjects.map(country => {
+        <div className="countryCard" key={country.name}>
+            <img className="countryCard__flag" src={country.flag} alt={`country-flag-${country.name}`}></img>
+            <span className="countryCard__name">{country.name}</span>
+            <span className="countryCard__capital">{country.capital}</span>
+            <span className="countryCard__languages">{country.languages}</span>
+            <span className="countryCard__population">{country.population}</span>
+        </div>
+    })
+)
+
 const app = (
     <div className="container">
         {title}
         {interfaceEl}
+        {countries}
+        {stat}
     </div>
 )
 
