@@ -22,16 +22,26 @@ const interfaceEl = (
 const fetchData = async () => {
   try {
     const response = await fetch('https://raw.githubusercontent.com/Asabeneh/30-Days-Of-JavaScript/master/data/countries_data.js')
-    const data = await response.text()
-    const countriesData = JSON.parse(data.slice(data.indexOf('[')))
+    const data = await response.text()    // long string of an array
+    const countriesData = JSON.parse(data.slice(data.indexOf('[')))   // array of objects (remove assigning 'const' before - using slice method, for reading array)
 
     const countryCard = countriesData.map(country => (
       <div className="countryCard" key={country.name}>
         <img className="countryCard__flag" src={country.flag} alt={`country-flag-${country.name}`} />
         <span className="countryCard__name">{country.name}</span>
-        <span className="countryCard__capital">{country.capital}</span>
-        <span className="countryCard__languages">{country.languages}</span>
-        <span className="countryCard__population">{country.population}</span>
+        <div className="countryCard__info">
+          <span className="countryCard__capital">
+            <b>Capital:</b> {country.capital}
+          </span>
+
+          <span className="countryCard__languages">
+            <b>Languages:</b> {country.languages}
+          </span>
+
+          <span className="countryCard__population">
+            <b>Population:</b> {country.population}
+          </span>
+        </div>
       </div>
     ))
 
@@ -54,3 +64,4 @@ const fetchData = async () => {
 }
 
 fetchData()
+console.warn(`🔴 If some flags didn't loaded - please try to disable your AdBlocker on this site.`)
