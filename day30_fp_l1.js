@@ -35,11 +35,12 @@ const fetchData = async () => {
           </span>
 
           <span className="countryCard__languages">
-            <b>Languages:</b> {country.languages}
+            <b>Languages:</b> {country.languages.toLocaleString()}
           </span>
 
           <span className="countryCard__population">
-            <b>Population:</b> {country.population}
+            <b>Population:</b> {country.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+             {/* // regex: search numbers to make a start point, after the point - find 3 numbers in a row, and there is no numbers after numbers group */}
           </span>
         </div>
       </div>
@@ -64,4 +65,4 @@ const fetchData = async () => {
 }
 
 fetchData()
-console.warn(`🔴 If some flags didn't loaded - please try to disable your AdBlocker on this site.`)
+console.warn(`🔴 If some flags didn't load - please try to disable your AdBlocker on this site.`)
