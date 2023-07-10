@@ -1,20 +1,15 @@
 // Variables
 const getRootEl = document.querySelector('.root')
 
-// JSX elements
-const title = (
-  <h1>World Countries Data</h1>
-)
-
 const interfaceEl = (
   <div>
     <input type="text" placeholder="Search country..." />
 
-    <div className="buttuns">
+    <div className="buttons">
       <button className="buttons__name">Name</button>
       <button className="buttons__capital">Capital</button>
       <button className="buttons__population">Population</button>
-      <button className="buttons__stat" />
+      <span className="buttons__stat">📊</span>
     </div>
   </div>
 )
@@ -40,11 +35,19 @@ const fetchData = async () => {
 
           <span className="countryCard__population">
             <b>Population:</b> {country.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-             {/* // regex: search numbers to make a start point, after the point - find 3 numbers in a row, and there is no numbers after numbers group */}
+            {/* // regex: search numbers to make a start point, after the point - find 3 numbers in a row, and there is no numbers after numbers group */}
           </span>
         </div>
       </div>
     ))
+
+    const countriesCount = countriesData.length
+    const title = (
+      <div>
+        <h1>World Countries Data</h1>
+        <h3>Currently, we have {countriesCount} countries</h3>
+      </div>
+    )  
 
     const countries = (
       <div className="countries">{countryCard}</div>
